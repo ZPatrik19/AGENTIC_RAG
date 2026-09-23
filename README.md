@@ -1,8 +1,10 @@
-#   – Agentic RAG Chatbot
+# Agentic RAG Chatbot Prototípus
 
-A   egy magyar nyelvű, LangGraph-alapú **Agentic RAG chatbot prototípus**, amely hétköznapi magyar közigazgatási élethelyzetekben segít eligazodni hivatalos, nyilvánosan elérhető források alapján.
+Ez a projekt egy magyar nyelvű, LangGraph-alapú **Agentic RAG chatbot prototípus**, amely hétköznapi magyar közigazgatási élethelyzetekben segít eligazodni hivatalos, nyilvánosan elérhető források alapján.
 
-A projekt Pythonban készült. A fő agentic workflow-t és a moduláris RAG algráfot LangGraph kezeli, a generatív modell lokálisan Ollamán keresztül fut, a felhasználói felület pedig Streamlit.
+A projekt Pythonban készült. A fő agentic workflow-t és a moduláris RAG algráfot LangGraph kezeli, a generatív modell **lokálisan, Ollamán keresztül fut**, a felhasználói felület pedig Streamlit.
+
+A megoldás **nem használ fizetős külső LLM API-t**: a válaszgenerálást a helyben futó, nyíltan elérhető **Qwen3 4B** modell végzi.
 
 A projekt célja nem egy általános chatbot létrehozása, hanem egy reprodukálható AI Engineering prototípus bemutatása, amely:
 
@@ -11,7 +13,7 @@ A projekt célja nem egy általános chatbot létrehozása, hanem egy reproduká
 * explicit LangGraph state-et használ;
 * conditional routing alapján dönt a következő lépésről;
 * több RAG worker futását képes koordinálni;
-* retrieval és nem-retrieval toolokat is használ;
+* retrieval és non-retrieval toolokat is használ;
 * korlátozott retry és fallback logikát alkalmaz;
 * evidence-alapú, forráshivatkozásokkal ellátott választ állít elő;
 * külön méri a retrieval, az agentic workflow és a teljesítmény főbb komponenseit;
@@ -474,27 +476,27 @@ A context csak az indexelt és verziózott evidence-ekből épül.
 
 A workflow nem kizárólag dokumentum-visszakeresést használ.
 
-A projekt több determinisztikus, nem-retrieval toolt is tartalmaz.
+A projekt több determinisztikus, non-retrieval toolt is tartalmaz.
 
 Példák:
 
-### Jármű-vagyonszerzési illeték kalkulátor
+## Jármű-vagyonszerzési illeték kalkulátor
 
 A tool csak akkor végez számítást, ha a szükséges NAV tarifa valódi, indexelt evidence-ként rendelkezésre áll.
 
-### Határidő-számítás
+## Határidő-számítás
 
 A rendszer a visszakeresett dokumentumokban található időtartamokat használhatja határidő kiszámítására.
 
-### Dokumentum-checklist
+## Dokumentum-checklist
 
 A retrieval evidence alapján összeállítható ügyintézési dokumentumlista.
 
-### Álláskeresési járadékhoz kapcsolódó kalkuláció
+## Álláskeresési járadékhoz kapcsolódó kalkuláció
 
 A workflow külön eszközt használhat, ha a kérdés összeget vagy jogosultsági számítást igényel.
 
-### Opcionális native tool calling
+## Opcionális native tool calling
 
 Ollama provider esetén a modell által kezdeményezett natív function calling is támogatott.
 
@@ -618,14 +620,26 @@ intfloat/multilingual-e5-small
 
 A generatív modell kiválasztásánál elsődleges követelmény volt:
 
-* fizetős API nélkül működjön;
+* **fizetős külső LLM API nélkül működjön**;
 * lokálisan futtatható legyen;
 * korlátozott CPU/GPU környezetben is használható maradjon;
-* támogassa a magyar nyelvet;
-* megfelelő legyen instruction following feladatokra;
+* támogassa a magyar nyelvű felhasználást;
+* megfelelő legyen instruction-following feladatokra;
 * használható legyen strukturált outputtal;
 * illeszkedjen agentic/tool-calling feladatokhoz;
 * Ollamán keresztül egyszerűen integrálható legyen.
+
+A projekt normál inference útvonala nem igényel például:
+
+```text
+OPENAI_API_KEY
+ANTHROPIC_API_KEY
+GOOGLE_API_KEY
+```
+
+változókat.
+
+A Qwen3 4B helyben fut, így a válaszgenerálás nem requestenként fizetett külső inference szolgáltatáson keresztül történik.
 
 ## Alternatíva
 
@@ -775,7 +789,7 @@ Megtekinthető többek között:
 
 A workflow egy chat submit során egyszer indul el.
 
-Streamlit rerun nem indít automatikusan új fizetős vagy lokális inference-hívást.
+Streamlit rerun nem indít automatikusan újabb lokális inference-hívást.
 
 A QdrantLocal index és a workflow `cache_resource` használatával újrafelhasználható.
 
@@ -906,7 +920,7 @@ Tool Selection Accuracy = 0.4242
 Tool Call Efficiency    = 0.3160
 ```
 
-Ez arra utal, hogy az agentic workflow-ban az eszközválasztás és az indokolatlan vagy nem optimális tool-hívások kezelése fontosabb fejlesztési terület, mint maga a domain classification.
+Ez arra utal, hogy az agentic workflow-ban az eszközválasztás és az indokolatlan vagy nem optimális tool-hívások kezelése fontos fejlesztési terület.
 
 A `Workflow Success Rate = 1.0` nem értelmezhető automatikusan 100%-os válaszpontosságként.
 
@@ -960,144 +974,567 @@ Teljes riport:
 
 ---
 
-# 16. Mért bottleneck-elemzés
+# 16. Bottleneck-elemzés
 
-A load test komponensenkénti telemetry adatokat is tartalmaz.
+A rendszer teljesítményének értékelésekor fontos különválasztani:
 
-Főbb átlagok:
+1. a retrieval/RAG subflow teljesítményét;
+2. a teljes Agentic RAG workflow end-to-end teljesítményét.
 
-| Komponens              |       Mean |
-| ---------------------- | ---------: |
-| `rag/process_query`    | ~0.00009 s |
-| BM25 retrieval         | ~0.00232 s |
-| Dense retrieval        | ~0.00600 s |
-| `rag/hybrid_retrieval` | ~0.17903 s |
-| `rag/rerank_results`   | ~0.00143 s |
+A két mérés eltérő komponenst vizsgál, ezért a belőlük levont következtetések sem azonosak.
 
-A teljes query-to-rerank mérés átlagos ideje:
+## 16.1. Retrieval subflow
+
+Az 50 kéréses retrieval-only load test konfigurációja:
 
 ```text
-~0.18317 s
+scope: subflow
+target: rag/query_to_rerank
+
+request count: 50
+concurrency: 1
+warmup: 1
+timeout: 60 s
 ```
 
-A mérés alapján a vizsgált RAG subflow fő bottleneckje:
+A teljes `query_to_rerank` subflow átlagos végrehajtási ideje:
 
 ```text
-hybrid retrieval
+~0.183 s
 ```
 
-A `rag/hybrid_retrieval` a teljes mért subflow latency túlnyomó részét adta.
+volt.
 
-A futás során:
+A mért főbb komponensek:
+
+| Komponens              | Átlagos idő |
+| ---------------------- | ----------: |
+| `rag/process_query`    |  ~0.00009 s |
+| BM25 retrieval         |  ~0.00232 s |
+| Dense retrieval        |  ~0.00600 s |
+| `rag/hybrid_retrieval` |  ~0.17903 s |
+| `rag/rerank_results`   |  ~0.00143 s |
+
+A retrieval-only benchmark alapján ezen a részfolyamaton belül a:
 
 ```text
-220 BM25 retrieval invocation
-220 dense retrieval invocation
+rag/hybrid_retrieval
 ```
 
-történt 50 request mellett.
+adta a teljes latency legnagyobb részét.
 
-Ez azt mutatja, hogy nem kizárólag egyetlen vector lookup költsége fontos: a query/facet keresési stratégia több retrieval műveletet indíthat egy felhasználói kérdéshez.
+Ez alapján:
 
-## Fontos korlátozás
+> **A retrieval subflow saját, mért bottleneckje a hybrid retrieval.**
 
-Ebből a mérésből **nem következik**, hogy a teljes Agentic RAG alkalmazás legnagyobb bottleneckje is a retrieval.
+Ez azonban nem jelenti azt, hogy a teljes Agentic RAG alkalmazás fő bottleneckje is a retrieval.
 
-A load scenario nem tartalmazta a teljes:
+---
+
+## 16.2. Teljes Agentic workflow
+
+A full-workflow evaluation során lényegesen nagyobb end-to-end latency jelent meg azoknál a kérdéseknél, amelyek tényleges Qwen3 4B válaszgenerálást igényeltek.
+
+A vizsgált futások között például megjelentek:
 
 ```text
-planning
+~54 s
+~135 s
+~192 s
+~206 s
+~264 s
+~283 s
+~339 s
+~355 s
+```
+
+nagyságrendű teljes workflow-idők.
+
+Ezzel szemben olyan speciális esetekben, ahol a válasz determinisztikus forrásfeldolgozással vagy közvetlen source-based válaszstratégiával előállítható volt, és nem volt szükség hosszú generatív LLM-fázisra, körülbelül:
+
+```text
+~0.35–0.55 s
+```
+
+end-to-end válaszidő is mérhető volt.
+
+A retrieval önmagában a külön load test alapján körülbelül:
+
+```text
+~0.18 s
+```
+
+nagyságrendű.
+
+A több tíz vagy akár több száz másodperces full-workflow latency ezért nem magyarázható a retrieval költségével.
+
+A jelenlegi eredmények alapján a **teljes workflow legkritikusabb gyakorlati teljesítménykomponense a lokális Qwen3 4B inference, különösen a végső válaszgenerálás**.
+
+Fontos módszertani megjegyzés: a full-workflow riport end-to-end latency-t mér. Ez erős indikáció az LLM-dominanciára, de a generálási node teljes elkülönítéséhez további közvetlen `generate_answer` / Ollama telemetry benchmark is indokolt.
+
+---
+
+## 16.3. Miért kritikus az LLM-generálás?
+
+A projekt egyik követelménye, hogy ne használjon fizetős külső LLM API-t.
+
+Ezért a generatív modell:
+
+```text
+Qwen3 4B
+```
+
+lokálisan, Ollamán keresztül fut.
+
+Ez megszünteti a fizetős inference API-függőséget, ugyanakkor a teljesítményt a rendelkezésre álló helyi hardver határozza meg.
+
+A generálás költségét több tényező befolyásolja:
+
+```text
+input context size
+        +
+output token budget
+        +
+modellméret
+        +
+GPU / VRAM kapacitás
+        +
+CPU offloading
+        +
+LLM-hívások száma
+```
+
+Korlátozott GPU-memória esetén a modell egy része CPU-n dolgozhat, ami jelentősen csökkentheti a generation throughputot.
+
+A Qwen3 4B használata ezért tudatos kompromisszum:
+
+```text
+ingyenes lokális inference
+          ↕
+korlátozott hardver
+          ↕
+magasabb válaszidő
+```
+
+---
+
+## 16.4. Output token budget trade-off
+
+Az egyik legfontosabb gyakorlati probléma az output token budget.
+
+Ha a generálási keret túl alacsony, például:
+
+```text
+num_predict
+```
+
+nem biztosít elegendő helyet egy komplex ügyintézési válasz számára.
+
+Ennek következménye lehet:
+
+```text
+félbeszakadt válasz
+hiányzó ügyintézési lépések
+hiányzó forrásolt állítások
+answer audit failure
+partial response
+source fallback
+```
+
+A komplex benchmark kérdések több részfeladatot is tartalmazhatnak, például:
+
+```text
+teendők
 +
-tool calling
+határidők
 +
-Qwen generation
+dokumentumok
 +
-answer audit
+költségek
++
+biztosítás
++
+ügyintézési hely
 ```
 
-pipeline-t.
+Ezek részletes megválaszolása nagyobb output keretet igényel.
 
-Ezért a korrekt következtetés:
+A másik irányban azonban a túl magas token budget:
 
-> A mért `rag/query_to_rerank` subflow domináns komponense a hybrid retrieval volt.
+```text
+hosszabb generation time
++
+nagyobb timeout-kockázat
++
+rosszabb interaktív felhasználói élmény
+```
 
-A teljes agentic rendszer fő bottleneckjének meghatározásához külön full-workflow load scenario szükséges.
+hatással jár.
+
+Ezért nem célszerű minden kérdéshez ugyanazt a maximális `num_predict` értéket használni.
+
+---
+
+## 16.5. Dinamikus output budget
+
+A javasolt megoldás kérdéskomplexitás-függő output keret.
+
+| Kérdéstípus                      |  Javasolt `num_predict` |
+| -------------------------------- | ----------------------: |
+| Rövid, egyetlen tény             |                 160–220 |
+| Standard RAG kérdés              |                 280–384 |
+| Többlépéses ügyintézési kérdés   |                 384–512 |
+| Komplex, több részfeladatos terv | ~512, benchmark alapján |
+
+A konkrét értékeket ugyanazon evaluation dataseten érdemes A/B tesztelni.
+
+A cél nem a lehető legnagyobb válasz generálása, hanem az a legkisebb output budget, amely mellett a válasz még teljes.
+
+Mérendő:
+
+```text
+Answer Completeness
+fallback rate
+truncation rate
+generation latency
+generated tokens
+tokens / second
+```
+
+---
+
+## 16.6. Context window trade-off
+
+A másik fontos kompromisszum a context mérete.
+
+A projekt jelenlegi konfigurációja például támogat:
+
+```dotenv
+OLLAMA_NUM_CTX=8192
+```
+
+értéket.
+
+Nagyobb context esetén azonban nőhet:
+
+```text
+prompt processing time
+KV-cache mérete
+RAM használat
+VRAM használat
+time to first token
+teljes inference latency
+```
+
+Ezért nem feltétlenül célszerű minden kérdést automatikusan 8192 tokenes kontextussal futtatni.
+
+Lehetséges stratégia:
+
+```text
+egyszerű kérdés
+    → 4096 context
+
+standard RAG kérdés
+    → 4096–6144 context
+
+komplex multi-source kérdés
+    → 6144–8192 context
+```
+
+A context növelése csak akkor indokolt, ha a kisebb context miatt ténylegesen fontos evidence veszne el.
+
+---
+
+## 16.7. Timeout trade-off
+
+A timeout érték egyszerű növelése nem oldja meg a teljesítményproblémát.
+
+Ha például egy generálás:
+
+```text
+180 s
+```
+
+alatt sem készül el, majd ugyanazt a generálást teljes egészében újraindítjuk, a felhasználó akár több száz másodpercet is várhat.
+
+Ezért az LLM-hívások automatikus újrapróbálását korlátozni kell.
+
+A javasolt működés:
+
+```text
+LLM generation
+      │
+      ├── sikeres és teljes
+      │       ↓
+      │   answer audit
+      │       ↓
+      │   final answer
+      │
+      ├── token limit / részleges output
+      │       ↓
+      │   használható állítások megtartása
+      │       +
+      │   source supplement
+      │
+      └── timeout / invalid output
+              ↓
+          source-based fallback
+```
+
+A rendszerben már létező source fallback ezért fontos architekturális komponens.
+
+Nem csak hibakezelési mechanizmus, hanem a lokális modell használatából eredő latency és megbízhatósági trade-off kezelése.
 
 ---
 
 # 17. Konkrét optimalizálási irányok
 
-## 17.1. Retrieval expansion csökkentése
-
-A 50 request során végrehajtott nagyszámú retrieval invocation alapján érdemes vizsgálni:
+A jelenlegi eredmények alapján az optimalizálási prioritások sorrendje:
 
 ```text
-facet search count
-query expansion
-duplicate search paths
+1. LLM generation latency
+2. output token budget
+3. context / prompt size
+4. szükségtelen LLM-hívások csökkentése
+5. timeout és fallback stratégia
+6. tool-selection optimalizálás
+7. retrieval optimalizálás
+```
+
+## 17.1. Dinamikus `num_predict`
+
+A generálási tokenkeretet a kérdés komplexitásához kell igazítani.
+
+Nem indokolt ugyanazt a budgetet használni:
+
+```text
+"Mennyi az átírás határideje?"
+```
+
+és:
+
+```text
+"Készíts teljes ügyintézési tervet dokumentumokkal,
+határidőkkel, költségekkel és biztosítással."
+```
+
+kérdés esetén.
+
+A workflow már rendelkezik question analysis és task decomposition komponensekkel, ezért ezek eredménye felhasználható a token budget meghatározására.
+
+Például:
+
+```python
+if complexity == "simple":
+    num_predict = 192
+elif complexity == "medium":
+    num_predict = 320
+else:
+    num_predict = 480
+```
+
+A tényleges határértékeket benchmarkkal kell meghatározni.
+
+---
+
+## 17.2. Dinamikus context window
+
+Ugyanez alkalmazható a context méretére.
+
+Ahelyett, hogy minden kérdéshez:
+
+```text
+8192
+```
+
+lenne használva, egyszerűbb kérdéseknél kisebb context csökkentheti a prompt feldolgozási idejét és a memóriaigényt.
+
+Például:
+
+```text
+simple  → 4096
+medium  → 6144
+complex → 8192
+```
+
+Ez csak akkor használható, ha az evaluation alapján nem romlik érdemben:
+
+```text
+Context Recall
+Context Coverage
+Answer Completeness
+```
+
+---
+
+## 17.3. Prompt és evidence csökkentése
+
+A generáció sebességének javításához nem csak a modelloutput hosszát, hanem az input prompt méretét is csökkenteni kell.
+
+A jelenlegi pipeline ezt már támogatja:
+
+```text
+retrieval
+    ↓
+deduplication
+    ↓
+reranking
+    ↓
+evidence selection
+    ↓
+context engineering
+    ↓
+token budget
+```
+
+További optimalizálási lehetőség:
+
+```text
+kevesebb evidence chunk
++
+rövidebb excerpt
++
+duplikált információ eltávolítása
++
+csak az aktuális information needhez tartozó evidence
 ```
 
 A cél:
 
 ```text
-kevesebb retrieval call
-+
-változatlan vagy jobb Recall@5
+kevesebb prompt token
 ```
 
-## 17.2. Dense candidate pool optimalizálása
+úgy, hogy a válaszhoz szükséges forrásinformáció megmaradjon.
 
-A következő konfigurációk azonos benchmarkon A/B tesztelhetők:
+---
+
+## 17.4. Determinisztikus fast path
+
+A benchmark eredmények alapján azok a kérdések, amelyek LLM-generálás nélkül is biztonságosan megválaszolhatók, nagyságrendekkel gyorsabbak lehetnek.
+
+Ezért egyszerű strukturált kérdéseknél érdemes determinisztikus fast pathot használni.
+
+Példák:
 
 ```text
+díjlekérdezés
+határidő
+dokumentumlista
+illetékkalkuláció
+strukturált forráskivonat
+```
+
+Ezeknél nincs feltétlenül szükség hosszú generatív válaszra.
+
+Pipeline:
+
+```text
+Question
+   ↓
+deterministic intent
+   ↓
+exact evidence / tool
+   ↓
+templated cited response
+```
+
+Ez csökkenti:
+
+```text
+LLM calls
+latency
+timeout risk
+```
+
+---
+
+## 17.5. Szükségtelen LLM-hívások minimalizálása
+
+Agentic rendszernél egyetlen kérdés több LLM-hívást is kiválthat.
+
+Például:
+
+```text
+classification
+planning
+tool selection
+answer generation
+validation
+```
+
+Lokális modellen minden további hívás jelentős latency-t jelenthet.
+
+Ezért egyszerű kérdéseknél érdemes preferálni:
+
+```text
+FAST_ROUTING=true
+QUICK_SINGLE_PASS=true
+```
+
+stratégiát.
+
+Az LLM-et csak olyan pontokon célszerű használni, ahol ténylegesen hozzáadott értéket biztosít.
+
+---
+
+## 17.6. Timeout után ne teljes retry következzen
+
+A teljes generálás automatikus megismétlése költséges.
+
+Jobb stratégia:
+
+```text
+generation timeout
+       ↓
+retrieved evidence megtartása
+       ↓
+source-based fallback
+```
+
+vagy részleges, validálható modelloutput esetén:
+
+```text
+partial model output
+       +
+source supplement
+```
+
+Ez kiszámíthatóbb maximális latency-t biztosít.
+
+---
+
+## 17.7. Retrieval optimalizálás
+
+A retrieval-only benchmark alapján továbbra is érdemes vizsgálni:
+
+```text
+facet_search_limit_per_query
 dense_top_k
 bm25_top_k
 rag_candidate_limit
-facet_search_limit_per_query
+query expansion
 ```
 
-A cél nem egyszerűen a latency csökkentése, hanem a retrieval quality és latency együttes optimalizálása.
+értékeket.
 
-## 17.3. Tool selection javítása
+A retrieval azonban a jelenlegi full-workflow eredmények alapján nem az elsődleges end-to-end performance probléma.
 
-A full workflow mérés egyik leggyengébb területe:
+A retrieval optimalizálás célja ezért elsősorban:
 
 ```text
-Tool Selection Accuracy = 0.4242
-Tool Call Efficiency    = 0.3160
+jobb Recall@5
+jobb Context Coverage
+kevesebb redundáns retrieval
 ```
 
-Ezért érdemes:
-
-* szigorúbb deterministic tool-routing szabályokat használni;
-* a tool input feltételeket pontosítani;
-* a tool szükségességét explicit információigényhez kötni;
-* felesleges tool callokat elkerülni.
-
-## 17.4. Context csökkentése
-
-A végső LLM-hívás csak a szükséges evidence-et kapja.
-
-Optimalizálható:
-
-```text
-evidence count
-excerpt size
-token budget
-section expansion
-```
-
-Ez csökkentheti:
-
-* a prompt token mennyiséget;
-* a memóriaigényt;
-* a generation latency-t.
+és csak másodsorban a teljes workflow latency további csökkentése.
 
 ---
 
 # 18. Teljesítményértelmezés
 
-A teljes rendszer latency-je több komponensből áll:
+A teljes Agentic RAG rendszer latency-je:
 
 ```text
 routing
@@ -1117,33 +1554,77 @@ LLM generation
 answer audit
 ```
 
-A retrieval load test csak ennek egy részét vizsgálta.
+komponensekből épül fel.
 
-A teljes workflow esetén lokális Qwen inference és esetleges CPU offloading lényegesen nagyobb válaszidőt okozhat.
-
-Ezért a következő performance iteration indokolt:
+A retrieval-only load test alapján a RAG keresési pipeline önmagában gyors:
 
 ```text
-50 requests
-full_workflow
-Qwen3 4B enabled
+mean ≈ 0.18 s
 ```
 
-és külön mérendő:
+A full-workflow evaluation azonban több tíz vagy több száz másodperces end-to-end latency-t is mutatott.
+
+Ez alapján a rendszer jelenlegi teljesítményének legfontosabb korlátja a **lokális generatív modell futási ideje**.
+
+A legfontosabb trade-off:
+
+```text
+kisebb context + kisebb output
+        ↓
+gyorsabb válasz
+        ↓
+nagyobb információvesztési / truncation kockázat
+
+
+nagyobb context + nagyobb output
+        ↓
+teljesebb válasz lehetősége
+        ↓
+magasabb latency és timeout-kockázat
+```
+
+A rendszer optimalizálásának célja ezért nem egyszerűen a lehető legkisebb latency.
+
+A cél:
+
+```text
+elfogadható Answer Completeness
+        +
+alacsony fallback / truncation rate
+        +
+elfogadható válaszidő
+```
+
+egyensúlyának megtalálása.
+
+A következő performance benchmarkban külön mérendő:
 
 ```text
 TTFT
-generation speed
-prompt tokens
-generated tokens
+generation latency
+generation tokens / second
+prompt_eval_count
+eval_count
+requested num_ctx
+requested num_predict
 per-node latency
-CPU
-RAM
-GPU
-VRAM
 fallback rate
 timeout rate
+CPU usage
+RAM usage
+GPU usage
+VRAM usage
 ```
+
+Különösen fontos a:
+
+```text
+generate_answer
+```
+
+node és az Ollama `answer` request közvetlen mérési adatainak elemzése.
+
+Ez lehetővé teszi, hogy az LLM-domináns bottleneck ne csak end-to-end összehasonlításból legyen következtethető, hanem közvetlen node-level telemetry adatokkal is bizonyítható legyen.
 
 ---
 
@@ -1189,7 +1670,7 @@ qwen3:4b
 A projekt nem tartalmazza:
 
 * az Ollama modellek bináris fájljait;
-* API-kulcsokat;
+* fizetős LLM szolgáltatáshoz tartozó API-kulcsokat;
 * `.env` secret fájlt;
 * lokális vector store adatokat.
 
@@ -1249,6 +1730,8 @@ OLLAMA_READ_TIMEOUT_S=180
 OLLAMA_TOTAL_TIMEOUT_S=480
 ```
 
+A `OLLAMA_NUM_CTX=8192` és `OLLAMA_ANSWER_NUM_PREDICT=900` konfigurálható felső beállítások; nem tekintendők minden kérdéstípushoz optimális értéknek. A performance-elemzés alapján érdemes kérdéskomplexitás-függő context- és output budgetet használni.
+
 ---
 
 # 21. Docker
@@ -1274,7 +1757,7 @@ Windows / Linux host
 │   └── qwen3:4b
 │
 └── Docker
-    └──  
+    └── Agentic RAG application
         ├── Streamlit
         ├── LangGraph
         ├── RAG
@@ -1484,7 +1967,7 @@ A projekt főbb mérnöki döntései:
 | BM25 + dense retrieval   | Lexikális és szemantikus keresés kombinálása                      |
 | RRF                      | Eltérő retrieval rangsorok stabil egyesítése                      |
 | QdrantLocal              | Külső vector DB service nélkül futtatható prototípus              |
-| Qwen3 4B + Ollama        | Helyi, fizetős API nélküli inference                              |
+| Qwen3 4B + Ollama        | Helyi, fizetős LLM API nélküli inference                          |
 | Bounded retry            | Végtelen agent loop elkerülése                                    |
 | Determinisztikus toolok  | Számítási feladatok kiszervezése az LLM-ből                       |
 | Explicit source fallback | Modellhiba esetén ellenőrizhető evidence megőrzése                |
@@ -1502,9 +1985,11 @@ A projekt jelenlegi mérései alapján:
 
 A domain, intent és task decomposition metrikák a 11 kérdéses full-workflow futásban 1.0 értéket értek el.
 
-**2. A retrieval működőképes, de nem tekinthető lezárt problémának.**
+**2. A retrieval működőképes, de tovább fejleszthető.**
 
-A SILVER-alapú Recall@5 körülbelül 0.44–0.49 között alakult a vizsgált futásokban, ezért további retrieval tuning indokolt.
+A SILVER-alapú Recall@5 körülbelül 0.44–0.49 között alakult a vizsgált futásokban.
+
+Ez alapján indokolt a retrieval konfiguráció további A/B tesztelése.
 
 **3. A source-level coverage erősebb, mint a chunk-level retrieval.**
 
@@ -1514,30 +1999,87 @@ Ez arra utal, hogy a rendszer gyakran megtalálja a megfelelő dokumentumot, de 
 
 **4. Az agentic eszközválasztás további fejlesztést igényel.**
 
-A Tool Selection Accuracy és Tool Call Efficiency a jelenlegi full-workflow benchmark egyik leggyengébb része.
+A jelenlegi mérésben:
 
-**5. A mért RAG subflow bottleneck a hybrid retrieval.**
+```text
+Tool Selection Accuracy = 0.4242
+Tool Call Efficiency    = 0.3160
+```
 
-A retrieval-only 50 requestes load testben a `rag/hybrid_retrieval` dominálta a teljes query-to-rerank időt.
+értékeket kaptunk.
 
-**6. A teljes agentic rendszer bottleneckje még nem bizonyított.**
+A tool-routing ezért további optimalizációs terület.
 
-Ehhez külön teljes workflow load teszt szükséges valós Qwen3 inference-szel.
+**5. A retrieval subflow mért bottleneckje a hybrid retrieval.**
+
+Az 50 kéréses retrieval-only load testben a `rag/hybrid_retrieval` dominálta a `query_to_rerank` subflow idejét.
+
+A teljes retrieval pipeline ettől függetlenül körülbelül 0.18 másodperces átlagos latency mellett futott.
+
+**6. A teljes workflow legkritikusabb gyakorlati bottleneckje a lokális LLM-generálás.**
+
+A Qwen-generálást igénylő full-workflow futások több tíz, illetve több száz másodperces end-to-end latency-t is mutattak, miközben az LLM-generálást megkerülő determinisztikus/source-based esetek másodperc alatti végrehajtást is elértek.
+
+Ez erősen arra utal, hogy a jelenlegi hardverkörnyezetben a lokális Qwen3 4B inference dominálja a felhasználó által érzékelt válaszidőt.
+
+**7. A token budget közvetlen minőség–teljesítmény kompromisszumot jelent.**
+
+Túl alacsony output budget esetén nő a félbeszakadt vagy részleges válasz valószínűsége.
+
+Túl magas output budget esetén nő:
+
+```text
+generation latency
+timeout probability
+resource usage
+```
+
+Ezért a következő optimalizációs lépés egyik fő iránya a dinamikus `num_predict`.
+
+**8. A context window szintén kompromisszum.**
+
+A nagyobb context több evidence használatát teszi lehetővé, de nagyobb memóriaigényt és hosszabb inference-t okozhat.
+
+A context méretét ezért szintén a kérdés komplexitásához érdemes igazítani.
+
+**9. A source-based fallback fontos része a lokális modell stratégiának.**
+
+Timeout vagy hibás generálás esetén a már visszakeresett hivatalos evidence megtartásával a rendszer használható részleges választ tud biztosítani anélkül, hogy a teljes generálást korlátlanul újrapróbálná.
 
 ---
 
 # 27. További fejlesztési irányok
 
-A következő iterációkban indokolt:
+A következő iterációkban az elsődleges fejlesztési irány az LLM inference optimalizálása.
 
 ```text
-full-workflow 50 request load test
+dynamic num_predict
         ↓
-per-node latency analysis
+completeness / latency A/B test
 
+dynamic num_ctx
+        ↓
+context coverage / latency A/B test
+
+prompt compression
+        ↓
+TTFT / generation latency
+
+deterministic fast paths
+        ↓
+LLM call count reduction
+
+timeout + fallback strategy
+        ↓
+bounded maximum latency
+```
+
+Ezt követheti a retrieval és agentic routing további finomhangolása:
+
+```text
 tool-selection A/B test
         ↓
-routing precision javítása
+Tool Selection Accuracy
 
 retrieval configuration A/B
         ↓
@@ -1545,11 +2087,37 @@ Recall@5 / MRR / latency
 
 chunking A/B
         ↓
-context coverage
+Context Coverage
 
-Qwen3 4B vs alternative local model
+Qwen3 4B vs. más hasonló méretű lokális modell
         ↓
-answer quality / latency / resource usage
+Answer Completeness
+latency
+tokens / second
+RAM / VRAM
+```
+
+A következő performance benchmarkban különösen fontos egy:
+
+```text
+full_workflow
++
+valós Qwen3 4B
++
+közvetlen Ollama telemetry
+```
+
+mérés.
+
+A cél a következő komponensek különválasztása:
+
+```text
+retrieval latency
+prompt processing
+TTFT
+generation latency
+answer audit
+fallback overhead
 ```
 
 További fontos irány egy emberileg validált golden benchmark kialakítása.
@@ -1563,14 +2131,20 @@ Faithfulness
 Citation Accuracy
 ```
 
-A projekt célja végső soron nem a lehető legkomplexebb Agentic RAG pipeline létrehozása, hanem egy olyan rendszer kialakítása, amelynek:
+A projekt optimalizálási célja nem pusztán a lehető leggyorsabb rendszer létrehozása.
+
+A cél egy olyan kompromisszum megtalálása, ahol:
 
 ```text
-retrieval quality
-agentic behavior
-answer quality
-latency
-resource usage
+válaszminőség
++
+forrásalapúság
++
+elfogadható válaszidő
++
+alacsony timeout rate
++
+lokális, fizetős LLM API nélküli működés
 ```
 
-külön-külön mérhető, reprodukálható és fejleszthető.
+egyszerre teljesül.
