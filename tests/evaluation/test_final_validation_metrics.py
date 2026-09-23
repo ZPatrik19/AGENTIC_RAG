@@ -1,4 +1,3 @@
-from dap_assistant.evaluation.dataset import load_dataset
 from dap_assistant.evaluation.professional import _llm_perf
 
 

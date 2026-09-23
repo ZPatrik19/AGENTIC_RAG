@@ -88,7 +88,6 @@ def _full_metrics(case: dict, output: dict, trace: dict, versions: dict[str, str
     if refs in ('pinned', 'automatic_proxy_pinned') and not validate_relevant_chunks(case, chunks):
         refs = 'invalid_chunk_reference'
     pinned = refs in ('pinned', 'automatic_proxy_pinned')
-    evidence = output.get('evidence', [])
     ranked_source_evidence = _ranked_source_evidence(output, chunks)
     context_ids = _context_chunk_ids(output, telemetry, run_id)
     retrieval = per_task_retrieval(output, case, pinned=pinned)
