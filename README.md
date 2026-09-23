@@ -118,7 +118,7 @@ Ennek ára a hagyományos RAG-hoz képest a nagyobb implementációs komplexitá
 
 ---
 
-Modellválasztás és alternatívák
+## 3. Modellválasztás és alternatívák
 
 A helyi generatív modell kiválasztásánál elsődleges szempont volt, hogy a modell fizetős API nélkül, Ollamán keresztül, korlátozott helyi CPU/GPU-erőforrás mellett is használható legyen. Emellett fontos volt a magyar nyelv támogatása, az instruction following, a strukturált válaszadás és az agentic workflow-khoz szükséges tool-calling képesség.
 
