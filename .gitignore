@@ -1,0 +1,55 @@
+.env
+.env.*
+!.env.example
+.venv/
+.venv-legacy*/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+.DS_Store
+.vscode/
+.idea/
+data/raw/**
+data/interim/**
+data/processed/**
+data/vectorstore/**
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+!data/vectorstore/.gitkeep
+models/**
+!models/.gitkeep
+logs/**
+!logs/.gitkeep
+*.log
+*.sqlite*
+*.db
+.huggingface/
+.cache/
+
+# Generated evaluation/benchmark exports (golden dataset stays tracked)
+reports/runs/
+reports/final_validation/corpus_snapshot/
+.pytest-work/
+!reports/.gitkeep
+# Human-reviewed, index-specific local gold labels; never reuse after corpus changes.
+evaluation/golden_reviewed_v4.json
+# Local reviewer exports (contain original source snippets; never auto-commit).
+reports/golden_review_candidates*.json
+
+# Read-only local corpus status exports; may include local source metadata.
+reports/corpus_status*.json
+# Real-corpus extraction, ranking, hashes and document excerpts; local only.
+reports/corpus_golden_audit*.json
+
+evaluation/golden_auto_v4.json
+reports/**
+optional_seed/
+SHA256SUMS.txt

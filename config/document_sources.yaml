@@ -1,0 +1,341 @@
+sources:
+- id: dap-vehicle-buyer
+  title: DÁP – Használt autót veszek
+  url: https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek
+  domain: vehicle
+  type: html
+  destination: vehicle
+  processing_status: pending
+  required: true
+  role: buyer
+- id: dap-vehicle-seller
+  title: DÁP – Használt autót adok el
+  url: https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-adok-el
+  domain: vehicle
+  type: html
+  destination: vehicle
+  processing_status: pending
+  required: true
+  role: seller
+- id: dap-vehicle-overview
+  title: DÁP – Gépjármű adásvétel áttekintés
+  url: https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el
+  domain: vehicle
+  type: html
+  destination: vehicle
+  processing_status: pending
+  required: false
+  role: general
+- id: nav-vehicle-duty-2026
+  title: NAV – Gépjármű vagyonszerzési illeték 2026
+  url: https://nav.gov.hu/ugyfeliranytu/adokulcsok_jarulekmertekek/valorizalt-adomertekek/gepjarmu-visszterhes-vagyonszerzesi-illetek/gepjarmu-visszterhes-vagyonszerzesi-illetek
+  domain: vehicle
+  type: html
+  destination: vehicle
+  processing_status: pending
+  required: false
+  role: general
+- id: nav-vehicle-tax-2026
+  title: NAV – Belföldi gépjárműadó 2026
+  url: https://nav.gov.hu/ugyfeliranytu/adokulcsok_jarulekmertekek/valorizalt-adomertekek/belfoldi-gepjarmuado
+  domain: vehicle
+  type: html
+  destination: vehicle
+  processing_status: pending
+  required: false
+  role: general
+- id: njt-vehicle-transfer-document
+  title: NJT – 304/2009. Korm. rendelet (adásvételi okirat)
+  url: https://njt.jog.gov.hu/jogszabaly/2009-304-20-22
+  domain: vehicle
+  type: html
+  destination: vehicle
+  processing_status: pending
+  required: false
+  role: general
+  legal_sections:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+- id: njt-vehicle-registration
+  title: NJT – 326/2011. Korm. rendelet (közlekedési igazgatás)
+  url: https://njt.jog.gov.hu/jogszabaly/2011-326-20-22
+  domain: vehicle
+  type: html
+  destination: vehicle
+  processing_status: pending
+  required: false
+  role: general
+  legal_sections:
+  - '1'
+  - '87'
+  - '88'
+  - '89'
+  - '90'
+  - '91'
+- id: njt-vehicle-insurance
+  title: NJT – 2009. évi LXII. törvény (KGFB)
+  url: https://njt.jog.gov.hu/jogszabaly/2009-62-00-00
+  domain: vehicle
+  type: html
+  destination: vehicle
+  processing_status: pending
+  required: false
+  role: general
+  legal_sections:
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+- id: dap-employment-overview
+  title: DÁP – Elvesztettem a munkám
+  url: https://dap.gov.hu/eletesemenyek/elvesztettem-a-munkam
+  domain: employment
+  type: html
+  destination: employment
+  processing_status: pending
+  required: true
+  role: general
+- id: dap-employment-benefit
+  title: DÁP – Álláskeresési járadék igénylése
+  url: https://dap.gov.hu/eletesemenyek/elvesztettem-a-munkam/allaskeresesi-jaradek-igenylese
+  domain: employment
+  type: html
+  destination: employment
+  processing_status: pending
+  required: true
+  role: general
+- id: nfsz-unemployment-allowance
+  title: NFSZ – Álláskeresési járadék feltételei és kérelme
+  url: https://nfsz.munka.hu/cikk/78/
+  domain: employment
+  type: html
+  destination: employment
+  processing_status: pending
+  required: false
+  role: general
+- id: nfsz-jobseeker-registration
+  title: NFSZ – Álláskeresőként nyilvántartásba vétel
+  url: https://nfsz.munka.hu/cikk/76/
+  domain: employment
+  type: html
+  destination: employment
+  processing_status: pending
+  required: false
+  role: general
+- id: nav-health-contribution-2026
+  title: NAV – Egészségügyi szolgáltatási járulék összege 2026
+  url: https://nav.gov.hu/ugyfeliranytu/adokulcsok_jarulekmertekek/fizetendo_jar/Az_egeszsegugyi_szolgaltatasi_jarulek_osszege
+  domain: employment
+  type: html
+  destination: employment
+  processing_status: pending
+  required: false
+  role: general
+- id: njt-employment-benefits
+  title: NJT – 1991. évi IV. törvény (álláskeresési ellátások)
+  url: https://njt.jog.gov.hu/jogszabaly/1991-4-00-00
+  domain: employment
+  type: html
+  destination: employment
+  processing_status: pending
+  required: false
+  role: general
+  legal_sections:
+  - '24'
+  - '25'
+  - '26'
+  - '27'
+  - '28'
+  - '29'
+  - '30'
+  - 36/A
+- id: nfsz-registration-guide
+  title: NFSZ – Tájékoztató álláskeresőként nyilvántartásba vételről (PDF)
+  url: https://nfsz.munka.hu/nfsz/document/7/3/9/doc_url/Tajekoztato_az_allaskeresokent_torteno_nyilvantartasba_vetelrol.pdf
+  domain: employment
+  type: pdf
+  destination: employment
+  processing_status: pending
+  required: false
+  role: general
+  source_page: https://nfsz.munka.hu/cikk/76/
+- id: magyarorszag-jszp
+  title: Magyarország.hu – Adatigénylés a Jármű Szolgáltatási Platformon
+  url: https://www.magyarorszag.hu/szuf_ugyleiras?_n=%2Cadatigenyles_a_jarmu_szolgaltatasi_platformon&id=37a0cfef-a962-4e02-80d8-4671b80e8c73
+  domain: vehicle
+  type: html
+  destination: vehicle
+  processing_status: disabled
+  required: false
+  role: buyer
+  topics:
+  - vehicle_history
+  - mileage
+  - jarmu_szolgaltatasi_platform
+  authority: kormanyzati_portal
+  priority: 85
+- id: magyarorszag-electronic-vehicle-contract
+  title: Magyarország.hu – Elektronikus gépjármű adásvételi vagy ajándékozási szerződés
+  url: https://www.magyarorszag.hu/szuf_ugyleiras?id=449e1736-dc87-412a-8ba5-7f73e82c69d7
+  domain: vehicle
+  type: html
+  destination: vehicle
+  processing_status: disabled
+  required: false
+  role: general
+  topics:
+  - contract
+  - electronic_administration
+  - ownership_transfer
+  authority: kormanyzati_portal
+  priority: 80
+- id: njt-vehicle-origin-inspection
+  title: NJT – 301/2009. Korm. rendelet (eredetiségvizsgálat)
+  url: https://njt.jog.gov.hu/jogszabaly/2009-301-20-22
+  domain: vehicle
+  type: html
+  destination: vehicle
+  required: false
+  role: general
+  topics:
+  - origin_inspection
+  - inspection_station
+  - procedure
+  authority: jogszabaly
+  priority: 90
+  legal_sections:
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+- id: mabisz-kgfb-navigator
+  title: MABISZ – KGFB Díjnavigátor
+  url: https://mabisz.hu/dijnavigator/
+  domain: vehicle
+  type: html
+  destination: vehicle
+  required: false
+  role: buyer
+  topics:
+  - kgfb
+  - insurance_price
+  - calculator
+  authority: szakmai_szovetseg
+  priority: 65
+- id: mabisz-kgfb-rates
+  title: MABISZ – KGFB díjak és tarifák
+  url: https://mabisz.hu/kgfb-dijak/
+  domain: vehicle
+  type: html
+  destination: vehicle
+  required: false
+  role: buyer
+  topics:
+  - kgfb
+  - insurance_price
+  - tariff
+  authority: szakmai_szovetseg
+  priority: 60
+- id: nfsz-benefit-calculator
+  title: NFSZ – Álláskeresési járadék kalkulátor
+  url: https://nfsz.munka.hu/tart/jaradek_kalkulator
+  domain: employment
+  type: html
+  destination: employment
+  required: false
+  role: general
+  topics:
+  - allowance_amount
+  - calculator
+  - entitlement_period
+  authority: nfsz
+  priority: 95
+- id: nfsz-support-overview
+  title: NFSZ – Álláskeresők támogatásai és szolgáltatásai
+  url: https://nfsz.munka.hu/cikk/3693/
+  domain: employment
+  type: html
+  destination: employment
+  required: false
+  role: general
+  topics:
+  - support_overview
+  - training_support
+  - housing_support
+  - travel_support
+  - entrepreneurship_support
+  authority: nfsz
+  priority: 90
+- id: nfsz-entrepreneurship-support
+  title: NFSZ – Vállalkozóvá válást elősegítő támogatás
+  url: https://nfsz.munka.hu/cikk/82/Altalanos_tajekoztato_a_vallalkozova_valast_elosegito_tamogatasrol
+  domain: employment
+  type: html
+  destination: employment
+  required: false
+  role: general
+  topics:
+  - entrepreneurship_support
+  - support_program
+  authority: nfsz
+  priority: 70
+- id: neak-post-employment-healthcare
+  title: NEAK – Egészségügyi jogosultság a biztosítás megszűnése után
+  url: https://neak.gov.hu/preview/felso_menu/lakossagnak/ellatas_magyarorszagon/jogosultsag_az_ellatasra/az_egsszsegbiztositas_szolgaltatasaira_jogosultak/biztositottak_penzbeli_es_egeszsegugyi_ellatasra
+  domain: employment
+  type: html
+  destination: employment
+  required: false
+  role: general
+  topics:
+  - healthcare
+  - passive_entitlement
+  - 45_days
+  authority: neak
+  priority: 90
+- id: neak-health-service-contribution
+  title: NEAK – Egészségügyi szolgáltatási járulékfizetés
+  url: https://neak.gov.hu/preview/felso_menu/lakossagnak/ellatas_magyarorszagon/jogosultsag_az_ellatasra/az_egsszsegbiztositas_szolgaltatasaira_jogosultak/egeszsegugyi_szolgaltatasi_jarulekfizetes
+  domain: employment
+  type: html
+  destination: employment
+  required: false
+  role: general
+  topics:
+  - healthcare
+  - contribution
+  - passive_entitlement
+  authority: neak
+  priority: 90
+- id: njt-labour-code-termination
+  title: NJT – 2012. évi I. törvény (Munka Törvénykönyve – munkaviszony megszüntetése)
+  url: https://njt.jog.gov.hu/jogszabaly/2012-1-00-00
+  domain: employment
+  type: html
+  destination: employment
+  required: false
+  role: general
+  topics:
+  - termination
+  - notice
+  - severance
+  - unused_leave
+  - employer_documents
+  authority: jogszabaly
+  priority: 95
+  legal_sections:
+  - '64'
+  - '65'
+  - '66'
+  - '68'
+  - '69'
+  - '70'
+  - '77'
+  - '80'
+  - '125'

@@ -1,0 +1,63 @@
+flowchart TD
+    UI["Streamlit / CLI: csak chat; kalkulátorpanel nélkül"] --> START([START])
+    START --> CI["classify_intent"]
+    CI -->|pontosítás| CQ["clarify_query"]
+    CI -->|nem támogatott| SR["safe_response"]
+    CI -->|támogatott| PT["plan_tasks: feladat-DAG"]
+    PT -->|Send t1...tN| RW["rag_worker / rag_graph.invoke"]
+    subgraph RAG["RAG algráf – minden worker saját futtatása"]
+        PQ["process_query"] --> HR["hybrid_retrieval"]
+        HR --> RR["rerank_results"]
+        RR --> EE["evaluate_evidence"]
+        EE -->|hiányos, van újrapróbálkozás| PQ
+        EE -->|teljes vagy limit| PC["prepare_context"]
+    end
+    RW -.-> PQ
+    PC -.-> EG["evidence_gate: branch_results"]
+    EG -->|új kör / függő feladat| PT
+    EG -->|nincs bizonyíték| SR
+    EG -->|van bizonyíték| EC["engineer_context"]
+    EC -->|eszköz kell| ET["execute_tools: kérdésvezérelt választás"]
+    EC -->|eszköz nem kell| GA["generate_answer"]
+
+    subgraph PCE["Prompt & Context Engineering"]
+        QA["question_analysis.py"] --> IN["information_needs.py"]
+        IN --> ES["evidence_selection.py"]
+        ES --> CB["context_builder.py"]
+        CB --> BK["token_budget.py"]
+        BK --> AP["answer_prompt.py"]
+        AP --> PP["prompt_payload.py"]
+    end
+    CI -.-> QA
+    EC -.-> ES
+    EC -.-> CB
+    GA -.-> AP
+    GA -.-> PP
+        subgraph TOOLS["Automatikusan hívott, nem visszakereső eszközök"]
+        TD["Vevő: illeték / NAV + év + kW"]
+        TB["Munkanélküliség: járadékadatok / NFSZ; hiány esetén nincs összeg"]
+        TC["Határidő / iratlista; natív tool csak explicit igénynél"]
+    end
+    ET -.-> TD
+    ET -.-> TB
+    ET -.-> TC
+    ET --> GA
+    GA --> AA["answer_audit"]
+    AA -->|nincs válasz| SR
+    AA -->|final_answer| END([END])
+    CQ --> END
+    SR --> END
+    subgraph OFFLINE["Offline adat-előkészítés – nem fut minden kérdésre"]
+       SRC["document_sources.yaml"] --> D["documents/download.py"]
+       D --> I["documents/ingestion.py"]
+       I --> CH["data/processed"]
+       CH --> V["opcionális Qdrant index"]
+    end
+    CH -.-> HR
+    V -.-> HR
+    subgraph EVAL["Külön benchmark – nem része a chatgráfnak"]
+        Q["golden_v4.json + SILVER"] --> EV["professional.py"]
+        EV --> M["metrics.py / layers.py"]
+        M --> REP["reports/runs"]
+    end
+    EV -.-> START

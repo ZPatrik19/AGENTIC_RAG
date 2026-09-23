@@ -1,0 +1,133 @@
+digraph DAPCompleteWorkflow {
+  graph [rankdir=TB, compound=true, newrank=true, fontname="DejaVu Sans", fontsize=20, label="DÁP Life Events Assistant | Teljes architektúra és futási workflow\nForráskód alapján • statikus architektúra, nem egy konkrét futás eseménynaplója", labelloc=t, labeljust=l, pad="0.35", nodesep="0.32", ranksep="0.53", bgcolor="#FFFFFF", outputorder=edgesfirst];
+  node [shape=box, style="rounded,filled", color="#50657B", fillcolor="#F0F5FB", fontname="DejaVu Sans", fontsize=10, margin="0.16,0.11"];
+  edge [color="#65758B", fontname="DejaVu Sans", fontsize=9, arrowsize=0.65];
+
+  subgraph cluster_data {
+    label="1 | OFFLINE ADATELŐKÉSZÍTÉS  (nem LangGraph-node-ok)"; color="#99B4D2"; style="rounded,filled"; fillcolor="#F7FAFD";
+    sources [label="Hivatalos HTML / PDF források\nconfig/document_sources.yaml", fillcolor="#E5F0FD"];
+    download [label="documents/download.py\nletöltés + metaadat / SHA-256"];
+    ingest [label="documents/ingestion.py\nHTML/PDF parse → jogszabály-rész → strukturált chunk", fillcolor="#E5F0FD"];
+    processed [label="data/processed/\nverziózott szöveg + URL + oldal + chunk_id", shape=cylinder, fillcolor="#E7F4E8"];
+    index [label="rag/retrieval.py / rag/dense_resources.py\nembedding + index_all() (opcionális dense)"];
+    vector [label="helyi Qdrant index\nEMBEDDING_PROVIDER≠dummy", shape=cylinder, fillcolor="#E7F4E8"];
+    sources -> download -> ingest -> processed -> index -> vector;
+  }
+
+  subgraph cluster_runtime {
+    label="2 | CHAT / FŐ LANGGRAPH  (workflow.py; tényleges fő gráfnode-ok kékek)"; color="#79A6D8"; style="rounded,filled"; fillcolor="#F7FBFF";
+    ui [label="Streamlit Chatbot / CLI\ncsak chat; kalkulátorpanel nélkül\nuser_question → szükséges paraméterek", fillcolor="#DCEBFC"];
+    start [label="START", shape=oval, fillcolor="#E0F2FE"];
+    classify [label="classify_intent\nlife event / role / stage / support", fillcolor="#CFE5FF"];
+    clarify [label="clarify_query\npontosítás", fillcolor="#CFE5FF"];
+    plan [label="plan_tasks\nfeladat-DAG, depends_on, MAX_SUBTASKS", fillcolor="#CFE5FF"];
+    task1 [label="t1: önálló keresési fókusz\n(pl. lépések)", fillcolor="#F0EAFE"];
+    task2 [label="t2 … tN: további független ágak\n(pl. iratok / határidők / költségek)", fillcolor="#F0EAFE"];
+    worker [label="rag_worker (Send; t1 … tN)\nrag_graph.invoke(task) minden ághoz", fillcolor="#CFE5FF"];
+    gate [label="evidence_gate\nbranch_results egyesítés; task-státusz / retry", fillcolor="#CFE5FF"];
+    context [label="engineer_context\nkontextuskeret + bizonyíték-válogatás", fillcolor="#CFE5FF"];
+    tools [label="execute_tools: kérdésvezérelt tool routing\ncsak kért kalkuláció / ellenőrzőlista\nnatív LLM-hívás: explicit irat / határidő", fillcolor="#CFE5FF"];
+    gen [label="generate_answer\nQwen3:4b / forrásszöveg / dummy\nhibás JSON → jelölt forrásrészletek, részleges", fillcolor="#CFE5FF"];
+    audit [label="answer_audit\nidézetkapcsolat, számok és szerkezeti ellenőrzés", fillcolor="#CFE5FF"];
+    safe [label="safe_response\ntámogatáson kívül / bizonyítékhiány", fillcolor="#FFE8D7", color="#C17A3E"];
+    end [label="END / final_answer", shape=oval, fillcolor="#E0F2FE"];
+    state [label="AssistantState + InMemorySaver\nsubtasks / branch_results / evidence / tool_results / answer_draft", shape=cylinder, fillcolor="#E7F4E8", color="#659B7B"];
+
+    ui -> start -> classify;
+    classify -> clarify [label="pontosítás"];
+    clarify -> end;
+    classify -> safe [label="nem támogatott"];
+    classify -> plan [label="támogatott"];
+    plan -> task1 [label="Send(t1)"];
+    plan -> task2 [label="Send(t2 … tN)"];
+    task1 -> worker;
+    task2 -> worker;
+    worker -> gate;
+    gate -> plan [label="függő / újrafuttatható feladat", color="#C77B37", constraint=false];
+    gate -> safe [label="nincs elegendő bizonyíték"];
+    gate -> context [label="van felhasználható bizonyíték"];
+    context -> tools [label="kell eszköz"];
+    context -> gen [label="nem kell eszköz"];
+    tools -> gen;
+    gen -> audit;
+    audit -> safe [label="nem állt elő végső válasz"];
+    audit -> end [label="van final_answer"];
+    safe -> end;
+    state -> gate [style=dotted, arrowhead=none, label="állapot / reducer", constraint=false];
+  }
+
+  subgraph cluster_rag {
+    label="3 | RAG ALGRÁF  (rag/rag_graph.py; külön StateGraph, a worker Pythonból invoke-olja)"; color="#6DA99E"; style="rounded,filled"; fillcolor="#F6FCFA";
+    rag_in [label="RAGState: task_id / domain / query / facet", shape=oval, fillcolor="#D9F4E9"];
+    pq [label="process_query\nkeresőkifejezés, hiányzó facet újrafogalmazása", fillcolor="#C8EEE1"];
+    retrieve [label="hybrid_retrieval\nBM25 + opcionális dense → RRF(k=60)", fillcolor="#C8EEE1"];
+    rerank [label="rerank_results\nforrás-/téma-bónusz + diverzifikáció", fillcolor="#C8EEE1"];
+    assess [label="evaluate_evidence\nengedélyezett URL/domain + facet-lefedettség", fillcolor="#C8EEE1"];
+    prepare [label="prepare_context\nevidence_id / verzió / chunk-provenance", fillcolor="#C8EEE1"];
+    rag_out [label="RAGState output\nevidence / ranked_chunk_ids / missing_information", shape=oval, fillcolor="#D9F4E9"];
+    rag_in -> pq -> retrieve -> rerank -> assess;
+    assess -> pq [label="hiányos ÉS még van próbálkozás", color="#C77B37", constraint=false];
+    assess -> prepare [label="teljes VAGY MAX_RAG_ATTEMPTS"];
+    prepare -> rag_out;
+  }
+
+  subgraph cluster_prompt_context {
+    label="4 | PROMPT & CONTEXT ENGINEERING  (külön módosítható AI-rétegek)"; color="#7E8FD1"; style="rounded,filled"; fillcolor="#F8F8FF";
+    qanalysis [label="context_engineering/question_analysis.py
+kérdés / szerep / élethelyzet elemzés", fillcolor="#ECEBFF"];
+    needs [label="context_engineering/information_needs.py
+facetek / információigények", fillcolor="#ECEBFF"];
+    eselect [label="context_engineering/evidence_selection.py
+forrásrészletek kiválasztása", fillcolor="#ECEBFF"];
+    cbuilder [label="context_engineering/context_builder.py
+kontextus összeállítása", fillcolor="#ECEBFF"];
+    budget [label="context_engineering/token_budget.py
+prompt + kimeneti keret", fillcolor="#ECEBFF"];
+    aprompt [label="prompt_engineering/answer_prompt.py
+választerv + rendszerutasítás", fillcolor="#F3E9FF"];
+    ppayload [label="prompt_engineering/prompt_payload.py
+strukturált modell-payload", fillcolor="#F3E9FF"];
+    qanalysis -> needs -> eselect -> cbuilder -> budget -> aprompt -> ppayload [style=dashed, color="#7E8FD1"];
+  }
+
+  subgraph cluster_tool {
+    label="5 | NEM RETRIEVAL ESZKÖZÖK  (függvényhívások az execute_tools node-on belül)"; color="#D9B365"; style="rounded,filled"; fillcolor="#FFFCF5";
+    checklist [label="build_document_checklist\niratlista", fillcolor="#FFEDC9"];
+    deadline [label="calculate_deadline\nbizonyítékhoz kötött határidő", fillcolor="#FFEDC9"];
+    duty [label="Autóvásárlás: illetékkalkulátor\név + forgalmi kW + indexelt NAV tábla\nhiány esetén adatbekérés, nincs becslés", fillcolor="#FFEDC9"];
+    employment [label="Munkahely elvesztése: járadékeszköz\nforrás és szükséges adatok összegyűjtése\nhiányzó járulékalapnál NINCS összegbecslés", fillcolor="#FFEDC9"];
+    loan [label="calculate_illustrative_loan\nszemléltető hitelszámítás", fillcolor="#FFEDC9"];
+    native [label="Opcionális natív Ollama tool calling\ncsak explicit irat / határidő kéréskor\nmax. 2 hívás; eredmény vissza a modellnek", fillcolor="#FFEDC9"];
+    checklist -> deadline -> duty -> employment -> loan -> native [style=invis, weight=8];
+  }
+
+  subgraph cluster_eval {
+    label="6 | KÜLÖN KIÉRTÉKELÉSI FUTÁS  (nem része a felhasználói válaszgráfnak)"; color="#BA9EC9"; style="rounded,filled"; fillcolor="#FCF9FD";
+    benchmark [label="evaluation/golden_v4.json\n20 tesztkérdés", shape=cylinder, fillcolor="#EEE3F5"];
+    silver [label="evaluation/automatic_reference.py\ngépi SILVER referencia / korpuszverzió", fillcolor="#EEE3F5"];
+    evalrunner [label="evaluation/professional.py\nfunkcionális / terheléses; full / node / subflow", fillcolor="#EEE3F5"];
+    metrics [label="evaluation/metrics.py + layers.py\ncsak rendelkezésre álló, érvényes metrikák", fillcolor="#EEE3F5"];
+    reports [label="evaluation/reporting.py → reports/runs/\ndátumos JSON / CSV / Markdown", shape=cylinder, fillcolor="#EEE3F5"];
+    benchmark -> silver -> evalrunner -> metrics -> reports;
+  }
+
+  processed -> retrieve [label="BM25 chunkok", style=dashed, color="#5486AE", constraint=false];
+  vector -> retrieve [label="dense opcionális", style=dashed, color="#5486AE", constraint=false];
+  worker -> rag_in [label="rag_graph.invoke()", color="#389B83", penwidth=2];
+  rag_out -> gate [label="ág-eredmény → branch_results", color="#389B83", penwidth=2];
+  tools -> checklist [style=dotted, constraint=false];
+  tools -> deadline [style=dotted, constraint=false];
+  tools -> duty [label="vevő + illeték; bemenetek ellenőrzése", style=dotted, constraint=false];
+  tools -> employment [label="járadékösszegre kérdez", style=dotted, constraint=false];
+  tools -> loan [style=dotted, constraint=false];
+  tools -> native [label="explicit eszközigény", style=dotted, constraint=false];
+
+  classify -> qanalysis [style=dotted, color="#7E8FD1", constraint=false];
+  context -> eselect [style=dotted, color="#7E8FD1", constraint=false];
+  context -> cbuilder [style=dotted, color="#7E8FD1", constraint=false];
+  gen -> aprompt [style=dotted, color="#7E8FD1", constraint=false];
+  gen -> ppayload [style=dotted, color="#7E8FD1", constraint=false];
+  processed -> silver [label="aktuális chunkverziók", style=dashed, constraint=false];
+  evalrunner -> start [label="külön benchmark invocation", style=dashed, constraint=false];
+  evalrunner -> rag_in [label="önálló node / subflow mérés", style=dashed, constraint=false];
+}

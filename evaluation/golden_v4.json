@@ -1,0 +1,1241 @@
+{
+  "version": "4.0",
+  "source_verification_date": "2026-09-20",
+  "case_count": 20,
+  "reference_policy": "20 unreviewed candidate questions; retired/disabled source IDs excluded; only source-versioned, human-approved chunk labels yield retrieval gold",
+  "cases": [
+    {
+      "question_id": "AUTO_001",
+      "category": "vehicle",
+      "topic": "vehicle",
+      "question": "Vettem egy használt autót Magyarországon. Milyen ügyintézési teendőim vannak?",
+      "difficulty": "medium",
+      "expected_domains": [
+        "vehicle"
+      ],
+      "expected_intents": [
+        "vehicle_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "steps+documents+deadline+insurance",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "dap-vehicle-buyer"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "A1_1",
+          "statement": "A gépjárművet az adásvételi szerződés megkötésétől számított 15 napon belül át kell íratni.",
+          "answer_pattern": "15\\s*nap|át kell ír",
+          "source_ids": [
+            "dap-vehicle-buyer"
+          ]
+        },
+        {
+          "fact_id": "A1_2",
+          "statement": "Tulajdonosváltáskor új kötelező gépjármű-felelősségbiztosítást kell kötni.",
+          "answer_pattern": "kötelező.*biztosítás|kgfb",
+          "source_ids": [
+            "dap-vehicle-buyer"
+          ]
+        }
+      ],
+      "expected_tool_calls": [
+        "build_document_checklist"
+      ],
+      "acceptable_tool_calls": [
+        "build_document_checklist"
+      ],
+      "expected_behavior": "answer_with_citations",
+      "answerability": "answerable",
+      "missing_user_data": [],
+      "missing_evidence": [],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "awaiting_local_evidence_review",
+      "human_reviewed": false,
+      "evaluation_notes": "Korábban nem indexelt/letiltott JSZP-források kivéve a jelöltlistából. Az aktuális DÁP-forrás megfelelő szakaszait és a jogi állításokat embernek kell ellenőriznie; nincs jóváhagyott releváns chunk vagy hiteles Recall/MRR.",
+      "source_reviewed": false,
+      "source_reviewed_at": null
+    },
+    {
+      "question_id": "AUTO_002",
+      "category": "vehicle",
+      "topic": "vehicle",
+      "question": "Mennyi időm van az autó átírására, és milyen következményei lehetnek a határidő elmulasztásának?",
+      "difficulty": "medium",
+      "expected_domains": [
+        "vehicle"
+      ],
+      "expected_intents": [
+        "vehicle_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "deadline+consequence",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "dap-vehicle-buyer",
+        "njt-vehicle-registration"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "A2_1",
+          "statement": "Az átírás határideje 15 nap az adásvételi szerződés megkötésétől.",
+          "answer_pattern": "15\\s*nap",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "njt-vehicle-registration"
+          ]
+        }
+      ],
+      "expected_tool_calls": [
+        "build_document_checklist"
+      ],
+      "acceptable_tool_calls": [
+        "build_document_checklist"
+      ],
+      "expected_behavior": "partial_or_abstain_on_missing_evidence",
+      "answerability": "partial",
+      "missing_user_data": [],
+      "missing_evidence": [
+        "A projekt jelenlegi korpusza nem fed le minden, a kérdéshez szükséges részletszabályt."
+      ],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "AUTO_003",
+      "category": "vehicle",
+      "topic": "vehicle",
+      "question": "Milyen dokumentumok szükségesek a gépjármű átírásához?",
+      "difficulty": "simple",
+      "expected_domains": [
+        "vehicle"
+      ],
+      "expected_intents": [
+        "vehicle_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "documents",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "dap-vehicle-buyer",
+        "njt-vehicle-transfer-document"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "A3_1",
+          "statement": "Az átíráshoz személyazonosító okmány, lakcímadat, adásvételi szerződés, járműokmányok, eredetiségvizsgálat és KGFB-adat szükséges lehet.",
+          "answer_pattern": "adásvételi|forgalmi|törzskönyv|biztosítás",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "njt-vehicle-transfer-document"
+          ]
+        }
+      ],
+      "expected_tool_calls": [
+        "build_document_checklist"
+      ],
+      "acceptable_tool_calls": [
+        "build_document_checklist"
+      ],
+      "expected_behavior": "answer_with_citations",
+      "answerability": "answerable",
+      "missing_user_data": [],
+      "missing_evidence": [],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "AUTO_004",
+      "category": "vehicle",
+      "topic": "vehicle",
+      "question": "Mikor szükséges eredetiségvizsgálat, és milyen kivételek léteznek?",
+      "difficulty": "medium",
+      "expected_domains": [
+        "vehicle"
+      ],
+      "expected_intents": [
+        "vehicle_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "originality_check+exceptions",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "dap-vehicle-buyer",
+        "njt-vehicle-origin-inspection"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "A4_1",
+          "statement": "Az eredetiségvizsgálatnak vannak dokumentált kivételei, például egyes közeli hozzátartozói vagy muzeális járműves esetek.",
+          "answer_pattern": "eredetiségvizsgálat|muzeális|házastárs|testvér",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "njt-vehicle-origin-inspection"
+          ]
+        }
+      ],
+      "expected_tool_calls": [],
+      "acceptable_tool_calls": [],
+      "expected_behavior": "partial_or_abstain_on_missing_evidence",
+      "answerability": "partial",
+      "missing_user_data": [],
+      "missing_evidence": [
+        "A projekt jelenlegi korpusza nem fed le minden, a kérdéshez szükséges részletszabályt."
+      ],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "AUTO_005",
+      "category": "vehicle",
+      "topic": "vehicle",
+      "question": "Mikor kell kötelező gépjármű-felelősségbiztosítást kötnöm?",
+      "difficulty": "medium",
+      "expected_domains": [
+        "vehicle"
+      ],
+      "expected_intents": [
+        "vehicle_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "insurance+deadline",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "dap-vehicle-buyer",
+        "njt-vehicle-insurance",
+        "mabisz-kgfb-navigator"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "A5_1",
+          "statement": "Tulajdonosváltáskor a korábbi KGFB megszűnik, ezért a vevőnek új biztosítást kell kötnie.",
+          "answer_pattern": "biztosítás.*megszűn|újat kell köt",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "njt-vehicle-insurance",
+            "mabisz-kgfb-navigator"
+          ]
+        }
+      ],
+      "expected_tool_calls": [],
+      "acceptable_tool_calls": [],
+      "expected_behavior": "answer_with_citations",
+      "answerability": "answerable",
+      "missing_user_data": [],
+      "missing_evidence": [],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "AUTO_006",
+      "category": "vehicle",
+      "topic": "vehicle",
+      "question": "Milyen költségekkel kell számolnom egy használt autó megvásárlása és átírása során?",
+      "difficulty": "medium",
+      "expected_domains": [
+        "vehicle"
+      ],
+      "expected_intents": [
+        "vehicle_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "fees+duty+documents",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "dap-vehicle-buyer",
+        "nav-vehicle-duty-2026",
+        "mabisz-kgfb-navigator"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "A6_1",
+          "statement": "A vásárlás költségei között lehet eredetiségvizsgálat, okmánydíj, vagyonszerzési illeték és KGFB.",
+          "answer_pattern": "eredetiség|forgalmi|törzskönyv|illeték|biztosítás",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "nav-vehicle-duty-2026",
+            "mabisz-kgfb-navigator"
+          ]
+        }
+      ],
+      "expected_tool_calls": [
+        "calculate_vehicle_acquisition_duty"
+      ],
+      "acceptable_tool_calls": [
+        "calculate_vehicle_acquisition_duty"
+      ],
+      "expected_behavior": "answer_with_citations",
+      "answerability": "answerable",
+      "missing_user_data": [],
+      "missing_evidence": [],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "AUTO_007",
+      "category": "vehicle",
+      "topic": "vehicle",
+      "question": "Hogyan határozzák meg a gépjármű vagyonszerzési illetékét?",
+      "difficulty": "simple",
+      "expected_domains": [
+        "vehicle"
+      ],
+      "expected_intents": [
+        "vehicle_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "duty_formula",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "nav-vehicle-duty-2026"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "A7_1",
+          "statement": "A 2026-os gépjármű-vagyonszerzési illeték mértéke a hajtómotor kW-teljesítményétől és a jármű korától függ.",
+          "answer_pattern": "kW|teljesítmény|kor",
+          "source_ids": [
+            "nav-vehicle-duty-2026"
+          ]
+        }
+      ],
+      "expected_tool_calls": [
+        "calculate_vehicle_acquisition_duty"
+      ],
+      "acceptable_tool_calls": [
+        "calculate_vehicle_acquisition_duty"
+      ],
+      "expected_behavior": "answer_with_citations",
+      "answerability": "answerable",
+      "missing_user_data": [],
+      "missing_evidence": [],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "AUTO_008",
+      "category": "vehicle",
+      "topic": "vehicle",
+      "question": "Mi a teendő, ha a megvásárolt autónak hiányzik a törzskönyve?",
+      "difficulty": "medium",
+      "expected_domains": [
+        "vehicle"
+      ],
+      "expected_intents": [
+        "vehicle_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "missing_registration_certificate+documents",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "dap-vehicle-buyer",
+        "njt-vehicle-registration"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "A8_1",
+          "statement": "A DÁP szerint hiányzó törzskönyv mellett is lehetséges lehet az átírás, ha a hiány oka az adásvételi szerződésben szerepel.",
+          "answer_pattern": "törzskönyv.*hiány|hiány.*adásvételi",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "njt-vehicle-registration"
+          ]
+        }
+      ],
+      "expected_tool_calls": [],
+      "acceptable_tool_calls": [],
+      "expected_behavior": "partial_or_abstain_on_missing_evidence",
+      "answerability": "partial",
+      "missing_user_data": [],
+      "missing_evidence": [
+        "A projekt jelenlegi korpusza nem fed le minden, a kérdéshez szükséges részletszabályt."
+      ],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "AUTO_009",
+      "category": "vehicle",
+      "topic": "vehicle",
+      "question": "Hogyan tudom ellenőrizni egy használt autó előéletét és kilométeróra-adatait?",
+      "difficulty": "simple",
+      "expected_domains": [
+        "vehicle"
+      ],
+      "expected_intents": [
+        "vehicle_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "vehicle_history",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "dap-vehicle-buyer"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "A9_1",
+          "statement": "A JSZP-n ingyenesen elérhetők a jármű életútjának egyes adatai, többek között kilométeróra- és káreseményadatok.",
+          "answer_pattern": "JSZP|kilométeróra|káresemény",
+          "source_ids": [
+            "dap-vehicle-buyer"
+          ]
+        }
+      ],
+      "expected_tool_calls": [],
+      "acceptable_tool_calls": [],
+      "expected_behavior": "answer_with_citations",
+      "answerability": "answerable",
+      "missing_user_data": [],
+      "missing_evidence": [],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "awaiting_local_evidence_review",
+      "human_reviewed": false,
+      "evaluation_notes": "Korábban nem indexelt/letiltott JSZP-források kivéve a jelöltlistából. Az aktuális DÁP-forrás megfelelő szakaszait és a jogi állításokat embernek kell ellenőriznie; nincs jóváhagyott releváns chunk vagy hiteles Recall/MRR.",
+      "source_reviewed": false,
+      "source_reviewed_at": null
+    },
+    {
+      "question_id": "AUTO_010",
+      "category": "vehicle",
+      "topic": "vehicle",
+      "question": "Készíts teljes, időrendi ügyintézési tervet egy használt autó megvásárlása után, a dokumentumokkal, határidőkkel és költségekkel együtt!",
+      "difficulty": "complex",
+      "expected_domains": [
+        "vehicle"
+      ],
+      "expected_intents": [
+        "vehicle_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "steps",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "vehicle",
+          "label": "documents",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "vehicle",
+          "label": "deadline",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "vehicle",
+          "label": "insurance",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "vehicle",
+          "label": "fees",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "dap-vehicle-buyer",
+        "nav-vehicle-duty-2026",
+        "njt-vehicle-origin-inspection",
+        "njt-vehicle-insurance"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "A10_1",
+          "statement": "A teljes folyamatban előélet-ellenőrzés, eredetiségvizsgálat, KGFB, átírás és költségek is szerepelhetnek.",
+          "answer_pattern": "előélet|eredetiség|biztosítás|átírás|illeték",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "nav-vehicle-duty-2026",
+            "njt-vehicle-origin-inspection",
+            "njt-vehicle-insurance"
+          ]
+        },
+        {
+          "fact_id": "A10_2",
+          "statement": "Az átírás dokumentált határideje 15 nap.",
+          "answer_pattern": "15\\s*nap",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "nav-vehicle-duty-2026",
+            "njt-vehicle-origin-inspection",
+            "njt-vehicle-insurance"
+          ]
+        }
+      ],
+      "expected_tool_calls": [
+        "build_document_checklist",
+        "calculate_vehicle_acquisition_duty"
+      ],
+      "acceptable_tool_calls": [
+        "build_document_checklist",
+        "calculate_vehicle_acquisition_duty"
+      ],
+      "expected_behavior": "answer_with_citations",
+      "answerability": "answerable",
+      "missing_user_data": [],
+      "missing_evidence": [],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "awaiting_local_evidence_review",
+      "human_reviewed": false,
+      "evaluation_notes": "Korábban nem indexelt/letiltott JSZP-források kivéve a jelöltlistából. Az aktuális DÁP-forrás megfelelő szakaszait és a jogi állításokat embernek kell ellenőriznie; nincs jóváhagyott releváns chunk vagy hiteles Recall/MRR.",
+      "source_reviewed": false,
+      "source_reviewed_at": null
+    },
+    {
+      "question_id": "WORK_001",
+      "category": "employment",
+      "topic": "employment",
+      "question": "Elvesztettem a munkámat. Milyen ügyintézési teendőim vannak?",
+      "difficulty": "medium",
+      "expected_domains": [
+        "employment"
+      ],
+      "expected_intents": [
+        "employment_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "registration+benefits+documents+health",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "dap-employment-overview",
+        "nfsz-unemployment-allowance",
+        "nfsz-support-overview",
+        "neak-post-employment-healthcare"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "W1_1",
+          "statement": "A munkaviszony megszűnése után releváns lehet az álláskeresőként nyilvántartásba vétel és a járadék igénylése.",
+          "answer_pattern": "nyilvántartás|járadék",
+          "source_ids": [
+            "dap-employment-overview",
+            "nfsz-unemployment-allowance",
+            "nfsz-support-overview",
+            "neak-post-employment-healthcare"
+          ]
+        },
+        {
+          "fact_id": "W1_2",
+          "statement": "Az NFSZ külön támogatási és szolgáltatási lehetőségeket is közzétesz álláskeresőknek.",
+          "answer_pattern": "támogatás|szolgáltatás",
+          "source_ids": [
+            "dap-employment-overview",
+            "nfsz-unemployment-allowance",
+            "nfsz-support-overview",
+            "neak-post-employment-healthcare"
+          ]
+        }
+      ],
+      "expected_tool_calls": [
+        "build_document_checklist"
+      ],
+      "acceptable_tool_calls": [
+        "build_document_checklist"
+      ],
+      "expected_behavior": "answer_with_citations",
+      "answerability": "answerable",
+      "missing_user_data": [],
+      "missing_evidence": [],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "WORK_002",
+      "category": "employment",
+      "topic": "employment",
+      "question": "Hogyan tudok álláskeresőként nyilvántartásba kerülni Magyarországon?",
+      "difficulty": "medium",
+      "expected_domains": [
+        "employment"
+      ],
+      "expected_intents": [
+        "employment_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "registration+where+documents",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "nfsz-jobseeker-registration",
+        "nfsz-registration-guide",
+        "nfsz-unemployment-allowance"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "W2_1",
+          "statement": "A járadék megállapításának előfeltétele az álláskeresőként történő regisztráció.",
+          "answer_pattern": "regisztr|nyilvántart",
+          "source_ids": [
+            "nfsz-jobseeker-registration",
+            "nfsz-registration-guide",
+            "nfsz-unemployment-allowance"
+          ]
+        }
+      ],
+      "expected_tool_calls": [
+        "build_document_checklist"
+      ],
+      "acceptable_tool_calls": [
+        "build_document_checklist"
+      ],
+      "expected_behavior": "answer_with_citations",
+      "answerability": "answerable",
+      "missing_user_data": [],
+      "missing_evidence": [],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "WORK_003",
+      "category": "employment",
+      "topic": "employment",
+      "question": "Milyen feltételekkel lehetek jogosult álláskeresési járadékra?",
+      "difficulty": "simple",
+      "expected_domains": [
+        "employment"
+      ],
+      "expected_intents": [
+        "employment_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "eligibility",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "nfsz-unemployment-allowance",
+        "njt-employment-benefits"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "W3_1",
+          "statement": "Az NFSZ legalább 360 nap jogszerző időt sorol fel a feltételek között a megelőző három évben.",
+          "answer_pattern": "360\\s*nap|három év",
+          "source_ids": [
+            "nfsz-unemployment-allowance",
+            "njt-employment-benefits"
+          ]
+        }
+      ],
+      "expected_tool_calls": [],
+      "acceptable_tool_calls": [],
+      "expected_behavior": "answer_with_citations",
+      "answerability": "answerable",
+      "missing_user_data": [],
+      "missing_evidence": [],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "WORK_004",
+      "category": "employment",
+      "topic": "employment",
+      "question": "Mennyi ideig kaphatok álláskeresési járadékot, és hogyan számítják ki az összegét?",
+      "difficulty": "medium",
+      "expected_domains": [
+        "employment"
+      ],
+      "expected_intents": [
+        "employment_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "duration+amount",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "nfsz-unemployment-allowance",
+        "nfsz-benefit-calculator",
+        "njt-employment-benefits"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "W4_1",
+          "statement": "Tíz nap jogosultsági idő egy nap járadékfolyósítási időnek felel meg, legfeljebb 90 napig.",
+          "answer_pattern": "tíz nap|10\\s*nap|90\\s*nap",
+          "source_ids": [
+            "nfsz-unemployment-allowance",
+            "nfsz-benefit-calculator",
+            "njt-employment-benefits"
+          ]
+        },
+        {
+          "fact_id": "W4_2",
+          "statement": "A napi járadék a járadékalap 60 százaléka, felső korláttal.",
+          "answer_pattern": "60\\s*(?:%|százalék)|járadékalap",
+          "source_ids": [
+            "nfsz-unemployment-allowance",
+            "nfsz-benefit-calculator",
+            "njt-employment-benefits"
+          ]
+        },
+        {
+          "fact_id": "W4_3",
+          "statement": "Az NFSZ hivatalos járadékkalkulátort biztosít.",
+          "answer_pattern": "kalkulátor",
+          "source_ids": [
+            "nfsz-unemployment-allowance",
+            "nfsz-benefit-calculator",
+            "njt-employment-benefits"
+          ]
+        }
+      ],
+      "expected_tool_calls": [],
+      "acceptable_tool_calls": [],
+      "expected_behavior": "answer_with_citations",
+      "answerability": "answerable",
+      "missing_user_data": [],
+      "missing_evidence": [],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "WORK_005",
+      "category": "employment",
+      "topic": "employment",
+      "question": "Milyen dokumentumokat kell megkapnom a munkáltatómtól a munkaviszony megszűnésekor?",
+      "difficulty": "simple",
+      "expected_domains": [
+        "employment"
+      ],
+      "expected_intents": [
+        "employment_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "employer_documents",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "dap-employment-benefit",
+        "nfsz-unemployment-allowance"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "W5_1",
+          "statement": "A munkaviszony megszűnése után a foglalkoztatói igazolás és más kilépő dokumentumok relevánsak lehetnek.",
+          "answer_pattern": "foglalkoztatói igazolás|kilépő",
+          "source_ids": [
+            "dap-employment-benefit",
+            "nfsz-unemployment-allowance"
+          ]
+        }
+      ],
+      "expected_tool_calls": [
+        "build_document_checklist"
+      ],
+      "acceptable_tool_calls": [
+        "build_document_checklist"
+      ],
+      "expected_behavior": "partial_or_abstain_on_missing_evidence",
+      "answerability": "partial",
+      "missing_user_data": [],
+      "missing_evidence": [
+        "A projekt jelenlegi korpusza nem fed le minden, a kérdéshez szükséges részletszabályt."
+      ],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "WORK_006",
+      "category": "employment",
+      "topic": "employment",
+      "question": "Mikor járhat végkielégítés, és mitől függ az összege?",
+      "difficulty": "simple",
+      "expected_domains": [
+        "employment"
+      ],
+      "expected_intents": [
+        "employment_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "severance",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "njt-labour-code-termination"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "W6_1",
+          "statement": "A Munka Törvénykönyve meghatározza, milyen megszűnési módoknál járhat végkielégítés és annak szolgálati időhöz kötött mértékét.",
+          "answer_pattern": "végkielégítés|legalább három év|egyhavi",
+          "source_ids": [
+            "njt-labour-code-termination"
+          ]
+        }
+      ],
+      "expected_tool_calls": [],
+      "acceptable_tool_calls": [],
+      "expected_behavior": "answer_with_citations",
+      "answerability": "answerable",
+      "missing_user_data": [],
+      "missing_evidence": [],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "WORK_007",
+      "category": "employment",
+      "topic": "employment",
+      "question": "Mi történik a ki nem vett szabadságommal, amikor megszűnik a munkaviszonyom?",
+      "difficulty": "simple",
+      "expected_domains": [
+        "employment"
+      ],
+      "expected_intents": [
+        "employment_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "unused_leave",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "njt-labour-code-termination"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "W7_1",
+          "statement": "A munkaviszony megszűnésekor a ki nem adott arányos szabadságot meg kell váltani a törvényi feltételek szerint.",
+          "answer_pattern": "szabadság.*megvált|megváltani",
+          "source_ids": [
+            "njt-labour-code-termination"
+          ]
+        }
+      ],
+      "expected_tool_calls": [],
+      "acceptable_tool_calls": [],
+      "expected_behavior": "answer_with_citations",
+      "answerability": "answerable",
+      "missing_user_data": [],
+      "missing_evidence": [],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "WORK_008",
+      "category": "employment",
+      "topic": "employment",
+      "question": "Mi a különbség a munkavállalói felmondás, a munkáltatói felmondás és a közös megegyezés között?",
+      "difficulty": "simple",
+      "expected_domains": [
+        "employment"
+      ],
+      "expected_intents": [
+        "employment_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "termination_types",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "njt-labour-code-termination"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "W8_1",
+          "statement": "A Munka Törvénykönyve külön szabályozza a munkaviszony közös megegyezéssel és felmondással történő megszüntetését.",
+          "answer_pattern": "közös megegyezés|felmondás",
+          "source_ids": [
+            "njt-labour-code-termination"
+          ]
+        }
+      ],
+      "expected_tool_calls": [],
+      "acceptable_tool_calls": [],
+      "expected_behavior": "answer_with_citations",
+      "answerability": "answerable",
+      "missing_user_data": [],
+      "missing_evidence": [],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "WORK_009",
+      "category": "employment",
+      "topic": "employment",
+      "question": "Mi történik az egészségügyi szolgáltatásra való jogosultságommal, ha megszűnik a munkaviszonyom, és nem találok azonnal új állást?",
+      "difficulty": "medium",
+      "expected_domains": [
+        "employment"
+      ],
+      "expected_intents": [
+        "employment_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "health_entitlement+contribution",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "neak-post-employment-healthcare",
+        "neak-health-service-contribution",
+        "nfsz-unemployment-allowance"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "W9_1",
+          "statement": "Legalább 45 napig fennálló biztosítás után az egészségügyi szolgáltatásra való jogosultság főszabály szerint további 45 napig fennmaradhat.",
+          "answer_pattern": "45\\s*nap",
+          "source_ids": [
+            "neak-post-employment-healthcare",
+            "neak-health-service-contribution",
+            "nfsz-unemployment-allowance"
+          ]
+        },
+        {
+          "fact_id": "W9_2",
+          "statement": "Az álláskeresési járadék folyósítási idejére TB-ellátási jogosultság kapcsolódik.",
+          "answer_pattern": "TB.*jogosult|ellátásra jogosult",
+          "source_ids": [
+            "neak-post-employment-healthcare",
+            "neak-health-service-contribution",
+            "nfsz-unemployment-allowance"
+          ]
+        }
+      ],
+      "expected_tool_calls": [],
+      "acceptable_tool_calls": [],
+      "expected_behavior": "answer_with_citations",
+      "answerability": "answerable",
+      "missing_user_data": [],
+      "missing_evidence": [],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    },
+    {
+      "question_id": "WORK_010",
+      "category": "employment",
+      "topic": "employment",
+      "question": "Készíts teljes ügyintézési tervet a munkaviszonyom megszűnése után, a szükséges dokumentumokkal, ellátásokkal, határidőkkel és pénzügyi teendőkkel együtt!",
+      "difficulty": "complex",
+      "expected_domains": [
+        "employment"
+      ],
+      "expected_intents": [
+        "employment_information"
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "registration",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "employment",
+          "label": "documents",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "employment",
+          "label": "benefits",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "employment",
+          "label": "deadline",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "employment",
+          "label": "health",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "employment",
+          "label": "financial",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "expected_source_ids": [
+        "dap-employment-overview",
+        "dap-employment-benefit",
+        "nfsz-unemployment-allowance",
+        "nfsz-support-overview",
+        "neak-post-employment-healthcare",
+        "njt-labour-code-termination"
+      ],
+      "expected_source_versions": {},
+      "relevant_chunk_ids": [],
+      "relevant_chunk_ids_by_task": {},
+      "expected_facts": [
+        {
+          "fact_id": "W10_1",
+          "statement": "A teljes tervben a kilépő dokumentumok, nyilvántartásba vétel, járadék, támogatások és egészségügyi jogosultság is releváns lehet.",
+          "answer_pattern": "dokumentum|nyilvántart|járadék|támogatás|egészségügyi",
+          "source_ids": [
+            "dap-employment-overview",
+            "dap-employment-benefit",
+            "nfsz-unemployment-allowance",
+            "nfsz-support-overview",
+            "neak-post-employment-healthcare",
+            "njt-labour-code-termination"
+          ]
+        },
+        {
+          "fact_id": "W10_2",
+          "statement": "A járadék legfeljebb 90 napig folyósítható a dokumentált feltételek szerint.",
+          "answer_pattern": "90\\s*nap",
+          "source_ids": [
+            "dap-employment-overview",
+            "dap-employment-benefit",
+            "nfsz-unemployment-allowance",
+            "nfsz-support-overview",
+            "neak-post-employment-healthcare",
+            "njt-labour-code-termination"
+          ]
+        }
+      ],
+      "expected_tool_calls": [
+        "build_document_checklist"
+      ],
+      "acceptable_tool_calls": [
+        "build_document_checklist"
+      ],
+      "expected_behavior": "partial_or_abstain_on_missing_evidence",
+      "answerability": "partial",
+      "missing_user_data": [],
+      "missing_evidence": [
+        "A projekt jelenlegi korpusza nem fed le minden, a kérdéshez szükséges részletszabályt."
+      ],
+      "reference_answer": "",
+      "reference_date": "2026-09-20",
+      "reference_status": "official_source_reviewed_unpinned",
+      "human_reviewed": false,
+      "evaluation_notes": "Hivatalos források alapján felülvizsgált referencia. Chunk-szintű Recall/MRR csak a lokális index verzióhoz kötött pinelése után mérhető.",
+      "source_reviewed": true,
+      "source_reviewed_at": "2026-09-20"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+# The current application uses EMBEDDED Qdrant: do not add a Qdrant server here.
+# Ollama runs on the host (Windows: Docker Desktop + host.docker.internal).
+services:
+  assistant:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dap-life-events-assistant:local
+    init: true
+    ports:
+      - "127.0.0.1:${STREAMLIT_PORT:-8501}:8501"
+    environment:
+      DATA_DIR: data
+      LLM_PROVIDER: ${LLM_PROVIDER:-ollama}
+      # The host's OLLAMA_BASE_URL=localhost:11434 is NOT valid in a container.
+      OLLAMA_BASE_URL: ${OLLAMA_DOCKER_URL:-http://host.docker.internal:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen3:4b}
+      OLLAMA_READ_TIMEOUT_S: ${OLLAMA_READ_TIMEOUT_S:-180}
+      OLLAMA_TOTAL_TIMEOUT_S: ${OLLAMA_TOTAL_TIMEOUT_S:-480}
+      OLLAMA_QUICK_NUM_CTX: ${OLLAMA_QUICK_NUM_CTX:-3072}
+      OLLAMA_NUM_CTX: ${OLLAMA_NUM_CTX:-8192}
+      OLLAMA_QUICK_NUM_PREDICT: ${OLLAMA_QUICK_NUM_PREDICT:-384}
+      OLLAMA_NUM_PREDICT: ${OLLAMA_NUM_PREDICT:-180}
+      OLLAMA_ANSWER_NUM_PREDICT: ${OLLAMA_ANSWER_NUM_PREDICT:-900}
+      OLLAMA_THINK: ${OLLAMA_THINK:-false}
+      OLLAMA_SELECTION_NUM_PREDICT: ${OLLAMA_SELECTION_NUM_PREDICT:-512}
+      OLLAMA_KEEP_ALIVE: ${OLLAMA_KEEP_ALIVE:-15m}
+      QUICK_SINGLE_PASS: ${QUICK_SINGLE_PASS:-true}
+      NATIVE_TOOL_NUM_CTX: ${NATIVE_TOOL_NUM_CTX:-3072}
+      NATIVE_TOOL_NUM_PREDICT: ${NATIVE_TOOL_NUM_PREDICT:-512}
+      NATIVE_TOOL_STREAM: ${NATIVE_TOOL_STREAM:-true}
+      NATIVE_TOOL_READ_TIMEOUT_S: ${NATIVE_TOOL_READ_TIMEOUT_S:-180}
+      NATIVE_TOOL_TOTAL_TIMEOUT_S: ${NATIVE_TOOL_TOTAL_TIMEOUT_S:-300}
+      AGENTIC_ANSWER_RECOVERY_NUM_PREDICT: ${AGENTIC_ANSWER_RECOVERY_NUM_PREDICT:-640}
+      ANSWER_ADAPTIVE_OUTPUT: ${ANSWER_ADAPTIVE_OUTPUT:-true}
+      CONTEXT_SAFETY_TOKENS: ${CONTEXT_SAFETY_TOKENS:-128}
+      OLLAMA_TEMPERATURE: ${OLLAMA_TEMPERATURE:-0.1}
+      OLLAMA_TOP_P: ${OLLAMA_TOP_P:-}
+      OLLAMA_TOP_K: ${OLLAMA_TOP_K:-}
+      ANSWER_MODE: ${ANSWER_MODE:-detailed}
+      FAST_ROUTING: ${FAST_ROUTING:-true}
+      MAX_SUBTASKS: ${MAX_SUBTASKS:-6}
+      MAX_RAG_ATTEMPTS: ${MAX_RAG_ATTEMPTS:-2}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-intfloat/multilingual-e5-small}
+      EMBEDDING_PROVIDER: ${EMBEDDING_PROVIDER:-sentence_transformers}
+      EMBEDDING_DEVICE: ${EMBEDDING_DEVICE:-cpu}
+      NATIVE_TOOL_CALLING_ENABLED: ${NATIVE_TOOL_CALLING_ENABLED:-true}
+      NATIVE_TOOL_MODEL: ${NATIVE_TOOL_MODEL:-qwen3:4b}
+      AGENTIC_ANSWER_RECOVERY_ENABLED: ${AGENTIC_ANSWER_RECOVERY_ENABLED:-true}
+      AGENTIC_ANSWER_RECOVERY_MODEL: ${AGENTIC_ANSWER_RECOVERY_MODEL:-qwen3:4b}
+      HF_HOME: /app/models/huggingface
+      XDG_CACHE_HOME: /app/models/cache
+    volumes:
+      # Keep raw/processed documents and index metadata visible on the host.
+      - type: bind
+        source: ./data
+        target: /app/data
+      - type: bind
+        source: ./config
+        target: /app/config
+        read_only: true
+      - type: bind
+        source: ./evaluation
+        target: /app/evaluation
+      - type: bind
+        source: ./reports
+        target: /app/reports
+      # QdrantLocal uses SQLite/file locks: Linux-native storage avoids Windows
+      # bind-mount locking issues. The pre-existing Windows index is NOT copied.
+      - type: volume
+        source: qdrant_index
+        target: /app/data/vectorstore/qdrant
+      - type: volume
+        source: embedding_cache
+        target: /app/models
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+volumes:
+  qdrant_index:
+  embedding_cache:
