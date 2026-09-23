@@ -1,6 +1,6 @@
 #   – Agentic RAG Chatbot
 
-A ** ** egy magyar nyelvű, LangGraph-alapú **Agentic RAG chatbot prototípus**, amely hétköznapi magyar közigazgatási élethelyzetekben segít eligazodni hivatalos, nyilvánosan elérhető források alapján.
+A **  egy magyar nyelvű, LangGraph-alapú **Agentic RAG chatbot prototípus**, amely hétköznapi magyar közigazgatási élethelyzetekben segít eligazodni hivatalos, nyilvánosan elérhető források alapján.
 
 A projekt Pythonban készült. A fő agentic workflow-t és a moduláris RAG algráfot LangGraph kezeli, a generatív modell lokálisan Ollamán keresztül fut, a felhasználói felület pedig Streamlit.
 
