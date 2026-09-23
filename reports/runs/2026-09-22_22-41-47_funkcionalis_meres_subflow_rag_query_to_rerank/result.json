@@ -1,0 +1,4329 @@
+{
+  "kind": "functional_v4",
+  "run_id": "e6ffad0a-58da-4a50-b008-388cb275a656",
+  "timestamp_utc": "2026-09-22T20:41:45.135459+00:00",
+  "configuration": {
+    "scope": "subflow",
+    "target": "rag/query_to_rerank",
+    "topic": "all",
+    "question_ids": [
+      "AUTO_001",
+      "AUTO_002",
+      "AUTO_003",
+      "AUTO_004",
+      "AUTO_005",
+      "AUTO_006",
+      "AUTO_007",
+      "AUTO_008",
+      "AUTO_009",
+      "AUTO_010",
+      "WORK_001",
+      "WORK_002",
+      "WORK_003",
+      "WORK_004",
+      "WORK_005",
+      "WORK_006",
+      "WORK_007",
+      "WORK_008",
+      "WORK_009",
+      "WORK_010"
+    ],
+    "model": "qwen3:4b",
+    "context_window": 8192,
+    "retrieval_configuration": {
+      "embedding_provider": "sentence_transformers",
+      "embedding_model": "intfloat/multilingual-e5-small",
+      "embedding_device": "cpu",
+      "lexical_retrieval": "BM25",
+      "dense_top_k": 12,
+      "bm25_top_k": 12,
+      "fusion": "Reciprocal Rank Fusion k=60",
+      "rag_candidate_limit": 16,
+      "prepared_context_limit": 20,
+      "facet_search_limit_per_query": 8
+    },
+    "node_metric_schema_version": 2,
+    "dataset_version": "4.0",
+    "dataset_sha256": "a1f8ae0ac383fb1248250ff0c5df076a3f54ad43be15f88a9f0632a8edb177ff"
+  },
+  "execution_environment": {
+    "timestamp_utc": "2026-09-22T20:41:47.695062+00:00",
+    "python": "3.14.0",
+    "os": "Windows-10-10.0.19045-SP0",
+    "cpu": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel",
+    "cpu_cores": 6,
+    "ram_bytes": 17015480320,
+    "gpu": "NVIDIA GeForce GTX 1650 with Max-Q Design, 4096 MiB",
+    "model": {
+      "name": "qwen3:4b",
+      "provider": "ollama",
+      "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+      "ollama_version": "0.34.2"
+    },
+    "embedding_model": "intfloat/multilingual-e5-small",
+    "embedding_provider": "sentence_transformers",
+    "runtime_configuration": {
+      "fast_routing": true,
+      "ollama_read_timeout_s": 180.0,
+      "ollama_total_timeout_s": 480.0,
+      "answer_mode": "detailed",
+      "ollama_num_predict": 180,
+      "ollama_num_ctx": 8192,
+      "quick_single_pass": true,
+      "quick_requested_num_ctx": null,
+      "quick_requested_num_predict": null,
+      "ollama_keep_alive": "15m",
+      "native_tool_calling_enabled": true,
+      "native_tool_call_limit": 2
+    },
+    "index_sha256": "1964d9fbcadb5492ac2d42e8f57b0afd1f5cff2d070b6bb555ea20584afd63ea",
+    "document_versions": {
+      "dap-employment-benefit": "5476efc999e10b74de16c651b7f60e301e67a936ed0c05b2f521b7b140acd2ea",
+      "dap-employment-overview": "a347beebd3c3389601be612a9f0220d2fcae0d2d3b20361defa3fe2c14caf1f8",
+      "nav-health-contribution-2026": "418790d1f0a1fcfd0c63eae5b8c1f437873c570bca1ad1ef895ebe4ad9d65b11",
+      "neak-health-service-contribution": "25d5225c3e0362da544ea986b555ef350741f1708f50ea715150e0f4998d936d",
+      "neak-post-employment-healthcare": "9e8687df326f516efc02c7e8c685dc9d7664fff4aeff5c9a7da56778e63e5411",
+      "nfsz-benefit-calculator": "c19a3032b69a7c77bee4f0f69728b01aede0986eea973b0d0b49ff8504c7bfcd",
+      "nfsz-entrepreneurship-support": "739681c25fc024c4e393908a27f4cf21ce80f4e4eb1b44781c3e5f70c9939252",
+      "nfsz-jobseeker-registration": "4ede4215273aa6c05551be3232d7333e20788107f10471ae10673c6c736a49f1",
+      "nfsz-registration-guide": "02f434aed387fb2f199f2c81219eea73c452bf45c796bdcc27c394cd4b339215",
+      "nfsz-support-overview": "c4360231031e670c91e932592db509015f6a6568428a7dd4cc149098b863aee0",
+      "nfsz-unemployment-allowance": "5209269502cc243a25071bf7f8a6c2a2f4a79d036cbfcb72b937f9bab4ac72bc",
+      "njt-employment-benefits": "346ea2fcad360144b38e4cfbaa436a16385310bce18de78163e61d0c3721329e",
+      "njt-labour-code-termination": "9da5d2850dd32c8cd2150b57d659218e9f27d1b0d56485a995c1b1999413923c",
+      "dap-vehicle-buyer": "748c79a583e91afc273b0840b08d979f057d1d0678a4af28b7e0fb23e60fa2e8",
+      "dap-vehicle-overview": "c0430e43d0825fcc594f09874ad2d309ed919b950703ce3a4e57b8e1badd0171",
+      "dap-vehicle-seller": "0320b98bc5addc1f23abb9a87de781bebf443b96473f56d57ea78678c3f1ea7e",
+      "mabisz-kgfb-navigator": "1fba44bb391812f753a596c82b45079bec199d567bfac0252ac022b06eafc405",
+      "mabisz-kgfb-rates": "59cc918dd41e6a7f5bba3843eacc3b981a30d5985e5b37b9ba9ebdf1a88eecbe",
+      "nav-vehicle-duty-2026": "fe64f84095796a6638cbb10ceb59064d4d9c344df54f91c812e6093b696e6d77",
+      "nav-vehicle-tax-2026": "a596071ab824430ab0b677d829385b828a8f1c1889badd374c80b066a6eafbe7",
+      "njt-vehicle-insurance": "a98cf7b6983f1e0b6f02d9a9c79d07dbce5b906e5e794b53214f15335b98608b",
+      "njt-vehicle-origin-inspection": "66071bf6be3e2fdac6da044a1cdc217e7b1665c28221fc72fa50ef7bed0d32d1",
+      "njt-vehicle-registration": "a66abce6e972fddb01a3bb122f7d2512933ec94721706fde47e3c483e95b085c",
+      "njt-vehicle-transfer-document": "65ad48b2f7b487dfa65109fa11da6beff43a0daa840bd832f9e9647db2bf25da"
+    },
+    "document_count": 24,
+    "chunk_count": 212
+  },
+  "rows": [
+    {
+      "question_id": "AUTO_001",
+      "topic": "vehicle",
+      "question": "Vettem egy használt autót Magyarországon. Milyen ügyintézési teendőim vannak?",
+      "difficulty": "medium",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.5320896999910474,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "A1_1",
+          "statement": "A gépjárművet az adásvételi szerződés megkötésétől számított 15 napon belül át kell íratni.",
+          "answer_pattern": "15\\s*nap|át kell ír",
+          "source_ids": [
+            "dap-vehicle-buyer"
+          ]
+        },
+        {
+          "fact_id": "A1_2",
+          "statement": "Tulajdonosváltáskor új kötelező gépjármű-felelősségbiztosítást kell kötni.",
+          "answer_pattern": "kötelező.*biztosítás|kgfb",
+          "source_ids": [
+            "dap-vehicle-buyer"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "steps+documents+deadline+insurance",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217436.3690114,
+            "end_s": 217436.3691765,
+            "duration_s": 0.00016510000568814576
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217436.4618302,
+            "end_s": 217436.4693413,
+            "duration_s": 0.007511100004194304
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217436.46942349998,
+            "end_s": 217436.5042985,
+            "duration_s": 0.034875000012107193
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217436.504397,
+            "end_s": 217436.5179689,
+            "duration_s": 0.013571899995440617
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217436.5180251,
+            "end_s": 217436.5182416,
+            "duration_s": 0.00021649998961947858
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217436.550931,
+            "end_s": 217436.552841,
+            "duration_s": 0.0019099999917671084
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217436.5529042,
+            "end_s": 217436.5794876,
+            "duration_s": 0.026583400001982227
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217436.5795634,
+            "end_s": 217436.5876433,
+            "duration_s": 0.008079899998847395
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217436.5876725,
+            "end_s": 217436.5877372,
+            "duration_s": 6.469999789260328e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217436.62241389998,
+            "end_s": 217436.6234236,
+            "duration_s": 0.0010097000049427152
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217436.6234739,
+            "end_s": 217436.647488,
+            "duration_s": 0.024014099995838478
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217436.64762650002,
+            "end_s": 217436.6539737,
+            "duration_s": 0.00634719998924993
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217436.6539944,
+            "end_s": 217436.6540447,
+            "duration_s": 5.0300004659220576e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217436.6755506,
+            "end_s": 217436.6775916,
+            "duration_s": 0.0020409999997355044
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217436.67768300002,
+            "end_s": 217436.696892,
+            "duration_s": 0.01920899999095127
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217436.6969271,
+            "end_s": 217436.7008381,
+            "duration_s": 0.003910999977961183
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217436.7008535,
+            "end_s": 217436.7008905,
+            "duration_s": 3.700001980178058e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217436.7223276,
+            "end_s": 217436.7237423,
+            "duration_s": 0.0014147000038065016
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217436.72382,
+            "end_s": 217436.7456244,
+            "duration_s": 0.021804399992106482
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217436.7457004,
+            "end_s": 217436.7532227,
+            "duration_s": 0.007522300002165139
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217436.7532412,
+            "end_s": 217436.7532789,
+            "duration_s": 3.7699996028095484e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217436.7845774,
+            "end_s": 217436.7865314,
+            "duration_s": 0.0019540000066626817
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217436.78661100002,
+            "end_s": 217436.8175377,
+            "duration_s": 0.030926699982956052
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217436.8177747,
+            "end_s": 217436.8248493,
+            "duration_s": 0.00707459999830462
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217436.8248662,
+            "end_s": 217436.8249059,
+            "duration_s": 3.969998215325177e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217436.84943449998,
+            "end_s": 217436.8516044,
+            "duration_s": 0.0021699000208172947
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217436.8517091,
+            "end_s": 217436.8792349,
+            "duration_s": 0.027525799989234656
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217436.8792935,
+            "end_s": 217436.8847939,
+            "duration_s": 0.005500400002347305
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217436.8848178,
+            "end_s": 217436.8848641,
+            "duration_s": 4.630000330507755e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217436.3704226,
+            "end_s": 217436.8849738,
+            "duration_s": 0.5145512000017334
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217436.885532,
+            "end_s": 217436.8865762,
+            "duration_s": 0.0010442000057082623
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.75,
+        "retrieval_precision_at_5": 0.6,
+        "retrieval_mrr": 1.0,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.75,
+          "precision_at_k": 0.6,
+          "mrr": 1.0,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "AUTO_002",
+      "topic": "vehicle",
+      "question": "Mennyi időm van az autó átírására, és milyen következményei lehetnek a határidő elmulasztásának?",
+      "difficulty": "medium",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.07911540000350215,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "A2_1",
+          "statement": "Az átírás határideje 15 nap az adásvételi szerződés megkötésétől.",
+          "answer_pattern": "15\\s*nap",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "njt-vehicle-registration"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "deadline+consequence",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217436.8884675,
+            "end_s": 217436.8887105,
+            "duration_s": 0.00024300001678057015
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217436.92271379998,
+            "end_s": 217436.9239105,
+            "duration_s": 0.001196700002765283
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217436.9239698,
+            "end_s": 217436.9582546,
+            "duration_s": 0.0342848000000231
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217436.95830459998,
+            "end_s": 217436.9645715,
+            "duration_s": 0.006266900018090382
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217436.9645952,
+            "end_s": 217436.9646532,
+            "duration_s": 5.800000508315861e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217436.8890318,
+            "end_s": 217436.965157,
+            "duration_s": 0.07612519999383949
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217436.9657064,
+            "end_s": 217436.9662866,
+            "duration_s": 0.0005802000232506543
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.5,
+        "retrieval_precision_at_5": 0.2,
+        "retrieval_mrr": 1.0,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.5,
+          "precision_at_k": 0.2,
+          "mrr": 1.0,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "AUTO_003",
+      "topic": "vehicle",
+      "question": "Milyen dokumentumok szükségesek a gépjármű átírásához?",
+      "difficulty": "simple",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.09126760001527146,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "A3_1",
+          "statement": "Az átíráshoz személyazonosító okmány, lakcímadat, adásvételi szerződés, járműokmányok, eredetiségvizsgálat és KGFB-adat szükséges lehet.",
+          "answer_pattern": "adásvételi|forgalmi|törzskönyv|biztosítás",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "njt-vehicle-transfer-document"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "documents",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217436.9684842,
+            "end_s": 217436.9685557,
+            "duration_s": 7.149999146349728e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217437.0171833,
+            "end_s": 217437.0197748,
+            "duration_s": 0.002591500000562519
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217437.01987850002,
+            "end_s": 217437.0502397,
+            "duration_s": 0.03036119998432696
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217437.05031050002,
+            "end_s": 217437.0562638,
+            "duration_s": 0.005953299987595528
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217437.05628710001,
+            "end_s": 217437.0563317,
+            "duration_s": 4.4599990360438824e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217436.9690973,
+            "end_s": 217437.0568485,
+            "duration_s": 0.08775120001519099
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217437.0574292,
+            "end_s": 217437.0580925,
+            "duration_s": 0.0006632999866269529
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.5,
+        "retrieval_precision_at_5": 0.2,
+        "retrieval_mrr": 1.0,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.5,
+          "precision_at_k": 0.2,
+          "mrr": 1.0,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "AUTO_004",
+      "topic": "vehicle",
+      "question": "Mikor szükséges eredetiségvizsgálat, és milyen kivételek léteznek?",
+      "difficulty": "medium",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.08042300000670366,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "A4_1",
+          "statement": "Az eredetiségvizsgálatnak vannak dokumentált kivételei, például egyes közeli hozzátartozói vagy muzeális járműves esetek.",
+          "answer_pattern": "eredetiségvizsgálat|muzeális|házastárs|testvér",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "njt-vehicle-origin-inspection"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "originality_check+exceptions",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217437.0597269,
+            "end_s": 217437.0597669,
+            "duration_s": 3.999998443759978e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217437.10271520002,
+            "end_s": 217437.1038133,
+            "duration_s": 0.0010980999795719981
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217437.10387659998,
+            "end_s": 217437.131951,
+            "duration_s": 0.028074400004697964
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217437.13199129998,
+            "end_s": 217437.1374623,
+            "duration_s": 0.005471000011311844
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217437.13748130001,
+            "end_s": 217437.1375211,
+            "duration_s": 3.9799982914701104e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217437.060162,
+            "end_s": 217437.1379486,
+            "duration_s": 0.07778659998439252
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217437.1384544,
+            "end_s": 217437.1389392,
+            "duration_s": 0.0004847999953199178
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.0,
+        "retrieval_precision_at_5": 0.0,
+        "retrieval_mrr": 0.08333333333333333,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.0,
+          "precision_at_k": 0.0,
+          "mrr": 0.08333333333333333,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "AUTO_005",
+      "topic": "vehicle",
+      "question": "Mikor kell kötelező gépjármű-felelősségbiztosítást kötnöm?",
+      "difficulty": "medium",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.08547300001373515,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "A5_1",
+          "statement": "Tulajdonosváltáskor a korábbi KGFB megszűnik, ezért a vevőnek új biztosítást kell kötnie.",
+          "answer_pattern": "biztosítás.*megszűn|újat kell köt",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "njt-vehicle-insurance",
+            "mabisz-kgfb-navigator"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "insurance+deadline",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217437.1414054,
+            "end_s": 217437.1414969,
+            "duration_s": 9.14999982342124e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217437.1830792,
+            "end_s": 217437.1849056,
+            "duration_s": 0.0018263999954797328
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217437.1849933,
+            "end_s": 217437.214867,
+            "duration_s": 0.02987369999755174
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217437.2149486,
+            "end_s": 217437.2223017,
+            "duration_s": 0.007353099994361401
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217437.2223311,
+            "end_s": 217437.2224027,
+            "duration_s": 7.159999222494662e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217437.1420647,
+            "end_s": 217437.2230595,
+            "duration_s": 0.0809947999950964
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217437.2237788,
+            "end_s": 217437.2246725,
+            "duration_s": 0.0008936999947763979
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.5,
+        "retrieval_precision_at_5": 0.2,
+        "retrieval_mrr": 0.5,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.5,
+          "precision_at_k": 0.2,
+          "mrr": 0.5,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "AUTO_006",
+      "topic": "vehicle",
+      "question": "Milyen költségekkel kell számolnom egy használt autó megvásárlása és átírása során?",
+      "difficulty": "medium",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.2181896999827586,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "A6_1",
+          "statement": "A vásárlás költségei között lehet eredetiségvizsgálat, okmánydíj, vagyonszerzési illeték és KGFB.",
+          "answer_pattern": "eredetiség|forgalmi|törzskönyv|illeték|biztosítás",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "nav-vehicle-duty-2026",
+            "mabisz-kgfb-navigator"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "fees+duty+documents",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217437.2267143,
+            "end_s": 217437.2267724,
+            "duration_s": 5.810000584460795e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217437.2661758,
+            "end_s": 217437.2674408,
+            "duration_s": 0.001264999998966232
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217437.26749360003,
+            "end_s": 217437.3055208,
+            "duration_s": 0.03802719997474924
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217437.30562780003,
+            "end_s": 217437.3138281,
+            "duration_s": 0.008200299984309822
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217437.3138711,
+            "end_s": 217437.3139518,
+            "duration_s": 8.070000330917537e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217437.36389849999,
+            "end_s": 217437.3653436,
+            "duration_s": 0.0014451000024564564
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217437.3654138,
+            "end_s": 217437.3934835,
+            "duration_s": 0.028069699998013675
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217437.39354910003,
+            "end_s": 217437.4025811,
+            "duration_s": 0.009031999972648919
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217437.4026189,
+            "end_s": 217437.4026885,
+            "duration_s": 6.960000609979033e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217437.2271866,
+            "end_s": 217437.441967,
+            "duration_s": 0.21478039998328313
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217437.4424938,
+            "end_s": 217437.443624,
+            "duration_s": 0.001130200020270422
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": null,
+        "retrieval_precision_at_5": null,
+        "retrieval_mrr": null,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_incomplete",
+        "reference_type": "unavailable",
+        "retrieval": {
+          "recall_at_k": null,
+          "precision_at_k": null,
+          "mrr": null,
+          "reason": "no_pinned_relevant_chunk_ids"
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "AUTO_007",
+      "topic": "vehicle",
+      "question": "Hogyan határozzák meg a gépjármű vagyonszerzési illetékét?",
+      "difficulty": "simple",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.16459479997865856,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "A7_1",
+          "statement": "A 2026-os gépjármű-vagyonszerzési illeték mértéke a hajtómotor kW-teljesítményétől és a jármű korától függ.",
+          "answer_pattern": "kW|teljesítmény|kor",
+          "source_ids": [
+            "nav-vehicle-duty-2026"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "duty_formula",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217437.4453345,
+            "end_s": 217437.4453922,
+            "duration_s": 5.77000027988106e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217437.48271,
+            "end_s": 217437.485121,
+            "duration_s": 0.002410999994026497
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217437.48521480002,
+            "end_s": 217437.519513,
+            "duration_s": 0.034298199985641986
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217437.5195508,
+            "end_s": 217437.5237141,
+            "duration_s": 0.00416330000734888
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217437.5237343,
+            "end_s": 217437.5237741,
+            "duration_s": 3.980001201853156e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217437.5585761,
+            "end_s": 217437.5608947,
+            "duration_s": 0.0023185999889392406
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217437.561007,
+            "end_s": 217437.5610124,
+            "duration_s": 5.399982910603285e-06
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217437.56110479997,
+            "end_s": 217437.5697183,
+            "duration_s": 0.008613500016508624
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217437.5697482,
+            "end_s": 217437.569815,
+            "duration_s": 6.67999847792089e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217437.4457689,
+            "end_s": 217437.6071118,
+            "duration_s": 0.16134289998444729
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217437.6076783,
+            "end_s": 217437.6083864,
+            "duration_s": 0.0007081000076141208
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.5,
+        "retrieval_precision_at_5": 0.2,
+        "retrieval_mrr": 1.0,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.5,
+          "precision_at_k": 0.2,
+          "mrr": 1.0,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "AUTO_008",
+      "topic": "vehicle",
+      "question": "Mi a teendő, ha a megvásárolt autónak hiányzik a törzskönyve?",
+      "difficulty": "medium",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.4573678999731783,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "A8_1",
+          "statement": "A DÁP szerint hiányzó törzskönyv mellett is lehetséges lehet az átírás, ha a hiány oka az adásvételi szerződésben szerepel.",
+          "answer_pattern": "törzskönyv.*hiány|hiány.*adásvételi",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "njt-vehicle-registration"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "missing_registration_certificate+documents",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217437.6104935,
+            "end_s": 217437.6105518,
+            "duration_s": 5.830000736750662e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217437.64435910003,
+            "end_s": 217437.6474526,
+            "duration_s": 0.0030934999813325703
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217437.6475428,
+            "end_s": 217437.6755842,
+            "duration_s": 0.028041400015354156
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217437.6756313,
+            "end_s": 217437.6814481,
+            "duration_s": 0.00581679999595508
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217437.6814843,
+            "end_s": 217437.6815474,
+            "duration_s": 6.309998570941389e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217437.7144563,
+            "end_s": 217437.7156412,
+            "duration_s": 0.0011849000002257526
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217437.7157334,
+            "end_s": 217437.7157359,
+            "duration_s": 2.500019036233425e-06
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217437.7158101,
+            "end_s": 217437.7224324,
+            "duration_s": 0.0066223000176250935
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217437.7224587,
+            "end_s": 217437.7225216,
+            "duration_s": 6.289998418651521e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217437.75374269998,
+            "end_s": 217437.7556566,
+            "duration_s": 0.0019139000214636326
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217437.75573000003,
+            "end_s": 217437.7842019,
+            "duration_s": 0.02847189997555688
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217437.7842772,
+            "end_s": 217437.7938456,
+            "duration_s": 0.009568400011630729
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217437.7938655,
+            "end_s": 217437.7939102,
+            "duration_s": 4.470002022571862e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217437.82265550003,
+            "end_s": 217437.8246862,
+            "duration_s": 0.0020306999795138836
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217437.82479629997,
+            "end_s": 217437.8505783,
+            "duration_s": 0.025782000011531636
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217437.85071670002,
+            "end_s": 217437.8558863,
+            "duration_s": 0.005169599986402318
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217437.8559046,
+            "end_s": 217437.8559615,
+            "duration_s": 5.6899996707215905e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217437.88154409998,
+            "end_s": 217437.8837896,
+            "duration_s": 0.0022455000143963844
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217437.88386129998,
+            "end_s": 217437.9053928,
+            "duration_s": 0.021531500009587035
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217437.90543050002,
+            "end_s": 217437.9107418,
+            "duration_s": 0.0053112999885343015
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217437.9107628,
+            "end_s": 217437.9108105,
+            "duration_s": 4.770001396536827e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217437.95049199997,
+            "end_s": 217437.9525085,
+            "duration_s": 0.00201650001690723
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217437.9525957,
+            "end_s": 217437.9792402,
+            "duration_s": 0.026644500001566485
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217437.9793506,
+            "end_s": 217437.9853856,
+            "duration_s": 0.006034999998519197
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217437.98543539998,
+            "end_s": 217437.9855277,
+            "duration_s": 9.23000043258071e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217438.0267728,
+            "end_s": 217438.0296915,
+            "duration_s": 0.0029187000181991607
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217438.02979590002,
+            "end_s": 217438.0583607,
+            "duration_s": 0.028564799984451383
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217438.0583965,
+            "end_s": 217438.0647521,
+            "duration_s": 0.006355599995004013
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217438.064772,
+            "end_s": 217438.0648134,
+            "duration_s": 4.1399995097890496e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217437.6109233,
+            "end_s": 217438.0649051,
+            "duration_s": 0.4539818000048399
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217438.0654022,
+            "end_s": 217438.0663505,
+            "duration_s": 0.0009483000030741096
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 1.0,
+        "retrieval_precision_at_5": 0.4,
+        "retrieval_mrr": 1.0,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 1.0,
+          "precision_at_k": 0.4,
+          "mrr": 1.0,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "AUTO_009",
+      "topic": "vehicle",
+      "question": "Hogyan tudom ellenőrizni egy használt autó előéletét és kilométeróra-adatait?",
+      "difficulty": "simple",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.46350370001164265,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "A9_1",
+          "statement": "A JSZP-n ingyenesen elérhetők a jármű életútjának egyes adatai, többek között kilométeróra- és káreseményadatok.",
+          "answer_pattern": "JSZP|kilométeróra|káresemény",
+          "source_ids": [
+            "dap-vehicle-buyer"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "vehicle_history",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217438.0683423,
+            "end_s": 217438.0684028,
+            "duration_s": 6.050002411939204e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217438.1115564,
+            "end_s": 217438.1136359,
+            "duration_s": 0.0020795000018551946
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217438.11371419998,
+            "end_s": 217438.1507443,
+            "duration_s": 0.03703010000754148
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217438.15088300002,
+            "end_s": 217438.1589305,
+            "duration_s": 0.008047499984968454
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217438.15896379997,
+            "end_s": 217438.1590348,
+            "duration_s": 7.100001676008105e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217438.1899683,
+            "end_s": 217438.191203,
+            "duration_s": 0.0012347000010777265
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217438.19128419997,
+            "end_s": 217438.219058,
+            "duration_s": 0.027773800014983863
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217438.2191324,
+            "end_s": 217438.2266836,
+            "duration_s": 0.0075511999893933535
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217438.2267242,
+            "end_s": 217438.2268271,
+            "duration_s": 0.00010289999772794545
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217438.2665172,
+            "end_s": 217438.268501,
+            "duration_s": 0.0019838000007439405
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217438.2686179,
+            "end_s": 217438.2952964,
+            "duration_s": 0.026678499998524785
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217438.29543030003,
+            "end_s": 217438.3033125,
+            "duration_s": 0.00788219997775741
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217438.30334699998,
+            "end_s": 217438.3034168,
+            "duration_s": 6.980000762268901e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217438.3387046,
+            "end_s": 217438.3408389,
+            "duration_s": 0.002134300011675805
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217438.34096009997,
+            "end_s": 217438.3687612,
+            "duration_s": 0.02780110001913272
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217438.3688365,
+            "end_s": 217438.3763758,
+            "duration_s": 0.007539299986092374
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217438.37640850001,
+            "end_s": 217438.3764767,
+            "duration_s": 6.819999543949962e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217438.4177057,
+            "end_s": 217438.4201377,
+            "duration_s": 0.0024320000084117055
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217438.42023020002,
+            "end_s": 217438.4485091,
+            "duration_s": 0.028278899990255013
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217438.4486156,
+            "end_s": 217438.4563298,
+            "duration_s": 0.007714200008194894
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217438.456374,
+            "end_s": 217438.4564497,
+            "duration_s": 7.569999434053898e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217438.491971,
+            "end_s": 217438.4939855,
+            "duration_s": 0.0020145000016782433
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217438.49409740002,
+            "end_s": 217438.5195282,
+            "duration_s": 0.025430799985770136
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217438.5196017,
+            "end_s": 217438.5267631,
+            "duration_s": 0.007161399989854544
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217438.52679940002,
+            "end_s": 217438.5268855,
+            "duration_s": 8.609998621977866e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217438.0689018,
+            "end_s": 217438.5270518,
+            "duration_s": 0.45814999999129213
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217438.5279243,
+            "end_s": 217438.5295999,
+            "duration_s": 0.0016756000113673508
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": null,
+        "retrieval_precision_at_5": null,
+        "retrieval_mrr": null,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_incomplete",
+        "reference_type": "unavailable",
+        "retrieval": {
+          "recall_at_k": null,
+          "precision_at_k": null,
+          "mrr": null,
+          "reason": "no_pinned_relevant_chunk_ids"
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "AUTO_010",
+      "topic": "vehicle",
+      "question": "Készíts teljes, időrendi ügyintézési tervet egy használt autó megvásárlása után, a dokumentumokkal, határidőkkel és költségekkel együtt!",
+      "difficulty": "complex",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.3571924999996554,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "A10_1",
+          "statement": "A teljes folyamatban előélet-ellenőrzés, eredetiségvizsgálat, KGFB, átírás és költségek is szerepelhetnek.",
+          "answer_pattern": "előélet|eredetiség|biztosítás|átírás|illeték",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "nav-vehicle-duty-2026",
+            "njt-vehicle-origin-inspection",
+            "njt-vehicle-insurance"
+          ]
+        },
+        {
+          "fact_id": "A10_2",
+          "statement": "Az átírás dokumentált határideje 15 nap.",
+          "answer_pattern": "15\\s*nap",
+          "source_ids": [
+            "dap-vehicle-buyer",
+            "nav-vehicle-duty-2026",
+            "njt-vehicle-origin-inspection",
+            "njt-vehicle-insurance"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "vehicle",
+          "label": "steps",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "vehicle",
+          "label": "documents",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "vehicle",
+          "label": "deadline",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "vehicle",
+          "label": "insurance",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "vehicle",
+          "label": "fees",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217438.5326203,
+            "end_s": 217438.5328225,
+            "duration_s": 0.00020220002625137568
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217438.5749102,
+            "end_s": 217438.576248,
+            "duration_s": 0.0013378000003285706
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217438.5763027,
+            "end_s": 217438.6075975,
+            "duration_s": 0.03129479999188334
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217438.60763460002,
+            "end_s": 217438.6125089,
+            "duration_s": 0.004874299978837371
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217438.61258420002,
+            "end_s": 217438.6127157,
+            "duration_s": 0.00013149998267181218
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217438.6531938,
+            "end_s": 217438.6542795,
+            "duration_s": 0.0010857000015676022
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217438.6543363,
+            "end_s": 217438.6543378,
+            "duration_s": 1.4999823179095984e-06
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217438.65438010002,
+            "end_s": 217438.658476,
+            "duration_s": 0.004095899988897145
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217438.6584947,
+            "end_s": 217438.6585365,
+            "duration_s": 4.1799998143687844e-05
+          },
+          {
+            "name": "fee_coverage_lookup",
+            "start_s": 217438.6587701,
+            "end_s": 217438.6880588,
+            "duration_s": 0.029288699995959178
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217438.7197328,
+            "end_s": 217438.7209105,
+            "duration_s": 0.0011777000036090612
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217438.7209627,
+            "end_s": 217438.7498222,
+            "duration_s": 0.028859500016551465
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217438.74986039998,
+            "end_s": 217438.7576542,
+            "duration_s": 0.007793800003128126
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217438.7576906,
+            "end_s": 217438.7577666,
+            "duration_s": 7.599999662488699e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217438.78708500002,
+            "end_s": 217438.7882474,
+            "duration_s": 0.001162399974418804
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217438.7883011,
+            "end_s": 217438.814789,
+            "duration_s": 0.02648790000239387
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217438.8148576,
+            "end_s": 217438.8215074,
+            "duration_s": 0.0066497999941930175
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217438.8215351,
+            "end_s": 217438.8215986,
+            "duration_s": 6.350001785904169e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217438.8514841,
+            "end_s": 217438.8528054,
+            "duration_s": 0.0013212999911047518
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217438.85286520002,
+            "end_s": 217438.8782644,
+            "duration_s": 0.02539919997798279
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217438.8783027,
+            "end_s": 217438.8862566,
+            "duration_s": 0.007953899999847636
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217438.8862753,
+            "end_s": 217438.8863164,
+            "duration_s": 4.1099992813542485e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217438.5334072,
+            "end_s": 217438.8864059,
+            "duration_s": 0.3529986999928951
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217438.8868655,
+            "end_s": 217438.8880965,
+            "duration_s": 0.0012310000020079315
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": null,
+        "retrieval_precision_at_5": null,
+        "retrieval_mrr": null,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_incomplete",
+        "reference_type": "unavailable",
+        "retrieval": {
+          "recall_at_k": null,
+          "precision_at_k": null,
+          "mrr": null,
+          "reason": "no_pinned_relevant_chunk_ids"
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "WORK_001",
+      "topic": "employment",
+      "question": "Elvesztettem a munkámat. Milyen ügyintézési teendőim vannak?",
+      "difficulty": "medium",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.43921909999335185,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "W1_1",
+          "statement": "A munkaviszony megszűnése után releváns lehet az álláskeresőként nyilvántartásba vétel és a járadék igénylése.",
+          "answer_pattern": "nyilvántartás|járadék",
+          "source_ids": [
+            "dap-employment-overview",
+            "nfsz-unemployment-allowance",
+            "nfsz-support-overview",
+            "neak-post-employment-healthcare"
+          ]
+        },
+        {
+          "fact_id": "W1_2",
+          "statement": "Az NFSZ külön támogatási és szolgáltatási lehetőségeket is közzétesz álláskeresőknek.",
+          "answer_pattern": "támogatás|szolgáltatás",
+          "source_ids": [
+            "dap-employment-overview",
+            "nfsz-unemployment-allowance",
+            "nfsz-support-overview",
+            "neak-post-employment-healthcare"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "registration+benefits+documents+health",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217438.889531,
+            "end_s": 217438.8895905,
+            "duration_s": 5.950001650489867e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217438.92165389998,
+            "end_s": 217438.9330645,
+            "duration_s": 0.011410600011004135
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217438.9331111,
+            "end_s": 217438.9582083,
+            "duration_s": 0.025097200006712228
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217438.95837679997,
+            "end_s": 217438.9648124,
+            "duration_s": 0.006435600022086874
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217438.9648281,
+            "end_s": 217438.9648734,
+            "duration_s": 4.529999569058418e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217438.9916292,
+            "end_s": 217438.9949109,
+            "duration_s": 0.00328169998829253
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217438.9949871,
+            "end_s": 217439.0223452,
+            "duration_s": 0.027358099992852658
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217439.0224128,
+            "end_s": 217439.0282256,
+            "duration_s": 0.005812799994600937
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217439.0282588,
+            "end_s": 217439.0283462,
+            "duration_s": 8.739999611862004e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217439.07272819997,
+            "end_s": 217439.0768358,
+            "duration_s": 0.004107600019779056
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217439.07693470002,
+            "end_s": 217439.1088298,
+            "duration_s": 0.031895099993562326
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217439.1088666,
+            "end_s": 217439.1150375,
+            "duration_s": 0.00617090001469478
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217439.1150631,
+            "end_s": 217439.1151519,
+            "duration_s": 8.880000677891076e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217439.1563166,
+            "end_s": 217439.1602803,
+            "duration_s": 0.003963700000895187
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217439.16035710002,
+            "end_s": 217439.193092,
+            "duration_s": 0.03273489998537116
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217439.19316909998,
+            "end_s": 217439.1994097,
+            "duration_s": 0.00624060002155602
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217439.1994331,
+            "end_s": 217439.1995015,
+            "duration_s": 6.839999696239829e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217439.2296926,
+            "end_s": 217439.2323187,
+            "duration_s": 0.0026261000020895153
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217439.23236199998,
+            "end_s": 217439.2620991,
+            "duration_s": 0.02973710000514984
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217439.2621787,
+            "end_s": 217439.2681569,
+            "duration_s": 0.0059782000025734305
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217439.2681848,
+            "end_s": 217439.2682628,
+            "duration_s": 7.800001185387373e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217439.2943562,
+            "end_s": 217439.297899,
+            "duration_s": 0.003542799997376278
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217439.29797,
+            "end_s": 217439.3218459,
+            "duration_s": 0.02387589999125339
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217439.321899,
+            "end_s": 217439.3248697,
+            "duration_s": 0.0029707000066991895
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217439.3248856,
+            "end_s": 217439.3249339,
+            "duration_s": 4.8299989430233836e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217438.8899733,
+            "end_s": 217439.3250419,
+            "duration_s": 0.435068599996157
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217439.3256059,
+            "end_s": 217439.3272829,
+            "duration_s": 0.001676999992923811
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.0,
+        "retrieval_precision_at_5": 0.0,
+        "retrieval_mrr": 0.06666666666666667,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.0,
+          "precision_at_k": 0.0,
+          "mrr": 0.06666666666666667,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "WORK_002",
+      "topic": "employment",
+      "question": "Hogyan tudok álláskeresőként nyilvántartásba kerülni Magyarországon?",
+      "difficulty": "medium",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.11716900000465102,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "W2_1",
+          "statement": "A járadék megállapításának előfeltétele az álláskeresőként történő regisztráció.",
+          "answer_pattern": "regisztr|nyilvántart",
+          "source_ids": [
+            "nfsz-jobseeker-registration",
+            "nfsz-registration-guide",
+            "nfsz-unemployment-allowance"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "registration+where+documents",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217439.3295247,
+            "end_s": 217439.3296655,
+            "duration_s": 0.0001407999952789396
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217439.3719517,
+            "end_s": 217439.3744612,
+            "duration_s": 0.002509499987354502
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217439.3745218,
+            "end_s": 217439.4019154,
+            "duration_s": 0.0273936000012327
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217439.4019527,
+            "end_s": 217439.4046365,
+            "duration_s": 0.002683800004888326
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217439.40465,
+            "end_s": 217439.4046917,
+            "duration_s": 4.169999738223851e-05
+          },
+          {
+            "name": "fee_coverage_lookup",
+            "start_s": 217439.4048244,
+            "end_s": 217439.4401457,
+            "duration_s": 0.03532130000530742
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217439.3304827,
+            "end_s": 217439.4415074,
+            "duration_s": 0.11102470001787879
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217439.4423685,
+            "end_s": 217439.444632,
+            "duration_s": 0.0022635000059381127
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.5,
+        "retrieval_precision_at_5": 0.2,
+        "retrieval_mrr": 1.0,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.5,
+          "precision_at_k": 0.2,
+          "mrr": 1.0,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "WORK_003",
+      "topic": "employment",
+      "question": "Milyen feltételekkel lehetek jogosult álláskeresési járadékra?",
+      "difficulty": "simple",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.2747617000131868,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "W3_1",
+          "statement": "Az NFSZ legalább 360 nap jogszerző időt sorol fel a feltételek között a megelőző három évben.",
+          "answer_pattern": "360\\s*nap|három év",
+          "source_ids": [
+            "nfsz-unemployment-allowance",
+            "njt-employment-benefits"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "eligibility",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217439.4479508,
+            "end_s": 217439.4480213,
+            "duration_s": 7.049998384900391e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217439.4872745,
+            "end_s": 217439.4905242,
+            "duration_s": 0.0032497000065632164
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217439.4905993,
+            "end_s": 217439.5136154,
+            "duration_s": 0.023016099992673844
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217439.5136592,
+            "end_s": 217439.5173136,
+            "duration_s": 0.003654400003142655
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217439.51740040001,
+            "end_s": 217439.5174916,
+            "duration_s": 9.119999594986439e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217439.55714659998,
+            "end_s": 217439.5595558,
+            "duration_s": 0.0024092000094242394
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217439.55960839998,
+            "end_s": 217439.5834252,
+            "duration_s": 0.02381680000689812
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217439.5834665,
+            "end_s": 217439.5908566,
+            "duration_s": 0.007390100014163181
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217439.5908834,
+            "end_s": 217439.5909595,
+            "duration_s": 7.609999738633633e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217439.62483780002,
+            "end_s": 217439.6272674,
+            "duration_s": 0.0024295999901369214
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217439.62731880002,
+            "end_s": 217439.652864,
+            "duration_s": 0.025545199983753264
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217439.6529387,
+            "end_s": 217439.6579226,
+            "duration_s": 0.0049838999984785914
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217439.65795069997,
+            "end_s": 217439.6580254,
+            "duration_s": 7.470001582987607e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217439.6887095,
+            "end_s": 217439.6906915,
+            "duration_s": 0.0019819999870378524
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217439.69074320002,
+            "end_s": 217439.7148983,
+            "duration_s": 0.024155099992640316
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217439.71497939999,
+            "end_s": 217439.7187561,
+            "duration_s": 0.0037767000030726194
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217439.718772,
+            "end_s": 217439.7188255,
+            "duration_s": 5.3499999921768904e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217439.4484699,
+            "end_s": 217439.7189363,
+            "duration_s": 0.270466399990255
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217439.7194487,
+            "end_s": 217439.7208959,
+            "duration_s": 0.0014472000184468925
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.5,
+        "retrieval_precision_at_5": 0.2,
+        "retrieval_mrr": 1.0,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.5,
+          "precision_at_k": 0.2,
+          "mrr": 1.0,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "WORK_004",
+      "topic": "employment",
+      "question": "Mennyi ideig kaphatok álláskeresési járadékot, és hogyan számítják ki az összegét?",
+      "difficulty": "medium",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.49025659999460913,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "W4_1",
+          "statement": "Tíz nap jogosultsági idő egy nap járadékfolyósítási időnek felel meg, legfeljebb 90 napig.",
+          "answer_pattern": "tíz nap|10\\s*nap|90\\s*nap",
+          "source_ids": [
+            "nfsz-unemployment-allowance",
+            "nfsz-benefit-calculator",
+            "njt-employment-benefits"
+          ]
+        },
+        {
+          "fact_id": "W4_2",
+          "statement": "A napi járadék a járadékalap 60 százaléka, felső korláttal.",
+          "answer_pattern": "60\\s*(?:%|százalék)|járadékalap",
+          "source_ids": [
+            "nfsz-unemployment-allowance",
+            "nfsz-benefit-calculator",
+            "njt-employment-benefits"
+          ]
+        },
+        {
+          "fact_id": "W4_3",
+          "statement": "Az NFSZ hivatalos járadékkalkulátort biztosít.",
+          "answer_pattern": "kalkulátor",
+          "source_ids": [
+            "nfsz-unemployment-allowance",
+            "nfsz-benefit-calculator",
+            "njt-employment-benefits"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "duration+amount",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217439.7225169,
+            "end_s": 217439.7225854,
+            "duration_s": 6.850002682767808e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217439.75882840002,
+            "end_s": 217439.7614071,
+            "duration_s": 0.002578699990408495
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217439.76145669998,
+            "end_s": 217439.7886411,
+            "duration_s": 0.02718440000899136
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217439.78870799998,
+            "end_s": 217439.7932783,
+            "duration_s": 0.004570300021441653
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217439.7933105,
+            "end_s": 217439.793396,
+            "duration_s": 8.549998165108263e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217439.83500679999,
+            "end_s": 217439.8385699,
+            "duration_s": 0.003563100006431341
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217439.83862360002,
+            "end_s": 217439.867713,
+            "duration_s": 0.029089399991789833
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217439.86779649998,
+            "end_s": 217439.8728655,
+            "duration_s": 0.005069000006187707
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217439.87289590001,
+            "end_s": 217439.8729675,
+            "duration_s": 7.159999222494662e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217439.9083545,
+            "end_s": 217439.9135611,
+            "duration_s": 0.0052066000062040985
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217439.9136303,
+            "end_s": 217439.9136338,
+            "duration_s": 3.4999975468963385e-06
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217439.91371569998,
+            "end_s": 217439.9195379,
+            "duration_s": 0.0058222000079695135
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217439.9195615,
+            "end_s": 217439.9196286,
+            "duration_s": 6.710001616738737e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217439.9729313,
+            "end_s": 217439.9751983,
+            "duration_s": 0.002267000003485009
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217439.975251,
+            "end_s": 217440.0004948,
+            "duration_s": 0.0252438000170514
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217440.0005333,
+            "end_s": 217440.0068402,
+            "duration_s": 0.006306900002527982
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217440.0068861,
+            "end_s": 217440.0070012,
+            "duration_s": 0.00011510000331327319
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217440.1714786,
+            "end_s": 217440.1751787,
+            "duration_s": 0.0037001000018790364
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217440.17523030002,
+            "end_s": 217440.2025648,
+            "duration_s": 0.027334499987773597
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217440.2026552,
+            "end_s": 217440.2072035,
+            "duration_s": 0.0045482999994419515
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217440.2072419,
+            "end_s": 217440.2073293,
+            "duration_s": 8.739999611862004e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217439.7229712,
+            "end_s": 217440.207525,
+            "duration_s": 0.4845537999935914
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217440.2083573,
+            "end_s": 217440.2109383,
+            "duration_s": 0.00258100000792183
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.25,
+        "retrieval_precision_at_5": 0.2,
+        "retrieval_mrr": 0.5,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.25,
+          "precision_at_k": 0.2,
+          "mrr": 0.5,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "WORK_005",
+      "topic": "employment",
+      "question": "Milyen dokumentumokat kell megkapnom a munkáltatómtól a munkaviszony megszűnésekor?",
+      "difficulty": "simple",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.14950460000545718,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "W5_1",
+          "statement": "A munkaviszony megszűnése után a foglalkoztatói igazolás és más kilépő dokumentumok relevánsak lehetnek.",
+          "answer_pattern": "foglalkoztatói igazolás|kilépő",
+          "source_ids": [
+            "dap-employment-benefit",
+            "nfsz-unemployment-allowance"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "employer_documents",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217440.2147889,
+            "end_s": 217440.2149365,
+            "duration_s": 0.00014760001795366406
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217440.24787429997,
+            "end_s": 217440.2498645,
+            "duration_s": 0.0019902000203728676
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217440.2499069,
+            "end_s": 217440.2763446,
+            "duration_s": 0.0264376999984961
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217440.27647070002,
+            "end_s": 217440.2834762,
+            "duration_s": 0.007005499996012077
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217440.28349970002,
+            "end_s": 217440.283571,
+            "duration_s": 7.129998994059861e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217440.3214034,
+            "end_s": 217440.3250564,
+            "duration_s": 0.003652999992482364
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217440.32513130002,
+            "end_s": 217440.3534364,
+            "duration_s": 0.028305099986027926
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217440.3535083,
+            "end_s": 217440.3585128,
+            "duration_s": 0.005004500009818003
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217440.358543,
+            "end_s": 217440.3586191,
+            "duration_s": 7.609999738633633e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217440.2153338,
+            "end_s": 217440.3596176,
+            "duration_s": 0.1442838000075426
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217440.360425,
+            "end_s": 217440.3617861,
+            "duration_s": 0.0013611000031232834
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.5,
+        "retrieval_precision_at_5": 0.2,
+        "retrieval_mrr": 0.3333333333333333,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.5,
+          "precision_at_k": 0.2,
+          "mrr": 0.3333333333333333,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "WORK_006",
+      "topic": "employment",
+      "question": "Mikor járhat végkielégítés, és mitől függ az összege?",
+      "difficulty": "simple",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.2776444999908563,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "W6_1",
+          "statement": "A Munka Törvénykönyve meghatározza, milyen megszűnési módoknál járhat végkielégítés és annak szolgálati időhöz kötött mértékét.",
+          "answer_pattern": "végkielégítés|legalább három év|egyhavi",
+          "source_ids": [
+            "njt-labour-code-termination"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "severance",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217440.3642098,
+            "end_s": 217440.3642961,
+            "duration_s": 8.629998774267733e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217440.3984031,
+            "end_s": 217440.4003714,
+            "duration_s": 0.001968299999134615
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217440.40041190002,
+            "end_s": 217440.4288059,
+            "duration_s": 0.028393999993568286
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217440.42887879998,
+            "end_s": 217440.4351442,
+            "duration_s": 0.006265400006668642
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217440.43517090002,
+            "end_s": 217440.4352495,
+            "duration_s": 7.85999873187393e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217440.47192950002,
+            "end_s": 217440.4751308,
+            "duration_s": 0.003201299987267703
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217440.47519730002,
+            "end_s": 217440.5006997,
+            "duration_s": 0.025502399977995083
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217440.50075749998,
+            "end_s": 217440.5061903,
+            "duration_s": 0.005432800011476502
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217440.5062211,
+            "end_s": 217440.5063229,
+            "duration_s": 0.0001018000184558332
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217440.5427036,
+            "end_s": 217440.5461973,
+            "duration_s": 0.0034937000018544495
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217440.5462501,
+            "end_s": 217440.5713583,
+            "duration_s": 0.025108200003160164
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217440.57143130002,
+            "end_s": 217440.5763296,
+            "duration_s": 0.004898299986962229
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217440.576347,
+            "end_s": 217440.5763948,
+            "duration_s": 4.780001472681761e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217440.60447440002,
+            "end_s": 217440.6082599,
+            "duration_s": 0.0037854999827686697
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217440.608332,
+            "end_s": 217440.6355186,
+            "duration_s": 0.027186599996639416
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217440.6355555,
+            "end_s": 217440.6382257,
+            "duration_s": 0.002670200017746538
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217440.6382385,
+            "end_s": 217440.6382806,
+            "duration_s": 4.2100000428035855e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217440.3646494,
+            "end_s": 217440.6383648,
+            "duration_s": 0.2737153999914881
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217440.6388151,
+            "end_s": 217440.6402546,
+            "duration_s": 0.001439499988919124
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.5,
+        "retrieval_precision_at_5": 0.2,
+        "retrieval_mrr": 1.0,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.5,
+          "precision_at_k": 0.2,
+          "mrr": 1.0,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "WORK_007",
+      "topic": "employment",
+      "question": "Mi történik a ki nem vett szabadságommal, amikor megszűnik a munkaviszonyom?",
+      "difficulty": "simple",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.4869565000117291,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "W7_1",
+          "statement": "A munkaviszony megszűnésekor a ki nem adott arányos szabadságot meg kell váltani a törvényi feltételek szerint.",
+          "answer_pattern": "szabadság.*megvált|megváltani",
+          "source_ids": [
+            "njt-labour-code-termination"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "unused_leave",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217440.6422594,
+            "end_s": 217440.6423867,
+            "duration_s": 0.00012730000889860094
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217440.6809721,
+            "end_s": 217440.6828426,
+            "duration_s": 0.0018705000111367553
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217440.6828994,
+            "end_s": 217440.7093205,
+            "duration_s": 0.026421099988510832
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217440.7093565,
+            "end_s": 217440.7133702,
+            "duration_s": 0.00401370000327006
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217440.7133954,
+            "end_s": 217440.7134829,
+            "duration_s": 8.749999688006938e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217440.7451064,
+            "end_s": 217440.7479269,
+            "duration_s": 0.002820499998051673
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217440.74797809997,
+            "end_s": 217440.769656,
+            "duration_s": 0.021677900018403307
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217440.76969119997,
+            "end_s": 217440.7724572,
+            "duration_s": 0.0027660000196192414
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217440.7724696,
+            "end_s": 217440.7725122,
+            "duration_s": 4.260000423528254e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217440.80044519997,
+            "end_s": 217440.8041295,
+            "duration_s": 0.0036843000270891935
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217440.80418490001,
+            "end_s": 217440.8331865,
+            "duration_s": 0.029001599992625415
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217440.83325660002,
+            "end_s": 217440.8370019,
+            "duration_s": 0.0037452999968081713
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217440.83701619998,
+            "end_s": 217440.8370633,
+            "duration_s": 4.710000939667225e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217440.86591750002,
+            "end_s": 217440.8690989,
+            "duration_s": 0.003181399981258437
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217440.8691421,
+            "end_s": 217440.8933095,
+            "duration_s": 0.024167399998987094
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217440.89335869998,
+            "end_s": 217440.8968112,
+            "duration_s": 0.0034525000082794577
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217440.89683800002,
+            "end_s": 217440.8969019,
+            "duration_s": 6.389999180100858e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217440.93223500001,
+            "end_s": 217440.9346581,
+            "duration_s": 0.0024230999988503754
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217440.93470160002,
+            "end_s": 217440.9595126,
+            "duration_s": 0.02481099998112768
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217440.95956569997,
+            "end_s": 217440.9639109,
+            "duration_s": 0.004345200024545193
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217440.96393610002,
+            "end_s": 217440.9639919,
+            "duration_s": 5.57999883312732e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217440.99954229998,
+            "end_s": 217441.0023988,
+            "duration_s": 0.0028565000102389604
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217441.00245519998,
+            "end_s": 217441.0302089,
+            "duration_s": 0.027753700007451698
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217441.03024659998,
+            "end_s": 217441.0340628,
+            "duration_s": 0.003816200012806803
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217441.0340829,
+            "end_s": 217441.0341488,
+            "duration_s": 6.590000702999532e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217441.07809030003,
+            "end_s": 217441.0833097,
+            "duration_s": 0.005219399987254292
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217441.0833739,
+            "end_s": 217441.1168372,
+            "duration_s": 0.03346330000204034
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217441.11700990002,
+            "end_s": 217441.1224628,
+            "duration_s": 0.005452899989904836
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217441.1224874,
+            "end_s": 217441.1225681,
+            "duration_s": 8.070000330917537e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217440.6427744,
+            "end_s": 217441.1227388,
+            "duration_s": 0.4799644000013359
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217441.1235522,
+            "end_s": 217441.1271678,
+            "duration_s": 0.0036155999987386167
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.0,
+        "retrieval_precision_at_5": 0.0,
+        "retrieval_mrr": 0.09090909090909091,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.0,
+          "precision_at_k": 0.0,
+          "mrr": 0.09090909090909091,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "WORK_008",
+      "topic": "employment",
+      "question": "Mi a különbség a munkavállalói felmondás, a munkáltatói felmondás és a közös megegyezés között?",
+      "difficulty": "simple",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.4842820000194479,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "W8_1",
+          "statement": "A Munka Törvénykönyve külön szabályozza a munkaviszony közös megegyezéssel és felmondással történő megszüntetését.",
+          "answer_pattern": "közös megegyezés|felmondás",
+          "source_ids": [
+            "njt-labour-code-termination"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "termination_types",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217441.1311801,
+            "end_s": 217441.1313469,
+            "duration_s": 0.00016679998952895403
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217441.1669763,
+            "end_s": 217441.1695478,
+            "duration_s": 0.0025714999937918037
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217441.1695933,
+            "end_s": 217441.1984697,
+            "duration_s": 0.02887639999971725
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217441.1985478,
+            "end_s": 217441.2037682,
+            "duration_s": 0.005220399994868785
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217441.2037925,
+            "end_s": 217441.2038658,
+            "duration_s": 7.330000516958535e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217441.2464115,
+            "end_s": 217441.2482657,
+            "duration_s": 0.0018542000034358352
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217441.248308,
+            "end_s": 217441.2483101,
+            "duration_s": 2.0999868866056204e-06
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217441.2483533,
+            "end_s": 217441.2514771,
+            "duration_s": 0.0031238000083249062
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217441.25150430002,
+            "end_s": 217441.251586,
+            "duration_s": 8.169998181983829e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217441.2866003,
+            "end_s": 217441.2904227,
+            "duration_s": 0.003822400001809001
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217441.29049659998,
+            "end_s": 217441.3204522,
+            "duration_s": 0.029955600009998307
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217441.3204914,
+            "end_s": 217441.3232805,
+            "duration_s": 0.002789099991787225
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217441.3232972,
+            "end_s": 217441.3233442,
+            "duration_s": 4.700000863522291e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217441.3581903,
+            "end_s": 217441.3626211,
+            "duration_s": 0.004430800006957725
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217441.3629198,
+            "end_s": 217441.3911694,
+            "duration_s": 0.028249599999981
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217441.3912386,
+            "end_s": 217441.3981378,
+            "duration_s": 0.006899200001498684
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217441.3981638,
+            "end_s": 217441.3982384,
+            "duration_s": 7.459998596459627e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217441.4445494,
+            "end_s": 217441.4492662,
+            "duration_s": 0.004716800001915544
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217441.4493297,
+            "end_s": 217441.4785738,
+            "duration_s": 0.02924410000559874
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217441.47864840002,
+            "end_s": 217441.4846932,
+            "duration_s": 0.006044799985829741
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217441.48470970002,
+            "end_s": 217441.4847547,
+            "duration_s": 4.499999340623617e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217441.52098289997,
+            "end_s": 217441.5229398,
+            "duration_s": 0.0019569000287447125
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217441.5229836,
+            "end_s": 217441.5504007,
+            "duration_s": 0.02741710000555031
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217441.55048339997,
+            "end_s": 217441.5541434,
+            "duration_s": 0.0036600000166799873
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217441.5541579,
+            "end_s": 217441.554203,
+            "duration_s": 4.509999416768551e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217441.5804632,
+            "end_s": 217441.5843615,
+            "duration_s": 0.0038982999976724386
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217441.5844058,
+            "end_s": 217441.6067945,
+            "duration_s": 0.0223886999883689
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217441.60683230002,
+            "end_s": 217441.6096244,
+            "duration_s": 0.0027920999855268747
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217441.6096394,
+            "end_s": 217441.6096859,
+            "duration_s": 4.650000482797623e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217441.1319226,
+            "end_s": 217441.6098911,
+            "duration_s": 0.47796849999576807
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217441.6105323,
+            "end_s": 217441.6127345,
+            "duration_s": 0.0022022000048309565
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.5,
+        "retrieval_precision_at_5": 0.2,
+        "retrieval_mrr": 0.3333333333333333,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.5,
+          "precision_at_k": 0.2,
+          "mrr": 0.3333333333333333,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "WORK_009",
+      "topic": "employment",
+      "question": "Mi történik az egészségügyi szolgáltatásra való jogosultságommal, ha megszűnik a munkaviszonyom, és nem találok azonnal új állást?",
+      "difficulty": "medium",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.5228041000082158,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "W9_1",
+          "statement": "Legalább 45 napig fennálló biztosítás után az egészségügyi szolgáltatásra való jogosultság főszabály szerint további 45 napig fennmaradhat.",
+          "answer_pattern": "45\\s*nap",
+          "source_ids": [
+            "neak-post-employment-healthcare",
+            "neak-health-service-contribution",
+            "nfsz-unemployment-allowance"
+          ]
+        },
+        {
+          "fact_id": "W9_2",
+          "statement": "Az álláskeresési járadék folyósítási idejére TB-ellátási jogosultság kapcsolódik.",
+          "answer_pattern": "TB.*jogosult|ellátásra jogosult",
+          "source_ids": [
+            "neak-post-employment-healthcare",
+            "neak-health-service-contribution",
+            "nfsz-unemployment-allowance"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "health_entitlement+contribution",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217441.6156546,
+            "end_s": 217441.615828,
+            "duration_s": 0.00017340001068077981
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217441.64887469998,
+            "end_s": 217441.65133,
+            "duration_s": 0.0024553000112064183
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217441.6513881,
+            "end_s": 217441.6830673,
+            "duration_s": 0.03167920000851154
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217441.6831047,
+            "end_s": 217441.6874807,
+            "duration_s": 0.004375999997137114
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217441.68750289996,
+            "end_s": 217441.6875748,
+            "duration_s": 7.190002361312509e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217441.72030929997,
+            "end_s": 217441.7239123,
+            "duration_s": 0.003603000019211322
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217441.723975,
+            "end_s": 217441.7476407,
+            "duration_s": 0.02366569999139756
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217441.7477181,
+            "end_s": 217441.7510556,
+            "duration_s": 0.003337500005727634
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217441.75107739997,
+            "end_s": 217441.751141,
+            "duration_s": 6.360001862049103e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217441.79240349997,
+            "end_s": 217441.7984257,
+            "duration_s": 0.006022200017469004
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217441.79849130003,
+            "end_s": 217441.8274728,
+            "duration_s": 0.02898149998509325
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217441.8275117,
+            "end_s": 217441.8313115,
+            "duration_s": 0.0037998000043444335
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217441.8313257,
+            "end_s": 217441.8313712,
+            "duration_s": 4.549999721348286e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217441.8581861,
+            "end_s": 217441.8609391,
+            "duration_s": 0.002753000007942319
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217441.86099040002,
+            "end_s": 217441.8958541,
+            "duration_s": 0.03486369998427108
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217441.8958945,
+            "end_s": 217441.8997207,
+            "duration_s": 0.0038262000016402453
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217441.8997371,
+            "end_s": 217441.899799,
+            "duration_s": 6.19000056758523e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217441.93099869997,
+            "end_s": 217441.9335542,
+            "duration_s": 0.002555500017479062
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217441.9335975,
+            "end_s": 217441.964852,
+            "duration_s": 0.03125450000516139
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217441.96496560003,
+            "end_s": 217441.969309,
+            "duration_s": 0.004343399981735274
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217441.9693316,
+            "end_s": 217441.9694026,
+            "duration_s": 7.09999876562506e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217442.01076920002,
+            "end_s": 217442.0159304,
+            "duration_s": 0.0051611999806482345
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217442.01599980003,
+            "end_s": 217442.0478585,
+            "duration_s": 0.03185869997832924
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217442.0480133,
+            "end_s": 217442.0532495,
+            "duration_s": 0.0052361999987624586
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217442.05329009998,
+            "end_s": 217442.0534176,
+            "duration_s": 0.0001275000104214996
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217442.0943263,
+            "end_s": 217442.0979883,
+            "duration_s": 0.0036620000028051436
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217442.09806800002,
+            "end_s": 217442.1260487,
+            "duration_s": 0.027980699989711866
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217442.12611530002,
+            "end_s": 217442.131893,
+            "duration_s": 0.005777699989266694
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217442.131913,
+            "end_s": 217442.1319645,
+            "duration_s": 5.150001379661262e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217441.6163053,
+            "end_s": 217442.1320805,
+            "duration_s": 0.5157752000086475
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217442.1326217,
+            "end_s": 217442.1359632,
+            "duration_s": 0.003341500007081777
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.25,
+        "retrieval_precision_at_5": 0.2,
+        "retrieval_mrr": 1.0,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.25,
+          "precision_at_k": 0.2,
+          "mrr": 1.0,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    },
+    {
+      "question_id": "WORK_010",
+      "topic": "employment",
+      "question": "Készíts teljes ügyintézési tervet a munkaviszonyom megszűnése után, a szükséges dokumentumokkal, ellátásokkal, határidőkkel és pénzügyi teendőkkel együtt!",
+      "difficulty": "complex",
+      "scope": "subflow",
+      "target": "rag/query_to_rerank",
+      "success": true,
+      "response_status": "n/a",
+      "latency_s": 0.6758067999908235,
+      "error": null,
+      "expected_facts": [
+        {
+          "fact_id": "W10_1",
+          "statement": "A teljes tervben a kilépő dokumentumok, nyilvántartásba vétel, járadék, támogatások és egészségügyi jogosultság is releváns lehet.",
+          "answer_pattern": "dokumentum|nyilvántart|járadék|támogatás|egészségügyi",
+          "source_ids": [
+            "dap-employment-overview",
+            "dap-employment-benefit",
+            "nfsz-unemployment-allowance",
+            "nfsz-support-overview",
+            "neak-post-employment-healthcare",
+            "njt-labour-code-termination"
+          ]
+        },
+        {
+          "fact_id": "W10_2",
+          "statement": "A járadék legfeljebb 90 napig folyósítható a dokumentált feltételek szerint.",
+          "answer_pattern": "90\\s*nap",
+          "source_ids": [
+            "dap-employment-overview",
+            "dap-employment-benefit",
+            "nfsz-unemployment-allowance",
+            "nfsz-support-overview",
+            "neak-post-employment-healthcare",
+            "njt-labour-code-termination"
+          ]
+        }
+      ],
+      "expected_subtasks": [
+        {
+          "domain": "employment",
+          "label": "registration",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "employment",
+          "label": "documents",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "employment",
+          "label": "benefits",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "employment",
+          "label": "deadline",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "employment",
+          "label": "health",
+          "keywords": [],
+          "requires_dependencies": false
+        },
+        {
+          "domain": "employment",
+          "label": "financial",
+          "keywords": [],
+          "requires_dependencies": false
+        }
+      ],
+      "retrieved_sources": [],
+      "final_context": [],
+      "generated_answer": "",
+      "missing_facts": [],
+      "citation_validation": null,
+      "node_execution_trace": {
+        "spans": [
+          {
+            "name": "rag/process_query",
+            "start_s": 217442.1391748,
+            "end_s": 217442.1393907,
+            "duration_s": 0.00021590001415461302
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217442.1768773,
+            "end_s": 217442.1800472,
+            "duration_s": 0.003169900010107085
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217442.1801124,
+            "end_s": 217442.2100319,
+            "duration_s": 0.02991949999704957
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217442.2100716,
+            "end_s": 217442.2139191,
+            "duration_s": 0.0038474999892059714
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217442.21398640002,
+            "end_s": 217442.2141227,
+            "duration_s": 0.0001362999901175499
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217442.24499900002,
+            "end_s": 217442.2492473,
+            "duration_s": 0.004248299985192716
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217442.24930719996,
+            "end_s": 217442.2493101,
+            "duration_s": 2.900022082030773e-06
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217442.24938599998,
+            "end_s": 217442.254131,
+            "duration_s": 0.004745000012917444
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217442.2541561,
+            "end_s": 217442.2542323,
+            "duration_s": 7.619999814778566e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217442.29617440002,
+            "end_s": 217442.3013023,
+            "duration_s": 0.005127899989020079
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217442.3013652,
+            "end_s": 217442.3385388,
+            "duration_s": 0.03717359999427572
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217442.33860750002,
+            "end_s": 217442.3436092,
+            "duration_s": 0.005001699988497421
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217442.3436306,
+            "end_s": 217442.343683,
+            "duration_s": 5.2400020649656653e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217442.3810767,
+            "end_s": 217442.3874018,
+            "duration_s": 0.006325099995592609
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217442.38748660003,
+            "end_s": 217442.4235464,
+            "duration_s": 0.036059799982467666
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217442.42367530003,
+            "end_s": 217442.4283707,
+            "duration_s": 0.0046953999844845384
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217442.4284011,
+            "end_s": 217442.4284922,
+            "duration_s": 9.109999518841505e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217442.46983190003,
+            "end_s": 217442.4738349,
+            "duration_s": 0.004002999980002642
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217442.47391079998,
+            "end_s": 217442.5047692,
+            "duration_s": 0.030858400015858933
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217442.50480559998,
+            "end_s": 217442.5077157,
+            "duration_s": 0.0029101000109221786
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217442.5077358,
+            "end_s": 217442.5077891,
+            "duration_s": 5.329999839887023e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217442.54176020002,
+            "end_s": 217442.546994,
+            "duration_s": 0.0052337999804876745
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217442.5470656,
+            "end_s": 217442.5785852,
+            "duration_s": 0.03151960001559928
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217442.5787085,
+            "end_s": 217442.5843537,
+            "duration_s": 0.005645199998980388
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217442.5844058,
+            "end_s": 217442.5845391,
+            "duration_s": 0.00013329999637790024
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217442.61850180003,
+            "end_s": 217442.6223873,
+            "duration_s": 0.003885499987518415
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217442.6224445,
+            "end_s": 217442.652383,
+            "duration_s": 0.029938499996205792
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217442.65247950002,
+            "end_s": 217442.6552466,
+            "duration_s": 0.0027670999988913536
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217442.6552594,
+            "end_s": 217442.6553014,
+            "duration_s": 4.199999966658652e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217442.68839,
+            "end_s": 217442.6916365,
+            "duration_s": 0.003246500011300668
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217442.6916875,
+            "end_s": 217442.7259809,
+            "duration_s": 0.03429340000730008
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217442.72605109998,
+            "end_s": 217442.7321257,
+            "duration_s": 0.00607460000901483
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217442.7321515,
+            "end_s": 217442.7322346,
+            "duration_s": 8.3099992480129e-05
+          },
+          {
+            "name": "bm25_retrieval",
+            "start_s": 217442.76479129997,
+            "end_s": 217442.7670832,
+            "duration_s": 0.0022919000184629112
+          },
+          {
+            "name": "embedding_query",
+            "start_s": 217442.7671256,
+            "end_s": 217442.7998245,
+            "duration_s": 0.0326989000022877
+          },
+          {
+            "name": "dense_retrieval",
+            "start_s": 217442.79986099998,
+            "end_s": 217442.80476,
+            "duration_s": 0.004899000021396205
+          },
+          {
+            "name": "retrieval_fusion",
+            "start_s": 217442.8047842,
+            "end_s": 217442.8048645,
+            "duration_s": 8.030000026337802e-05
+          },
+          {
+            "name": "rag/hybrid_retrieval",
+            "start_s": 217442.1400097,
+            "end_s": 217442.8050574,
+            "duration_s": 0.6650476999930106
+          },
+          {
+            "name": "rag/rerank_results",
+            "start_s": 217442.8058036,
+            "end_s": 217442.8118673,
+            "duration_s": 0.006063700013328344
+          }
+        ],
+        "llm_usage": [],
+        "llm_attempts": [],
+        "llm_successes": [],
+        "llm_failures": [],
+        "selection": {},
+        "native_tool_trace": {}
+      },
+      "metrics": {
+        "retrieval_recall_at_5": 0.6666666666666666,
+        "retrieval_precision_at_5": 0.4,
+        "retrieval_mrr": 1.0,
+        "context_recall": null,
+        "context_precision": null,
+        "context_coverage": null,
+        "citation_accuracy": null,
+        "citation_coverage": null,
+        "abstention_accuracy": null,
+        "tool_selection_accuracy": null,
+        "subtask_coverage": null,
+        "tool_call_efficiency": null,
+        "workflow_success_rate": 1.0
+      },
+      "details": {
+        "reference_status": "automatic_proxy_pinned",
+        "reference_type": "automatic_silver_proxy",
+        "retrieval": {
+          "recall_at_k": 0.6666666666666666,
+          "precision_at_k": 0.4,
+          "mrr": 1.0,
+          "reason": null
+        },
+        "context": {
+          "context_recall": null,
+          "context_precision": null,
+          "context_coverage": null,
+          "reason": "node_did_not_prepare_evidence"
+        },
+        "final_context_chunk_ids": []
+      }
+    }
+  ],
+  "summary": {
+    "metrics": {
+      "domain_accuracy": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "intent_accuracy": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "task_decomposition_accuracy": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "retrieval_recall_at_5": {
+        "value": 0.4362745098039216,
+        "evaluated": 17,
+        "total": 20
+      },
+      "retrieval_precision_at_5": {
+        "value": 0.21176470588235294,
+        "evaluated": 17,
+        "total": 20
+      },
+      "retrieval_mrr": {
+        "value": 0.700445632798574,
+        "evaluated": 17,
+        "total": 20
+      },
+      "source_recall_at_5": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "source_precision_at_5": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "context_recall": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "context_precision": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "context_coverage": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "citation_integrity_proxy": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "semantic_review_coverage": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "citation_accuracy": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "contradicted_claim_rate": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "citation_coverage": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "abstention_accuracy": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "tool_selection_accuracy": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "subtask_coverage": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "tool_call_efficiency": {
+        "value": null,
+        "evaluated": 0,
+        "total": 20
+      },
+      "workflow_success_rate": {
+        "value": 1.0,
+        "evaluated": 20,
+        "total": 20
+      }
+    },
+    "evaluated_cases": 20,
+    "successful_runs": 20,
+    "failed_runs": 0
+  }
+}

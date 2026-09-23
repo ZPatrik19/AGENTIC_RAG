@@ -1,0 +1,222 @@
+﻿citation_validation,claim_ids,claims_model_generated,claims_quote_in_model_prompt,claims_source_only,claims_source_supplement,claims_tool_extract,difficulty,error,generated_answer,latency_s,metric_abstention_accuracy,metric_answer_facet_coverage_proxy,metric_answer_text_integrity,metric_citation_accuracy,metric_citation_coverage,metric_citation_integrity_proxy,metric_context_coverage,metric_context_precision,metric_context_recall,metric_contradicted_claim_rate,metric_domain_accuracy,metric_intent_accuracy,metric_retrieval_mrr,metric_retrieval_precision_at_5,metric_retrieval_recall_at_5,metric_semantic_review_coverage,metric_source_precision_at_5,metric_source_recall_at_5,metric_subtask_coverage,metric_task_decomposition_accuracy,metric_tool_call_efficiency,metric_tool_selection_accuracy,metric_workflow_success_rate,question,question_id,response_status,scope,success,target,tool_checklist_visible_items,topic
+1.0,C_e8338ddbb9b8912e255c;C_cead553df0dc337236b8;C_40c05e83b2293e9fd754;C_84524d01eb99569c69e5;C_d3c74be6b649611e742c;C_b833562befe46090dcf6;C_8bbd6dd77f33415301fe;C_20727b324afcfdaa16a5;C_ad1655bccb769d4e3992;C_d69f0f8f9051a3d0734b;C_d0424a35bfba8850f42e;C_3aca5aeae7c71e3af0e2;C_5d3d99313e346a4f111f;C_6e60e88fa8298fdfd21f,0,0,11,0,3,medium,,"**Részleges útmutató: a helyi modellből nem érkezett érvényes, befejezett válasz; szó szerinti forrásrészletek következnek.**
+
+**Autóvásárlással kapcsolatos teendők**
+
+
+**Teendők**
+
+1. [C_d69f0f8f9051a3d0734b] (4) A járművet előzetes eredetiségvizsgálat céljából a vizsgálóállomáson kell bemutatni. [Forrás E_622f072ebb795ad0](<https://njt.jog.gov.hu/jogszabaly/2009-301-20-22>)
+2. [C_d0424a35bfba8850f42e] Bár nincs törvényileg szabályozva, hogy az eladónak vagy a vevőnek kell eredetiségvizsgálatot végeztetni, érdemes előre kérned az eladótól . [Forrás E_24c2df9c504593aa](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+**Határidők**
+
+1. [C_e8338ddbb9b8912e255c] Ha a vásárlás előtt nem történt eredetiségvizsgálat vagy 60 napnál régebben, az adásvételi szerződés megkötésétől számított 15 napon belül el kell végeztetni egy hivatalos eredetiségvizsgáló állomáson. [Forrás E_24c2df9c504593aa](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+2. [C_cead553df0dc337236b8] Az adásvételi szerződés megkötésétől számított 15 napon belül át kell íratnod a gépjárművet. [Forrás E_05f07c2666a83f1b](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+3. [C_40c05e83b2293e9fd754] (2) A biztosító az (1) bekezdés szerinti ajánlatot annak átadásától számított 15 napon belül az 5. [Forrás E_6c16341ddddc2858](<https://njt.jog.gov.hu/jogszabaly/2009-62-00-00>)
+
+**Biztosítás**
+
+1. [C_20727b324afcfdaa16a5] Tulajdonosváltáskor a korábbi kötelező gépjármű-felelősségbiztosítás megszűnik, ezért azonnal újat kell kötnöd. [Forrás E_af6cb66ad751b176](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+2. [C_ad1655bccb769d4e3992] (3) 419 A közlekedési igazgatási hatóság az átírással egyidejűleg nem állít ki forgalmi engedélyt, ha a kérelmező nem tudja igazolni a kötelező gépjármű-felelősségbiztosítás meglétét. [Forrás E_3a174c93237dec2d](<https://njt.jog.gov.hu/jogszabaly/2011-326-20-22>)
+
+**Dokumentumok és adatok**
+
+1. [C_b833562befe46090dcf6] Az átírás során új forgalmi engedélyt és törzskönyvet kell igényelned. [Forrás E_7750ef1089f3ee47](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+2. [C_8bbd6dd77f33415301fe] Az átírással egy időben az illetéket is befizetheted, valamint forgalmi engedélyt és törzskönyvet is igényelhetsz. [Forrás E_05f07c2666a83f1b](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+3. [C_3aca5aeae7c71e3af0e2] A szerződést 4 példányban kell elkészíteni és 2 tanú jelenlétében aláírni. (Szerződéssablont nagyobb papír- vagy nyomtatványboltokban is vásárolhatsz.) *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_f91f69828f38a3f7](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+4. [C_5d3d99313e346a4f111f] Adásvételi szerződés *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_7c7353322480803d](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+5. [C_6e60e88fa8298fdfd21f] Forgalmi engedély díja: 6 000 Ft *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_7750ef1089f3ee47](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+**Hol és hogyan intézhető?**
+
+1. [C_84524d01eb99569c69e5] Az átíráshoz keresd fel bármelyik kormányablakot, vagy foglalj időpontot. [Forrás E_05f07c2666a83f1b](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+2. [C_d3c74be6b649611e742c] (3b) 12 Az előzetes eredetiségvizsgálat elvégzésére irányuló kérelem kormányablaknál nem nyújtható be, az kizárólag a vizsgálóállomáson terjeszthető elő. [Forrás E_622f072ebb795ad0](<https://njt.jog.gov.hu/jogszabaly/2009-301-20-22>)
+
+A helyi modell nem készített érvényes, befejezett választ. A fenti forrásidézetek nem teljes körű vagy személyre szabott jogi útmutatók.",282.5391253999842,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.9349366583346496,1.0,,1.0,1.0,1.0,0.6,0.75,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,Vettem egy használt autót Magyarországon. Milyen ügyintézési teendőim vannak?,AUTO_001,partial,full_workflow,True,agentic/full,6,vehicle
+1.0,C_cead553df0dc337236b8;C_8f13f2e1a9ff8ed1dc69;C_743cc4fbe8f4f8e9d91e;C_5d3d99313e346a4f111f;C_5cc59caa88be6dfce618,2,2,0,0,3,medium,,"**Autóvásárlással kapcsolatos teendők**
+
+
+**Teendők**
+
+1. [C_cead553df0dc337236b8] Az adásvételi szerződés megkötésétől számított 15 napon belül át kell íratnod a gépjárművet. *(Qwen megfogalmazása)* [Forrás E_05f07c2666a83f1b](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+2. [C_8f13f2e1a9ff8ed1dc69] 2. § 2 (1) 3 A jármű tulajdonjogában bekövetkezett változást az átruházó a változástól számított tizenöt napon belül bejelenti a közlekedési igazgatási hatóságnak. *(Qwen megfogalmazása)* [Forrás E_da7315e7a42d9c4d](<https://njt.jog.gov.hu/jogszabaly/2009-304-20-22>)
+
+**Dokumentumok és adatok**
+
+1. [C_743cc4fbe8f4f8e9d91e] (3) 419 A közlekedési igazgatási hatóság az átírással egyidejűleg nem állít ki forgalmi engedélyt, ha a kérelmező nem tudja igazolni a kötelező gépjármű-felelősségbiztosítás meglétét. Ezt a tényt a bemutatott forgalmi engedély „Hivatalos feljegyzések” rovatában jelölni kell. *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_3a174c93237dec2d](<https://njt.jog.gov.hu/jogszabaly/2011-326-20-22>)
+2. [C_5d3d99313e346a4f111f] Adásvételi szerződés *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_7c7353322480803d](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+3. [C_5cc59caa88be6dfce618] Forgalmi engedély igénylése *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_016dfd0f683172b4](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+Nem hivatalos, forrásalapú tájékoztatás; az egyedi jogosultságot az illetékes szerv állapítja meg.",135.15416740000364,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.6131471927654584,0.5,,1.0,1.0,1.0,0.2,0.5,0.0,0.2,1.0,1.0,1.0,0.25,0.6666666666666666,1.0,"Mennyi időm van az autó átírására, és milyen következményei lehetnek a határidő elmulasztásának?",AUTO_002,partial,full_workflow,True,agentic/full,4,vehicle
+1.0,C_c4a62fc58c8b5fdc18ef;C_b833562befe46090dcf6;C_6e60e88fa8298fdfd21f;C_038375b077e2a805c0e6,1,1,0,0,3,simple,,"**Autóvásárlással kapcsolatos teendők**
+
+
+**Teendők**
+
+1. [C_c4a62fc58c8b5fdc18ef] Az eredetiségvizsgálat díja 17 000 - 20 000 Ft. A díj a gépjármű típusától és hengerűrtartalmától függ. *(Qwen megfogalmazása)* [Forrás E_24c2df9c504593aa](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+**Dokumentumok és adatok**
+
+1. [C_b833562befe46090dcf6] Az átírás során új forgalmi engedélyt és törzskönyvet kell igényelned. *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_7750ef1089f3ee47](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+2. [C_6e60e88fa8298fdfd21f] Forgalmi engedély díja: 6 000 Ft *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_7750ef1089f3ee47](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+3. [C_038375b077e2a805c0e6] A forgalmi engedélyt a helyszínen állítják ki, azonnal átveheted. *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_7750ef1089f3ee47](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+Nem hivatalos, forrásalapú tájékoztatás; az egyedi jogosultságot az illetékes szerv állapítja meg.
+
+Egyes félbeszakadt állításokat kihagytam; a hiányzó részleteket az eredeti forrásnál ellenőrizd.",192.09288290000404,1.0,1.0,0.0,1.0,1.0,1.0,1.0,0.6509209298071326,1.0,,1.0,1.0,0.5,0.2,0.5,0.0,0.4,1.0,1.0,1.0,1.0,1.0,1.0,Milyen dokumentumok szükségesek a gépjármű átírásához?,AUTO_003,partial,full_workflow,True,agentic/full,3,vehicle
+1.0,C_2c7e7b7b64cd8d2dd62c;C_e8338ddbb9b8912e255c,1,2,0,1,0,medium,,"**Autóvásárlással kapcsolatos teendők**
+
+
+**Teendők**
+
+1. [C_2c7e7b7b64cd8d2dd62c] Ha jogszabály eltérően nem rendelkezik, az e rendelet hatálya alá tartozó eljárásokban az ügyintézési határidő tíz nap. *(Qwen megfogalmazása)* [Forrás E_622f072ebb795ad0](<https://njt.jog.gov.hu/jogszabaly/2009-301-20-22>)
+
+**Határidők**
+
+1. [C_e8338ddbb9b8912e255c] Ha a vásárlás előtt nem történt eredetiségvizsgálat vagy 60 napnál régebben, az adásvételi szerződés megkötésétől számított 15 napon belül el kell végeztetni egy hivatalos eredetiségvizsgáló állomáson. *(utólagos forráskiegészítés)* [Forrás E_24c2df9c504593aa](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+Nem hivatalos, forrásalapú tájékoztatás; az egyedi jogosultságot az illetékes szerv állapítja meg. A válasz utólagos, külön jelölt, szó szerinti forráskivonatokkal is kiegészült.
+
+Egyes félbeszakadt állításokat kihagytam; a hiányzó részleteket az eredeti forrásnál ellenőrizd.",64.0994926999847,1.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,,1.0,1.0,0.0,0.0,0.0,0.0,0.4,1.0,1.0,1.0,0.0,0.0,1.0,"Mikor szükséges eredetiségvizsgálat, és milyen kivételek léteznek?",AUTO_004,partial,full_workflow,True,agentic/full,0,vehicle
+1.0,C_c78691a98884e4cfeea1;C_cead553df0dc337236b8;C_743cc4fbe8f4f8e9d91e;C_5d3d99313e346a4f111f;C_3aca5aeae7c71e3af0e2,2,2,0,0,3,medium,,"**Autóvásárlással kapcsolatos teendők**
+
+
+**Teendők**
+
+1. [C_c78691a98884e4cfeea1] A biztosító az ajánlat elutasításáról annak beérkezésétől számított tizenöt napon belül értesíti az ajánlattevő üzemben tartót. *(Qwen megfogalmazása)* [Forrás E_3a5b1914cc65208f](<https://njt.jog.gov.hu/jogszabaly/2009-62-00-00>)
+2. [C_cead553df0dc337236b8] Az adásvételi szerződés megkötésétől számított 15 napon belül át kell íratnod a gépjárművet. *(Qwen megfogalmazása)* [Forrás E_05f07c2666a83f1b](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+**Dokumentumok és adatok**
+
+1. [C_743cc4fbe8f4f8e9d91e] (3) 419 A közlekedési igazgatási hatóság az átírással egyidejűleg nem állít ki forgalmi engedélyt, ha a kérelmező nem tudja igazolni a kötelező gépjármű-felelősségbiztosítás meglétét. Ezt a tényt a bemutatott forgalmi engedély „Hivatalos feljegyzések” rovatában jelölni kell. *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_3a174c93237dec2d](<https://njt.jog.gov.hu/jogszabaly/2011-326-20-22>)
+2. [C_5d3d99313e346a4f111f] Adásvételi szerződés *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_7c7353322480803d](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+3. [C_3aca5aeae7c71e3af0e2] A szerződést 4 példányban kell elkészíteni és 2 tanú jelenlétében aláírni. (Szerződéssablont nagyobb papír- vagy nyomtatványboltokban is vásárolhatsz.) *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_f91f69828f38a3f7](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+Nem hivatalos, forrásalapú tájékoztatás; az egyedi jogosultságot az illetékes szerv állapítja meg.",53.86107620000257,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,,1.0,1.0,0.5,0.2,0.5,0.0,0.4,1.0,1.0,1.0,0.0,0.0,1.0,Mikor kell kötelező gépjármű-felelősségbiztosítást kötnöm?,AUTO_005,partial,full_workflow,True,agentic/full,4,vehicle
+1.0,C_5a0b967f9453d27d62ea;C_f8e35d99b19b4878f5b3;C_b833562befe46090dcf6;C_6e60e88fa8298fdfd21f;C_038375b077e2a805c0e6,0,0,2,0,3,medium,,"**Autóvásárlással kapcsolatos teendők**
+
+
+**Dokumentumok és adatok**
+
+1. [C_b833562befe46090dcf6] Az átírás során új forgalmi engedélyt és törzskönyvet kell igényelned. *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_7750ef1089f3ee47](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+2. [C_6e60e88fa8298fdfd21f] Forgalmi engedély díja: 6 000 Ft *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_7750ef1089f3ee47](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+3. [C_038375b077e2a805c0e6] A forgalmi engedélyt a helyszínen állítják ki, azonnal átveheted. *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_7750ef1089f3ee47](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+**A forrásban szereplő díj**
+
+1. [C_5a0b967f9453d27d62ea] 0–40 | 550 Ft/kW | 450 Ft/kW | 300 Ft/kW [Forrás E_cdcb4ba5c1c651f1](<https://nav.gov.hu/ugyfeliranytu/adokulcsok_jarulekmertekek/valorizalt-adomertekek/gepjarmu-visszterhes-vagyonszerzesi-illetek/gepjarmu-visszterhes-vagyonszerzesi-illetek>)
+2. [C_f8e35d99b19b4878f5b3] 41–80 | 750 Ft/kW | 550 Ft/kW | 450 Ft/kW [Forrás E_cdcb4ba5c1c651f1](<https://nav.gov.hu/ugyfeliranytu/adokulcsok_jarulekmertekek/valorizalt-adomertekek/gepjarmu-visszterhes-vagyonszerzesi-illetek/gepjarmu-visszterhes-vagyonszerzesi-illetek>)
+
+A felsorolt díjtételek nem jelentenek teljes vételi vagy ügyintézési végösszeget.
+
+Az összeg az idézett dokumentumban szerepel, nem élő díjlekérdezés eredménye. A ténylegesen fizetendő, aktuális díjat és az esetleges feltételeket ellenőrizd az eredeti hivatalos oldalon.",0.550813100009691,1.0,1.0,1.0,1.0,1.0,1.0,,,,,1.0,1.0,,,,0.0,,,1.0,1.0,0.0,0.0,1.0,Milyen költségekkel kell számolnom egy használt autó megvásárlása és átírása során?,AUTO_006,complete,full_workflow,True,agentic/full,3,vehicle
+1.0,C_5a0b967f9453d27d62ea;C_f8e35d99b19b4878f5b3,0,0,2,0,0,simple,,"**Autóvásárlással kapcsolatos teendők**
+
+
+**A forrásban szereplő díj**
+
+1. [C_5a0b967f9453d27d62ea] 0–40 | 550 Ft/kW | 450 Ft/kW | 300 Ft/kW [Forrás E_cdcb4ba5c1c651f1](<https://nav.gov.hu/ugyfeliranytu/adokulcsok_jarulekmertekek/valorizalt-adomertekek/gepjarmu-visszterhes-vagyonszerzesi-illetek/gepjarmu-visszterhes-vagyonszerzesi-illetek>)
+2. [C_f8e35d99b19b4878f5b3] 41–80 | 750 Ft/kW | 550 Ft/kW | 450 Ft/kW [Forrás E_cdcb4ba5c1c651f1](<https://nav.gov.hu/ugyfeliranytu/adokulcsok_jarulekmertekek/valorizalt-adomertekek/gepjarmu-visszterhes-vagyonszerzesi-illetek/gepjarmu-visszterhes-vagyonszerzesi-illetek>)
+
+A felsorolt díjtételek nem jelentenek teljes vételi vagy ügyintézési végösszeget.
+
+Az összeg az idézett dokumentumban szerepel, nem élő díjlekérdezés eredménye. A ténylegesen fizetendő, aktuális díjat és az esetleges feltételeket ellenőrizd az eredeti hivatalos oldalon.",0.34891599998809397,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.6131471927654584,0.5,,1.0,1.0,1.0,0.2,0.5,0.0,0.2,1.0,1.0,1.0,0.0,0.0,1.0,Hogyan határozzák meg a gépjármű vagyonszerzési illetékét?,AUTO_007,complete,full_workflow,True,agentic/full,0,vehicle
+1.0,C_139abb5d749e216d87c0;C_3aca5aeae7c71e3af0e2;C_cead553df0dc337236b8;C_8a76308cd3e31ae30890;C_8d48b1aa404c8db5169e;C_5d3d99313e346a4f111f;C_b833562befe46090dcf6;C_6e60e88fa8298fdfd21f,4,4,0,1,3,medium,,"**Autóvásárlással kapcsolatos teendők**
+
+
+**Teendők**
+
+1. [C_139abb5d749e216d87c0] Lakcímkártya vagy Digitális Állampolgár mobilalkalmazás Adásvételi szerződés Kötelező gépjármű-felelősségbiztosítás ajánlat- vagy kötvényszáma Ha illetékmentességre vagy jogosult, az ezt igazoló okiratot – például születési vagy házassági anyakönyvi kivonat – is be kell mutatnod. *(Qwen megfogalmazása)* [Forrás E_7c7353322480803d](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+2. [C_cead553df0dc337236b8] Az adásvételi szerződés megkötésétől számított 15 napon belül át kell íratnod a gépjárművet. *(Qwen megfogalmazása)* [Forrás E_05f07c2666a83f1b](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+3. [C_8a76308cd3e31ae30890] Érdemes szakértőt fogadni, és az adásvételi szerződés megkötése előtt átvizsgáltatni a gépjármű műszaki állapotát. *(Qwen megfogalmazása)* [Forrás E_27b5a9299dfdc6b2](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+**Dokumentumok és adatok**
+
+1. [C_3aca5aeae7c71e3af0e2] A szerződést 4 példányban kell elkészíteni és 2 tanú jelenlétében aláírni. (Szerződéssablont nagyobb papír- vagy nyomtatványboltokban is vásárolhatsz.) *(Qwen megfogalmazása)* [Forrás E_f91f69828f38a3f7](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+2. [C_5d3d99313e346a4f111f] Adásvételi szerződés *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_7c7353322480803d](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+3. [C_b833562befe46090dcf6] Az átírás során új forgalmi engedélyt és törzskönyvet kell igényelned. *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_7750ef1089f3ee47](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+4. [C_6e60e88fa8298fdfd21f] Forgalmi engedély díja: 6 000 Ft *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_7750ef1089f3ee47](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+**Hol és hogyan intézhető?**
+
+1. [C_8d48b1aa404c8db5169e] Az adásvételi szerződés megkötését, a gépjármű átírását, a vagyonszerzési illeték befizetését és az új forgalmi engedély, illetve törzskönyv igénylését már a Digitális Állampolgár mobilalkalmazásban is megteheted. *(utólagos forráskiegészítés)* [Forrás E_a1cd5e0615b0f9c4](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+Nem hivatalos, forrásalapú tájékoztatás; az egyedi jogosultságot az illetékes szerv állapítja meg. A válasz utólagos, külön jelölt, szó szerinti forráskivonatokkal is kiegészült.
+
+Egyes félbeszakadt állításokat kihagytam; a hiányzó részleteket az eredeti forrásnál ellenőrizd.",206.20954800001346,1.0,1.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,,1.0,1.0,1.0,0.4,1.0,0.0,1.0,1.0,1.0,1.0,0.0,0.0,1.0,"Mi a teendő, ha a megvásárolt autónak hiányzik a törzskönyve?",AUTO_008,partial,full_workflow,True,agentic/full,5,vehicle
+1.0,C_3aca5aeae7c71e3af0e2;C_c8d902c0145b70a572fd;C_0f5337cafbced873079b;C_8a76308cd3e31ae30890,4,4,0,0,0,simple,,"**Autóvásárlással kapcsolatos teendők**
+
+
+**Teendők**
+
+1. [C_8a76308cd3e31ae30890] Érdemes szakértőt fogadni, és az adásvételi szerződés megkötése előtt átvizsgáltatni a gépjármű műszaki állapotát. *(Qwen megfogalmazása)* [Forrás E_27b5a9299dfdc6b2](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+**Határidők**
+
+1. [C_0f5337cafbced873079b] Az adásvételi szerződés megkötésétől számított 15 napon belül át kell íratnod a gépjárművet. Az átíráshoz keresd fel bármelyik kormányablakot, vagy foglalj időpontot. *(Qwen megfogalmazása)* [Forrás E_05f07c2666a83f1b](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+**Biztosítás**
+
+1. [C_c8d902c0145b70a572fd] Kötelező gépjármű-felelősségbiztosítás ajánlat- vagy kötvényszáma Ha illetékmentességre vagy jogosult, az ezt igazoló okiratot – például születési vagy házassági anyakönyvi kivonat – is be kell mutatnod. *(Qwen megfogalmazása)* [Forrás E_7c7353322480803d](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+**Dokumentumok és adatok**
+
+1. [C_3aca5aeae7c71e3af0e2] A szerződést 4 példányban kell elkészíteni és 2 tanú jelenlétében aláírni. (Szerződéssablont nagyobb papír- vagy nyomtatványboltokban is vásárolhatsz.) *(Qwen megfogalmazása)* [Forrás E_f91f69828f38a3f7](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+Nem hivatalos, forrásalapú tájékoztatás; az egyedi jogosultságot az illetékes szerv állapítja meg.
+
+Nem igazolt témakörök: ügyintézés helye. A lefedettség állítás–forrásidézet alapú szöveges becslés, nem teljes körű ügyintézési vagy jogi ellenőrzés.
+
+Egyes félbeszakadt állításokat kihagytam; a hiányzó részleteket az eredeti forrásnál ellenőrizd.",339.148677899997,1.0,0.8,0.0,1.0,1.0,1.0,,,,,1.0,1.0,,,,0.0,,,1.0,1.0,1.0,1.0,1.0,Hogyan tudom ellenőrizni egy használt autó előéletét és kilométeróra-adatait?,AUTO_009,partial,full_workflow,True,agentic/full,0,vehicle
+1.0,C_c4a62fc58c8b5fdc18ef;C_9353ab5018e1e97f9837;C_a57a97eeac96744fa609;C_8d48b1aa404c8db5169e;C_3aca5aeae7c71e3af0e2;C_743cc4fbe8f4f8e9d91e;C_895461f86fb5a7b31730;C_5cc59caa88be6dfce618,5,5,0,0,3,complex,,"**Autóvásárlással kapcsolatos teendők**
+
+
+**Teendők**
+
+1. [C_c4a62fc58c8b5fdc18ef] Az eredetiségvizsgálat díja 17 000 - 20 000 Ft. A díj a gépjármű típusától és hengerűrtartalmától függ. *(Qwen megfogalmazása)* [Forrás E_24c2df9c504593aa](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+2. [C_9353ab5018e1e97f9837] (3b) 12 Az előzetes eredetiségvizsgálat elvégzésére irányuló kérelem kormányablaknál nem nyújtható be, az kizárólag a vizsgálóállomáson terjeszthető elő. Ha jogszabály eltérően nem rendelkezik, az e rendelet hatálya alá tartozó eljárásokban az ügyintézési határidő tíz nap. *(Qwen megfogalmazása)* [Forrás E_622f072ebb795ad0](<https://njt.jog.gov.hu/jogszabaly/2009-301-20-22>)
+3. [C_a57a97eeac96744fa609] Az adásvételi szerződés megkötésétől számított 15 napon belül át kell íratnod a gépjárművet. Az átírással egy időben az illetéket is befizetheted, valamint forgalmi engedélyt és törzskönyvet is igényelhetsz. *(Qwen megfogalmazása)* [Forrás E_05f07c2666a83f1b](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+4. [C_8d48b1aa404c8db5169e] Az adásvételi szerződés megkötését, a gépjármű átírását, a vagyonszerzési illeték befizetését és az új forgalmi engedély, illetve törzskönyv igénylését már a Digitális Állampolgár mobilalkalmazásban is megteheted. *(Qwen megfogalmazása)* [Forrás E_a1cd5e0615b0f9c4](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+**Dokumentumok és adatok**
+
+1. [C_3aca5aeae7c71e3af0e2] A szerződést 4 példányban kell elkészíteni és 2 tanú jelenlétében aláírni. (Szerződéssablont nagyobb papír- vagy nyomtatványboltokban is vásárolhatsz.) *(Qwen megfogalmazása)* [Forrás E_f91f69828f38a3f7](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+2. [C_743cc4fbe8f4f8e9d91e] (3) 419 A közlekedési igazgatási hatóság az átírással egyidejűleg nem állít ki forgalmi engedélyt, ha a kérelmező nem tudja igazolni a kötelező gépjármű-felelősségbiztosítás meglétét. Ezt a tényt a bemutatott forgalmi engedély „Hivatalos feljegyzések” rovatában jelölni kell. *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_3a174c93237dec2d](<https://njt.jog.gov.hu/jogszabaly/2011-326-20-22>)
+3. [C_895461f86fb5a7b31730] Az adásvételi szerződés megkötésétől számított 15 napon belül át kell íratnod a gépjárművet. Az átíráshoz keresd fel bármelyik kormányablakot, vagy foglalj időpontot. Az átírással egy időben az illetéket is befizetheted, valamint forgalmi engedélyt és törzskönyvet is igényelhetsz. *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_05f07c2666a83f1b](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+4. [C_5cc59caa88be6dfce618] Forgalmi engedély igénylése *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_016dfd0f683172b4](<https://dap.gov.hu/eletesemenyek/autot-veszek-vagy-adok-el/autot-veszek>)
+
+**Költségek**
+
+A kért költségekre nem találtam kellően alátámasztott összeget a visszakeresett forrásokban; nem adok meg találgatáson alapuló díjat.
+
+Nem hivatalos, forrásalapú tájékoztatás; az egyedi jogosultságot az illetékes szerv állapítja meg.
+
+Egyes félbeszakadt állításokat kihagytam; a hiányzó részleteket az eredeti forrásnál ellenőrizd.",354.89986370000406,1.0,1.0,0.0,1.0,1.0,1.0,,,,,1.0,1.0,,,,0.0,,,1.0,1.0,0.08333333333333333,0.5,1.0,"Készíts teljes, időrendi ügyintézési tervet egy használt autó megvásárlása után, a dokumentumokkal, határidőkkel és költségekkel együtt!",AUTO_010,partial,full_workflow,True,agentic/full,5,vehicle
+1.0,C_1e6b9c01027182dec0f8;C_798994fb8e6c2357a5eb;C_a707ec8cd7d1b8286dbf;C_99db1565a2b8e3215979;C_6ee0c8ce2e9ae4bf4fdb,0,0,3,0,2,complex,,"**Részleges útmutató: a modell válasza elkészült, de nem tartalmazott elfogadható, teljes és forráshoz köthető állításokat; szó szerinti forrásrészletek következnek.**
+
+**Munkaügyi ügyintézés: a forrásokban szereplő információk**
+
+
+**Teendők**
+
+1. [C_1e6b9c01027182dec0f8] (4) A foglalkoztatási igazolást a munkaadó felmondás esetén az utolsó munkában töltött napot, egyéb esetben a munkaviszony megszűnését követő öt munkanapon belül kiadja a munkavállaló részére. A foglalkoztatási igazolás kiadását a munkavállaló papír alapon is kérheti a munkaadótól. [Forrás E_f41dd93484ea5ea4](<https://njt.jog.gov.hu/jogszabaly/1991-4-00-00>)
+2. [C_798994fb8e6c2357a5eb] (5) 82 A munkavállaló a (3) bekezdés a) és g) pont jában meghatározott körülményre akkor hivatkozhat, ha erről a munkáltatót tájékoztatta. A felmondás közlését követő munkavállalói tájékoztatástól számított tizenöt napon belül a munkáltató a felmondást írásban visszavonhatja. [Forrás E_3d2181276e39c7b4](<https://njt.jog.gov.hu/jogszabaly/2012-1-00-00>)
+
+**Hol és hogyan intézhető?**
+
+1. [C_a707ec8cd7d1b8286dbf] A nyilvántartásba vételi és álláskeresési járadék iránti szándék elektronikus úton az Elektronikus ügyintézés (kereső tevékenység bejelentése) alkalmazás használatával is jelezhető a foglalkoztatási osztály felé. Használatához az ügyfélnek elektronikus levélcímmel kell rendelkezni. Az alkalmazás ide kattintva érhető el. [Forrás E_d50c135e3eb3073c](<https://nfsz.munka.hu/cikk/78/>)
+
+**Dokumentumok és adatok**
+
+1. [C_99db1565a2b8e3215979] igazolólap az álláskeresési járadék és álláskeresési segély megállapításához, amelyet a munkáltató állít ki ( 1991. évi IV. törvény 36/A. § szerint ), 2024. január 1-jét követő munkaviszony megszűnés és megszüntetés esetén a munkáltatóknak foglalkoztatói igazolást szükséges kiállítani. *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_d50c135e3eb3073c](<https://nfsz.munka.hu/cikk/78/>)
+2. [C_6ee0c8ce2e9ae4bf4fdb] 36/A. § 158 (1) 159 A munkaadó – az egyszerűsített foglalkoztatásnak minősülő munkaviszony és a nevelőszülői foglalkoztatási jogviszony esetét kivéve – a munkaviszony megszüntetésekor vagy megszűnésekor foglalkoztatási igazolást állít ki. *(eszközből származó, szó szerinti forrásrészlet)* [Forrás E_ec9fed99fc7ca16d](<https://njt.jog.gov.hu/jogszabaly/1991-4-00-00>)
+
+**Személyre szabott járadék-kalkuláció**
+
+A személyre szabott járadékösszeg a járulékalap és a jogosultsági idő függvénye; ezek nélkül csak a dokumentált számítási szabály ismertethető. [Forrás E_19fbe8da54f49e8d](<https://nfsz.munka.hu/tart/jaradek_kalkulator>) [Forrás E_f2f694e9b95f2d16](<https://nfsz.munka.hu/cikk/78/>) [Forrás E_7e11a6912ef76361](<https://njt.jog.gov.hu/jogszabaly/1991-4-00-00>) [Forrás E_356e5c8ad0517194](<https://neak.gov.hu/preview/felso_menu/lakossagnak/ellatas_magyarorszagon/jogosultsag_az_ellatasra/az_egsszsegbiztositas_szolgaltatasaira_jogosultak/biztositottak_penzbeli_es_egeszsegugyi_ellatasra>)
+[Hivatalos NFSZ járadékkalkulátor](https://nfsz.munka.hu/tart/jaradek_kalkulator)
+
+Az álláskeresési járadék tényleges összegét az egyéni járulékalap és jogosultsági adatok határozzák meg; a hivatalos NFSZ kalkulátor használható személyre szabott számításhoz.
+
+Nem igazolt témakörök: határidők, járadék összege és időtartama, támogatások és szolgáltatások, egészségügyi jogosultság feltételei. A lefedettség állítás–forrásidézet alapú szöveges becslés, nem teljes körű ügyintézési vagy jogi ellenőrzés.",263.76963130000513,1.0,0.42857142857142855,0.0,1.0,1.0,1.0,1.0,0.16716045496620227,0.3333333333333333,,1.0,1.0,0.26944444444444443,0.1,0.16666666666666666,0.0,0.2,1.0,1.0,1.0,0.14285714285714285,0.5,1.0,"Készíts teljes ügyintézési tervet a munkaviszonyom megszűnése után, a szükséges dokumentumokkal, ellátásokkal, határidőkkel és pénzügyi teendőkkel együtt!",WORK_010,partial,full_workflow,True,agentic/full,3,employment

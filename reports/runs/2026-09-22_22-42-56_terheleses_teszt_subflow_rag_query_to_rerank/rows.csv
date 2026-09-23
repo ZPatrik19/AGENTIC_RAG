@@ -1,0 +1,51 @@
+﻿answer_fallback,error,evidence_count,generation_timeout,latency_s,llm_failure_count,question,question_id,request_index,response_status,sla_exceeded,success,timeout,topic
+False,,0,False,0.20777540002018213,0,Vettem egy használt autót Magyarországon. Milyen ügyintézési teendőim vannak?,AUTO_001,1,,False,True,False,vehicle
+False,,0,False,0.21092640000279061,0,Hogyan tudom ellenőrizni egy használt autó előéletét és kilométeróra-adatait?,AUTO_009,2,,False,True,False,vehicle
+False,,0,False,0.2536111999943387,0,"Mi a teendő, ha a megvásárolt autónak hiányzik a törzskönyve?",AUTO_008,3,,False,True,False,vehicle
+False,,0,False,0.23306630001752637,0,"Mi a teendő, ha a megvásárolt autónak hiányzik a törzskönyve?",AUTO_008,4,,False,True,False,vehicle
+False,,0,False,0.03938669999479316,0,Mikor kell kötelező gépjármű-felelősségbiztosítást kötnöm?,AUTO_005,5,,False,True,False,vehicle
+False,,0,False,0.04626620002090931,0,"Mikor szükséges eredetiségvizsgálat, és milyen kivételek léteznek?",AUTO_004,6,,False,True,False,vehicle
+False,,0,False,0.2840868000057526,0,"Mi a különbség a munkavállalói felmondás, a munkáltatói felmondás és a közös megegyezés között?",WORK_008,7,,False,True,False,employment
+False,,0,False,0.04819669999415055,0,Milyen dokumentumok szükségesek a gépjármű átírásához?,AUTO_003,8,,False,True,False,vehicle
+False,,0,False,0.24924049997935072,0,"Mi történik az egészségügyi szolgáltatásra való jogosultságommal, ha megszűnik a munkaviszonyom, és nem találok azonnal új állást?",WORK_009,9,,False,True,False,employment
+False,,0,False,0.17206459998851642,0,"Mennyi ideig kaphatok álláskeresési járadékot, és hogyan számítják ki az összegét?",WORK_004,10,,False,True,False,employment
+False,,0,False,0.07265850002295338,0,"Mennyi időm van az autó átírására, és milyen következményei lehetnek a határidő elmulasztásának?",AUTO_002,11,,False,True,False,vehicle
+False,,0,False,0.3461183000181336,0,Vettem egy használt autót Magyarországon. Milyen ügyintézési teendőim vannak?,AUTO_001,12,,False,True,False,vehicle
+False,,0,False,0.03941959998337552,0,Milyen dokumentumok szükségesek a gépjármű átírásához?,AUTO_003,13,,False,True,False,vehicle
+False,,0,False,0.10162380000110716,0,Hogyan határozzák meg a gépjármű vagyonszerzési illetékét?,AUTO_007,14,,False,True,False,vehicle
+False,,0,False,0.25611899999785237,0,"Mi a teendő, ha a megvásárolt autónak hiányzik a törzskönyve?",AUTO_008,15,,False,True,False,vehicle
+False,,0,False,0.22868649999145418,0,"Mi történik a ki nem vett szabadságommal, amikor megszűnik a munkaviszonyom?",WORK_007,16,,False,True,False,employment
+False,,0,False,0.33175509999273345,0,"Készíts teljes ügyintézési tervet a munkaviszonyom megszűnése után, a szükséges dokumentumokkal, ellátásokkal, határidőkkel és pénzügyi teendőkkel együtt!",WORK_010,17,,False,True,False,employment
+False,,0,False,0.2876208000234328,0,Vettem egy használt autót Magyarországon. Milyen ügyintézési teendőim vannak?,AUTO_001,18,,False,True,False,vehicle
+False,,0,False,0.22847750000073574,0,"Mi a különbség a munkavállalói felmondás, a munkáltatói felmondás és a közös megegyezés között?",WORK_008,19,,False,True,False,employment
+False,,0,False,0.10746040000231005,0,Hogyan határozzák meg a gépjármű vagyonszerzési illetékét?,AUTO_007,20,,False,True,False,vehicle
+False,,0,False,0.22400159999961033,0,"Mi a különbség a munkavállalói felmondás, a munkáltatói felmondás és a közös megegyezés között?",WORK_008,21,,False,True,False,employment
+False,,0,False,0.20215160000952892,0,"Mennyi ideig kaphatok álláskeresési járadékot, és hogyan számítják ki az összegét?",WORK_004,22,,False,True,False,employment
+False,,0,False,0.38954229999217205,0,"Mi a teendő, ha a megvásárolt autónak hiányzik a törzskönyve?",AUTO_008,23,,False,True,False,vehicle
+False,,0,False,0.08024670000304468,0,Milyen dokumentumokat kell megkapnom a munkáltatómtól a munkaviszony megszűnésekor?,WORK_005,24,,False,True,False,employment
+False,,0,False,0.3106055000098422,0,"Mi történik az egészségügyi szolgáltatásra való jogosultságommal, ha megszűnik a munkaviszonyom, és nem találok azonnal új állást?",WORK_009,25,,False,True,False,employment
+False,,0,False,0.24533579999115318,0,Hogyan tudom ellenőrizni egy használt autó előéletét és kilométeróra-adatait?,AUTO_009,26,,False,True,False,vehicle
+False,,0,False,0.26944239999284036,0,Vettem egy használt autót Magyarországon. Milyen ügyintézési teendőim vannak?,AUTO_001,27,,False,True,False,vehicle
+False,,0,False,0.12662910000653937,0,Milyen költségekkel kell számolnom egy használt autó megvásárlása és átírása során?,AUTO_006,28,,False,True,False,vehicle
+False,,0,False,0.16408519999822602,0,"Mennyi ideig kaphatok álláskeresési járadékot, és hogyan számítják ki az összegét?",WORK_004,29,,False,True,False,employment
+False,,0,False,0.24360950000118464,0,Elvesztettem a munkámat. Milyen ügyintézési teendőim vannak?,WORK_001,30,,False,True,False,employment
+False,,0,False,0.23353019999922253,0,Hogyan tudom ellenőrizni egy használt autó előéletét és kilométeróra-adatait?,AUTO_009,31,,False,True,False,vehicle
+False,,0,False,0.05001859998446889,0,Mikor kell kötelező gépjármű-felelősségbiztosítást kötnöm?,AUTO_005,32,,False,True,False,vehicle
+False,,0,False,0.15230200000223704,0,Hogyan határozzák meg a gépjármű vagyonszerzési illetékét?,AUTO_007,33,,False,True,False,vehicle
+False,,0,False,0.2808377000037581,0,Elvesztettem a munkámat. Milyen ügyintézési teendőim vannak?,WORK_001,34,,False,True,False,employment
+False,,0,False,0.17525130001013167,0,"Mikor szükséges eredetiségvizsgálat, és milyen kivételek léteznek?",AUTO_004,35,,False,True,False,vehicle
+False,,0,False,0.04011189998709597,0,Milyen dokumentumok szükségesek a gépjármű átírásához?,AUTO_003,36,,False,True,False,vehicle
+False,,0,False,0.19090650000725873,0,Milyen feltételekkel lehetek jogosult álláskeresési járadékra?,WORK_003,37,,False,True,False,employment
+False,,0,False,0.04285520000848919,0,"Mikor szükséges eredetiségvizsgálat, és milyen kivételek léteznek?",AUTO_004,38,,False,True,False,vehicle
+False,,0,False,0.07232160001876764,0,Hogyan tudok álláskeresőként nyilvántartásba kerülni Magyarországon?,WORK_002,39,,False,True,False,employment
+False,,0,False,0.07832960001542233,0,Hogyan tudok álláskeresőként nyilvántartásba kerülni Magyarországon?,WORK_002,40,,False,True,False,employment
+False,,0,False,0.3729098000039812,0,"Készíts teljes ügyintézési tervet a munkaviszonyom megszűnése után, a szükséges dokumentumokkal, ellátásokkal, határidőkkel és pénzügyi teendőkkel együtt!",WORK_010,41,,False,True,False,employment
+False,,0,False,0.25184490001993254,0,Hogyan tudom ellenőrizni egy használt autó előéletét és kilométeróra-adatait?,AUTO_009,42,,False,True,False,vehicle
+False,,0,False,0.046435699972789735,0,"Mennyi időm van az autó átírására, és milyen következményei lehetnek a határidő elmulasztásának?",AUTO_002,43,,False,True,False,vehicle
+False,,0,False,0.0959965999936685,0,Milyen dokumentumokat kell megkapnom a munkáltatómtól a munkaviszony megszűnésekor?,WORK_005,44,,False,True,False,employment
+False,,0,False,0.2976382000197191,0,"Mi a különbség a munkavállalói felmondás, a munkáltatói felmondás és a közös megegyezés között?",WORK_008,45,,False,True,False,employment
+False,,0,False,0.04551349999383092,0,"Mikor szükséges eredetiségvizsgálat, és milyen kivételek léteznek?",AUTO_004,46,,False,True,False,vehicle
+False,,0,False,0.16555829998105764,0,Milyen feltételekkel lehetek jogosult álláskeresési járadékra?,WORK_003,47,,False,True,False,employment
+False,,0,False,0.035233400005381554,0,Milyen dokumentumok szükségesek a gépjármű átírásához?,AUTO_003,48,,False,True,False,vehicle
+False,,0,False,0.2942183999984991,0,"Mi a különbség a munkavállalói felmondás, a munkáltatói felmondás és a közös megegyezés között?",WORK_008,49,,False,True,False,employment
+False,,0,False,0.23670249999850057,0,"Készíts teljes, időrendi ügyintézési tervet egy használt autó megvásárlása után, a dokumentumokkal, határidőkkel és költségekkel együtt!",AUTO_010,50,,False,True,False,vehicle
