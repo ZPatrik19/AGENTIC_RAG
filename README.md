@@ -118,75 +118,38 @@ Ennek ára a hagyományos RAG-hoz képest a nagyobb implementációs komplexitá
 
 ---
 
-# 3. Korlátok és trade-offok
+Modellválasztás és alternatívák
 
-A rendszer prototípus, ezért a következő korlátokat explicit módon figyelembe kell venni.
+A helyi generatív modell kiválasztásánál elsődleges szempont volt, hogy a modell fizetős API nélkül, Ollamán keresztül, korlátozott helyi CPU/GPU-erőforrás mellett is használható legyen. Emellett fontos volt a magyar nyelv támogatása, az instruction following, a strukturált válaszadás és az agentic workflow-khoz szükséges tool-calling képesség.
 
-### Modellkorlátok
+A hasonló méretű, lokálisan futtatható modellek között több reális alternatíva is elérhető. Ilyen például a Microsoft Phi-4-mini-instruct, amely szintén kis erőforrásigényű, MIT licencű modell, és hosszú kontextus kezelésére is alkalmas.
 
-A Qwen3 4B egy viszonylag kis, helyben futtatható modell.
+A projektben végül a Qwen3 4B került kiválasztásra, mert a prototípus követelményeihez több szempontból jól illeszkedik:
 
-Előnye:
+4 milliárd paraméteres méret: a nagyobb, 7B–14B vagy annál nagyobb modellekhez képest reálisabb helyi futtatást tesz lehetővé korlátozott RAM/VRAM mellett;
+multilingual támogatás: a Qwen3 család 119 nyelvet és dialektust támogat, amelyek között a magyar is szerepel;
+agentic képességek: a modellcsaládot tool calling és agent-alapú feladatok támogatására is optimalizálták, ami közvetlenül releváns a LangGraph workflow szempontjából;
+thinking / non-thinking működés: ugyanaz a modell reasoning-orientált és gyorsabb, közvetlen válaszmódban is használható. Ebben a projektben a think=false konfiguráció csökkenti a generálási overheadet;
+helyi futtatás: Ollamán keresztül egyszerűen integrálható a Python alkalmazásba, ezért nincs szükség külső fizetős inference API-ra;
+Apache 2.0 licenc: a modell permisszív nyílt licenc alatt érhető el.
 
-* helyi futtatás;
-* nincs fizetős LLM API;
-* alacsonyabb hardverigény a nagyobb modellekhez képest.
+A választás ugyanakkor nem azt jelenti, hogy a Qwen3 4B bizonyítottan jobb minden hasonló méretű modellnél. A projektben nem készült teljes, azonos hardveren és azonos benchmark-adatkészleten végrehajtott LLM-összehasonlítás a Qwen3 4B és például a Phi-4-mini-instruct között. A modellválasztás ezért elsősorban mérnöki kompromisszum: a helyi futtathatóság, a magyar nyelvi lefedettség, az agentic képességek és az erőforrásigény egyensúlya alapján történt.
 
-Korlátja:
+Egy későbbi A/B értékelésben érdemes ugyanazon kérdéskészleten összehasonlítani például:
 
-* magyar közigazgatási szövegeknél előfordulhat értelmezési hiba;
-* hosszú, többforrású context esetén csökkenhet a válasz pontossága;
-* strukturált output esetén validáció vagy retry válhat szükségessé;
-* kis VRAM esetén részleges CPU offloading jelentősen növelheti a válaszidőt.
+Qwen3 4B
+vs.
+Phi-4-mini-instruct
 
-### Kontextuskorlát
+és mérni:
 
-Az `.env.example` konfigurációban például:
-
-```dotenv
-OLLAMA_NUM_CTX=8192
-```
-
-szerepelhet, de ez konfigurációs célérték, és nem jelenti azt, hogy minden hardveren optimálisan használható.
-
-Nagy context esetén nő:
-
-* a memóriaigény;
-* a KV-cache mérete;
-* a prompt processing latency;
-* a teljes generálási idő.
-
-Ezért a rendszer evidence selection és token budget réteget használ.
-
-### Adatforrás-korlát
-
-A rendszer hivatalos nyilvános forrásokra támaszkodik, amelyek:
-
-* változhatnak;
-* elavulhatnak;
-* szerkezetet válthatnak;
-* eltérő részletességűek lehetnek.
-
-A rendszer ezért dokumentumhash-t, forrás URL-t és dokumentumazonosítót is tárol.
-
-### Értékelési korlát
-
-A projekt automatikusan előállított SILVER retrieval referenciát is használ.
-
-Ez hasznos reprodukálható méréshez, de:
-
-**nem helyettesít emberileg validált golden benchmarkot.**
-
-### Funkcionális korlát
-
-A jelenlegi prototípus főként két élethelyzetre fókuszál:
-
-* gépjármű vásárlás / eladás;
-* munkaviszony megszűnése / álláskeresési ügyintézés.
-
-A rendszer architektúrája további domainekkel bővíthető, de ezek jelenleg nem tekinthetők teljesen támogatott use case-nek.
-
----
+Answer Completeness
+Faithfulness
+Citation Accuracy
+Tool Selection Accuracy
+TTFT
+Generation Speed
+RAM / VRAM usage
 
 # 4. Teljesítmény és bottleneck-elemzés
 
